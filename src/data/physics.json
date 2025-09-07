@@ -1,0 +1,183 @@
+[
+  {
+    "id": 1,
+    "question": "What is the SI unit of force?",
+    "options": ["Joule", "Newton", "Watt", "Pascal"],
+    "answer": "Newton",
+    "difficulty": "easy",
+    "topic": "Mechanics",
+    "explanation": "The newton (symbol: N) is the SI derived unit of force. It is named after Isaac Newton in recognition of his work on classical mechanics."
+  },
+  {
+    "id": 2,
+    "question": "The speed of light in vacuum is approximately:",
+    "options": ["3 × 10⁸ m/s", "3 × 10⁶ m/s", "3 × 10¹⁰ m/s", "3 × 10⁷ m/s"],
+    "answer": "3 × 10⁸ m/s",
+    "difficulty": "easy",
+    "topic": "Waves & Optics",
+    "explanation": "The speed of light in a vacuum, denoted by 'c', is exactly 299,792,458 meters per second, but it is commonly approximated as 3 × 10⁸ m/s."
+  },
+  {
+    "id": 3,
+    "question": "What happens to the resistance of a conductor when temperature increases?",
+    "options": ["Increases", "Decreases", "Remains constant", "Becomes zero"],
+    "answer": "Increases",
+    "difficulty": "medium",
+    "topic": "Electricity & Magnetism",
+    "explanation": "For most conductors, increased temperature causes atoms to vibrate more, impeding the flow of electrons and thus increasing electrical resistance."
+  },
+  {
+    "id": 4,
+    "question": "Which law states that F = ma?",
+    "options": ["Newton's First Law", "Newton's Second Law", "Newton's Third Law", "Law of Gravitation"],
+    "answer": "Newton's Second Law",
+    "difficulty": "easy",
+    "topic": "Mechanics",
+    "explanation": "Newton's Second Law of Motion states that the acceleration of an object is directly proportional to the net force acting on it and inversely proportional to its mass (F = ma)."
+  },
+  {
+    "id": 5,
+    "question": "What is the unit of electric potential?",
+    "options": ["Ampere", "Volt", "Ohm", "Coulomb"],
+    "answer": "Volt",
+    "difficulty": "easy",
+    "topic": "Electricity & Magnetism",
+    "explanation": "The volt (symbol: V) is the SI derived unit for electric potential, electric potential difference (voltage), and electromotive force."
+  },
+  {
+    "id": 6,
+    "question": "In which medium does sound travel fastest?",
+    "options": ["Air", "Water", "Steel", "Vacuum"],
+    "answer": "Steel",
+    "difficulty": "easy",
+    "topic": "Waves & Optics",
+    "explanation": "Sound is a mechanical wave that requires a medium. It travels fastest in solids (like steel) because the particles are closer together, allowing for faster energy transfer. It cannot travel in a vacuum."
+  },
+  {
+    "id": 7,
+    "question": "What type of lens is used to correct short-sightedness?",
+    "options": ["Convex", "Concave", "Cylindrical", "Bifocal"],
+    "answer": "Concave",
+    "difficulty": "medium",
+    "topic": "Waves & Optics",
+    "explanation": "Short-sightedness (myopia) is caused by the eye focusing images in front of the retina. A concave (diverging) lens spreads out the light rays before they enter the eye, correcting the focus."
+  },
+  {
+    "id": 8,
+    "question": "The acceleration due to gravity on Earth is approximately:",
+    "options": ["9.8 m/s²", "8.9 m/s²", "10.2 m/s²", "9.0 m/s²"],
+    "answer": "9.8 m/s²",
+    "difficulty": "easy",
+    "topic": "Mechanics",
+    "explanation": "The standard acceleration due to gravity on Earth is 9.80665 m/s², though it varies slightly depending on location (altitude, latitude). It is commonly rounded to 9.8 m/s²."
+  },
+  {
+    "id": 9,
+    "question": "Which subatomic particle has a negative charge?",
+    "options": ["Proton", "Neutron", "Electron", "Neutrino"],
+    "answer": "Electron",
+    "difficulty": "easy",
+    "topic": "Modern Physics",
+    "explanation": "Electrons are fundamental particles that orbit the nucleus of an atom and carry a negative elementary charge."
+  },
+  {
+    "id": 10,
+    "question": "According to Ohm's Law, what is the relationship between voltage (V), current (I), and resistance (R)?",
+    "options": ["V = I/R", "V = I*R", "I = V*R", "R = V/I²"],
+    "answer": "V = I*R",
+    "difficulty": "easy",
+    "topic": "Electricity & Magnetism",
+    "explanation": "Ohm's Law states that the voltage across a conductor is directly proportional to the current flowing through it, with the constant of proportionality being the resistance (V = I * R)."
+  },
+  {
+    "id": 11,
+    "question": "What is the energy of a photon given by?",
+    "options": ["E = mgh", "E = mc²", "E = hf", "E = ½mv²"],
+    "answer": "E = hf",
+    "difficulty": "medium",
+    "topic": "Modern Physics",
+    "explanation": "The energy (E) of a photon is directly proportional to its frequency (f). The Planck constant (h) is the proportionality factor, leading to the equation E = hf."
+  },
+  {
+    "id": 12,
+    "question": "The principle that 'the pressure exerted anywhere in a confined incompressible fluid is transmitted equally in all directions' is known as:",
+    "options": ["Bernoulli's Principle", "Archimedes' Principle", "Pascal's Principle", "Boyle's Law"],
+    "answer": "Pascal's Principle",
+    "difficulty": "medium",
+    "topic": "Thermodynamics & Fluids",
+    "explanation": "Pascal's Principle is the foundation of hydraulic systems. A change in pressure applied to an enclosed fluid is transmitted undiminished to every portion of the fluid and to the walls of its container."
+  },
+  {
+    "id": 13,
+    "question": "Which of the following is NOT a fundamental force in nature?",
+    "options": ["Gravitational Force", "Electromagnetic Force", "Strong Nuclear Force", "Frictional Force"],
+    "answer": "Frictional Force",
+    "difficulty": "medium",
+    "topic": "Mechanics",
+    "explanation": "The four fundamental forces are gravity, electromagnetism, the strong nuclear force, and the weak nuclear force. Friction is a macroscopic manifestation of the electromagnetic force."
+  },
+  {
+    "id": 14,
+    "question": "A object is in free fall. Ignoring air resistance, which quantity remains constant?",
+    "options": ["Velocity", "Acceleration", "Momentum", "Kinetic Energy"],
+    "answer": "Acceleration",
+    "difficulty": "medium",
+    "topic": "Mechanics",
+    "explanation": "Ignoring air resistance, the only force acting on an object in free fall is gravity. Therefore, its acceleration is constant and equal to g (≈9.8 m/s² downward)."
+  },
+  {
+    "id": 15,
+    "question": "In a nuclear reactor, what is the primary function of control rods?",
+    "options": ["To cool the reactor core", "To generate steam", "To absorb neutrons and control the fission rate", "To reflect neutrons back into the core"],
+    "answer": "To absorb neutrons and control the fission rate",
+    "difficulty": "hard",
+    "topic": "Modern Physics",
+    "explanation": "Control rods are made of materials like cadmium or boron that absorb neutrons. Inserting them deeper into the reactor core slows the chain reaction; withdrawing them allows it to intensify."
+  },
+  {
+    "id": 16,
+    "question": "The phenomenon where light splits into its constituent colors when passed through a prism is called:",
+    "options": ["Reflection", "Refraction", "Dispersion", "Diffraction"],
+    "answer": "Dispersion",
+    "difficulty": "easy",
+    "topic": "Waves & Optics",
+    "explanation": "Dispersion is the process by which light is separated into its different wavelengths (colors) due to the dependence of the refractive index on wavelength."
+  },
+  {
+    "id": 17,
+    "question": "What is the name of the process by which a gas changes directly into a solid without becoming a liquid first?",
+    "options": ["Sublimation", "Deposition", "Condensation", "Freezing"],
+    "answer": "Deposition",
+    "difficulty": "medium",
+    "topic": "Thermodynamics & Fluids",
+    "explanation": "Deposition is the phase transition where a gas transforms directly into a solid. The reverse process (solid to gas) is called sublimation."
+  },
+  {
+    "id": 18,
+    "question": "If the distance between two point charges is doubled, the electrostatic force between them becomes:",
+    "options": ["Half", "One-fourth", "Double", "Four times"],
+    "answer": "One-fourth",
+    "difficulty": "medium",
+    "topic": "Electricity & Magnetism",
+    "explanation": "Coulomb's Law states that the force is inversely proportional to the square of the distance (F ∝ 1/r²). Doubling the distance (2r) means the new force is F ∝ 1/(2r)² = 1/(4r²), or one-fourth of the original force."
+  },
+  {
+    "id": 19,
+    "question": "Heisenberg's Uncertainty Principle states that it is impossible to know simultaneously the exact:",
+    "options": ["Energy and momentum of a particle", "Position and momentum of a particle", "Charge and mass of a particle", "Speed and velocity of a particle"],
+    "answer": "Position and momentum of a particle",
+    "difficulty": "hard",
+    "topic": "Modern Physics",
+    "explanation": "Heisenberg's Uncertainty Principle is a fundamental concept in quantum mechanics. It states that the more precisely the position of a particle is known, the less precisely its momentum can be known, and vice versa."
+  },
+  {
+    "id": 20,
+    "question": "Which law of thermodynamics states that the entropy of a perfect crystal at absolute zero is exactly zero?",
+    "options": ["Zeroth Law", "First Law", "Second Law", "Third Law"],
+    "answer": "Third Law",
+    "difficulty": "hard",
+    "topic": "Thermodynamics & Fluids",
+    "explanation": "The Third Law of Thermodynamics establishes a definitive zero point for entropy, providing a reference for all entropy values."
+  }
+ 
+]

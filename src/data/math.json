@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "question": "Solve: 2x + 3 = 7",
+    "options": ["x=1", "x=2", "x=3", "x=4"],
+    "answer": "x=2"
+  },
+  {
+    "id": 2,
+    "question": "Simplify: (x² × x³)",
+    "options": ["x⁵", "x⁶", "x⁸", "x⁹"],
+    "answer": "x⁵"
+  },
+  {
+    "id": 3,
+    "question": "What is the value of log₁₀(1000)?",
+    "options": ["2", "3", "4", "5"],
+    "answer": "3"
+  },
+  {
+    "id": 4,
+    "question": "If a triangle has sides 3, 4, and 5, what type of triangle is it?",
+    "options": ["Acute", "Right", "Obtuse", "Isosceles"],
+    "answer": "Right"
+  },
+  {
+    "id": 5,
+    "question": "Solve: 3x - 12 = 0",
+    "options": ["x=3", "x=4", "x=5", "x=6"],
+    "answer": "x=4"
+  },
+  {
+    "id": 6,
+    "question": "What is the derivative of x³?",
+    "options": ["3x²", "x⁴", "3x", "x²"],
+    "answer": "3x²"
+  },
+  {
+    "id": 7,
+    "question": "Find the area of a circle with radius 7 cm (use π = 22/7)",
+    "options": ["154 cm²", "144 cm²", "164 cm²", "174 cm²"],
+    "answer": "154 cm²"
+  },
+  {
+    "id": 8,
+    "question": "What is the value of sin 30°?",
+    "options": ["1/2", "√3/2", "√2/2", "1"],
+    "answer": "1/2"
+  }
+]

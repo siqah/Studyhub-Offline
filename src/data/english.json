@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "question": "What is the past tense of 'go'?",
+    "options": ["goed", "went", "gone", "going"],
+    "answer": "went"
+  },
+  {
+    "id": 2,
+    "question": "Identify the noun in: 'The beautiful flower bloomed.'",
+    "options": ["beautiful", "flower", "bloomed", "the"],
+    "answer": "flower"
+  },
+  {
+    "id": 3,
+    "question": "What type of sentence is: 'What time is it?'",
+    "options": ["Declarative", "Interrogative", "Imperative", "Exclamatory"],
+    "answer": "Interrogative"
+  },
+  {
+    "id": 4,
+    "question": "Choose the correct form: 'She _____ to school every day.'",
+    "options": ["go", "goes", "going", "gone"],
+    "answer": "goes"
+  },
+  {
+    "id": 5,
+    "question": "What is a synonym for 'happy'?",
+    "options": ["sad", "angry", "joyful", "tired"],
+    "answer": "joyful"
+  },
+  {
+    "id": 6,
+    "question": "Which is the correct spelling?",
+    "options": ["recieve", "receive", "receve", "receeve"],
+    "answer": "receive"
+  },
+  {
+    "id": 7,
+    "question": "What is the plural of 'child'?",
+    "options": ["childs", "childes", "children", "child"],
+    "answer": "children"
+  },
+  {
+    "id": 8,
+    "question": "Identify the verb in: 'The cat sleeps on the mat.'",
+    "options": ["cat", "sleeps", "mat", "the"],
+    "answer": "sleeps"
+  }
+]
