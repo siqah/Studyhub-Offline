@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "question": "What is the primary goal of supervised learning?",
+    "options": ["To find hidden patterns in data", "To predict outcomes based on labeled data", "To group similar data points", "To learn from rewards and punishments"],
+    "answer": "To predict outcomes based on labeled data"
+  },
+  {
+    "id": 2,
+    "question": "Which algorithm is commonly used for regression tasks?",
+    "options": ["K-Means Clustering", "Decision Trees", "Linear Regression", "Principal Component Analysis"],
+    "answer": "Linear Regression"
+  },
+  {
+    "id": 3,
+    "question": "What does 'overfitting' mean in machine learning?",
+    "options": ["The model performs well on training data but poorly on new data", "The model is too simple to capture patterns", "The model uses too few features", "The model is trained on unlabeled data"],
+    "answer": "The model performs well on training data but poorly on new data"
+  },
+  {
+    "id": 4,
+    "question": "Which of the following is an example of unsupervised learning?",
+    "options": ["Predicting house prices", "Classifying emails as spam", "Grouping customers by behavior", "Recommending movies based on ratings"],
+    "answer": "Grouping customers by behavior"
+  },
+  {
+    "id": 5,
+    "question": "What is the role of a loss function in training a model?",
+    "options": ["To measure how well the model performs", "To initialize model weights", "To select features", "To visualize data"],
+    "answer": "To measure how well the model performs"
+  },
+  {
+    "id": 6,
+    "question": "Which technique is used to prevent overfitting?",
+    "options": ["Increasing model complexity", "Using regularization", "Adding more training data", "Ignoring validation data"],
+    "answer": "Using regularization"
+  },
+  {
+    "id": 7,
+    "question": "What is a neural network primarily inspired by?",
+    "options": ["Human brain structure", "Database systems", "Statistical models", "Search algorithms"],
+    "answer": "Human brain structure"
+  },
+  {
+    "id": 8,
+    "question": "In reinforcement learning, what is an 'agent'?",
+    "options": ["The environment", "The learner that makes decisions", "The reward system", "The training dataset"],
+    "answer": "The learner that makes decisions"
+  },
+  {
+    "id": 9,
+    "question": "What does 'gradient descent' optimize?",
+    "options": ["Model accuracy", "The loss function", "Data preprocessing", "Feature selection"],
+    "answer": "The loss function"
+  },
+  {
+    "id": 10,
+    "question": "Which library is popular for machine learning in Python?",
+    "options": ["Pandas", "Scikit-learn", "Matplotlib", "NumPy"],
+    "answer": "Scikit-learn"
+  }
+]
