@@ -6,6 +6,7 @@ import { useQuizStore } from '../store/useQuizStore';
 import mathData from '../data/math.json';
 import englishData from '../data/english.json';
 import physicsData from '../data/physics.json';
+import mlData from '../data/ml.json';
 
 export default function SubjectScreen() {
   const route = useRoute<any>();
@@ -25,6 +26,10 @@ export default function SubjectScreen() {
     }
     else if (subject === 'Physics') {
       const data = (physicsData as any).map((q: any) => ({ ...q, _subject: 'Physics' }));
+      loadQuestions(data);
+    }
+    else if (subject === 'Machine Learning') {
+      const data = (mlData as any).map((q: any) => ({ ...q, _subject: 'Machine Learning' }));
       loadQuestions(data);
     }
     else loadQuestions(mathData as any);
