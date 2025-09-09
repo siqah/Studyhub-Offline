@@ -27,6 +27,12 @@ const subjects: Subject[] = [
     color: "#8B5CF6",
     icon: "⚛️",
     description: "Mechanics, Waves, Electricity"
+  },
+  {
+    name: "Machine Learning",
+    color: "#F59E0B",
+    icon: "🤖",
+    description: "Algorithms, Models, Data"
   }
 ];
 
