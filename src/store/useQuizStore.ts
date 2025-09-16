@@ -16,6 +16,7 @@ type QuizState = {
   isQuizComplete: boolean;
   currentSelected: string | null;
   isAnswered: boolean;
+  _sessionStart?: number; // ms timestamp when quiz started
   loadQuestions: (data: Question[]) => void;
   submitAnswer: (selected: string) => void;
   nextQuestion: () => void;
@@ -31,6 +32,7 @@ export const useQuizStore = create<QuizState>((set, get) => ({
   isQuizComplete: false,
   currentSelected: null,
   isAnswered: false,
+  _sessionStart: undefined,
   
   loadQuestions: (data) => set({ 
     questions: data, 
@@ -40,6 +42,7 @@ export const useQuizStore = create<QuizState>((set, get) => ({
     isQuizComplete: false,
     currentSelected: null,
     isAnswered: false,
+    _sessionStart: Date.now(),
   }),
   
   // record answer but do NOT advance — allow UI to show feedback
@@ -77,15 +80,18 @@ export const useQuizStore = create<QuizState>((set, get) => ({
       // persist session
       (async () => {
         try {
-          const existing = (await loadProgress()) || ({ quizzesTaken: 0, totalScore: 0, sessions: [] } as Progress);
+          const existing = (await loadProgress()) || ({ quizzesTaken: 0, totalScore: 0, sessions: [], totalDurationMs: 0 } as Progress);
           const subject = (questions as any)[0]?._subject ?? 'Unknown';
+          const start = get()._sessionStart ?? Date.now();
+          const durationMs = Math.max(0, Date.now() - start);
           const newProgress: Progress = {
             quizzesTaken: existing.quizzesTaken + 1,
             totalScore: existing.totalScore + score,
             sessions: [
               ...existing.sessions,
-              { subject, score, total: questions.length, date: new Date().toISOString() }
-            ]
+              { subject, score, total: questions.length, date: new Date().toISOString(), durationMs }
+            ],
+            totalDurationMs: (existing.totalDurationMs ?? 0) + durationMs,
           };
           await saveProgress(newProgress);
         } catch (e) {

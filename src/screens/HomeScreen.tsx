@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { View, Text, ScrollView, StatusBar, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StatusBar, StyleSheet, RefreshControl } from "react-native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import SubjectCard from "../components/SubjectCard";
 import { loadProgress, Progress } from "../store/persistence";
@@ -41,10 +41,16 @@ const subjects: Subject[] = [
 export default function HomeScreen() {
   const navigation = useNavigation<any>();
   const [progress, setProgress] = useState<Progress | null>(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const refreshProgress = useCallback(async () => {
-    const data = await loadProgress();
-    setProgress(data);
+    setIsRefreshing(true);
+    try {
+      const data = await loadProgress();
+      setProgress(data);
+    } finally {
+      setIsRefreshing(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -64,6 +70,32 @@ export default function HomeScreen() {
   const totalAnswered = progress?.sessions?.reduce((s, x) => s + x.total, 0) ?? 0;
   const avgScore = totalAnswered > 0 ? Math.round((progress!.totalScore / totalAnswered) * 100) : 0;
 
+  const totalDurationMs = progress?.totalDurationMs ?? 0;
+  const hours = Math.floor(totalDurationMs / (1000 * 60 * 60));
+  const minutes = Math.floor((totalDurationMs % (1000 * 60 * 60)) / (1000 * 60));
+  const timeLabel = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+
+  // per-subject stats map: { [subject]: { attempts, avg } }
+  const perSubject = React.useMemo(() => {
+    const map: Record<string, { attempts: number; avg: number }> = {};
+    const sessions = progress?.sessions ?? [];
+    const grouped: Record<string, { totalScore: number; total: number; attempts: number }> = {};
+    for (const s of sessions) {
+      if (!grouped[s.subject]) grouped[s.subject] = { totalScore: 0, total: 0, attempts: 0 };
+      grouped[s.subject].totalScore += s.score;
+      grouped[s.subject].total += s.total;
+      grouped[s.subject].attempts += 1;
+    }
+    for (const key of Object.keys(grouped)) {
+      const g = grouped[key];
+      map[key] = {
+        attempts: g.attempts,
+        avg: g.total > 0 ? Math.round((g.totalScore / g.total) * 100) : 0,
+      };
+    }
+    return map;
+  }, [progress?.sessions]);
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#F9FAFB" />
@@ -73,7 +105,7 @@ export default function HomeScreen() {
         <Text style={styles.subtitle}>Master your subjects with practice quizzes</Text>
       </View>
 
-      <ScrollView style={styles.scrollView}>
+      <ScrollView style={styles.scrollView} refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={refreshProgress} />}>
         {/* Welcome Card */}
         <View style={styles.welcomeCard}>
           <Text style={styles.welcomeTitle}>🎯 Ready to Practice?</Text>
@@ -82,16 +114,25 @@ export default function HomeScreen() {
 
         {/* Subjects */}
         <Text style={styles.sectionTitle}>Subjects</Text>
-        {subjects.map((subject) => (
-          <SubjectCard
-            key={subject.name}
-            name={subject.name}
-            description={subject.description}
-            icon={subject.icon}
-            color={subject.color}
-            onPress={() => navigation.navigate("Subject", { subject: subject.name })}
-          />
-        ))}
+        {subjects.map((subject) => {
+          const stats = perSubject[subject.name] ?? { attempts: 0, avg: 0 };
+          return (
+            <SubjectCard
+              key={subject.name}
+              name={subject.name}
+              description={subject.description}
+              icon={subject.icon}
+              color={subject.color}
+              onPress={() => navigation.navigate("Subject", { subject: subject.name })}
+              rightSlot={
+                <View style={{ alignItems: 'flex-end' }}>
+                  <Text style={{ color: 'white', fontWeight: '600' }}>{stats.avg}%</Text>
+                  <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{stats.attempts} tries</Text>
+                </View>
+              }
+            />
+          );
+        })}
 
         {/* Stats Card */}
         <View style={styles.statsCard}>
@@ -106,8 +147,8 @@ export default function HomeScreen() {
               <Text style={styles.statLabel}>Average Score</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={[styles.statNumber, { color: '#8B5CF6' }]}>–</Text>
-              <Text style={styles.statLabel}>Hours Studied</Text>
+              <Text style={[styles.statNumber, { color: '#8B5CF6' }]}>{timeLabel}</Text>
+              <Text style={styles.statLabel}>Time Studied</Text>
             </View>
           </View>
         </View>
