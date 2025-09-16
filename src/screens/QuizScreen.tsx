@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useQuizStore } from '../store/useQuizStore';
 import QuestionCard from '../components/QuestionCard';
+import { toggleBookmark, isBookmarked } from '../store/persistence';
 
 export default function QuizScreen() {
   const { questions, currentQuestion, submitAnswer, nextQuestion, score, isQuizComplete, reset, currentSelected, isAnswered } = useQuizStore();
+  const [bookmarked, setBookmarked] = useState(false);
+
+  useEffect(() => {
+    if (!questions || questions.length === 0 || currentQuestion >= questions.length) return;
+    const q: any = questions[currentQuestion];
+    const subject = q._subject ?? 'Unknown';
+    isBookmarked(subject, q.id).then(setBookmarked);
+  }, [questions, currentQuestion]);
 
   if (!questions || questions.length === 0) {
     return (
@@ -27,10 +36,23 @@ export default function QuizScreen() {
     );
   }
 
-  const q = questions[currentQuestion];
+  const q: any = questions[currentQuestion];
+  const subject = q._subject ?? 'Unknown';
+
+  const onToggleBookmark = async () => {
+    const next = !bookmarked;
+    await toggleBookmark(subject, q.id, next);
+    setBookmarked(next);
+  };
 
   return (
     <View style={styles.container}>
+      <View style={styles.topRow}>
+        <TouchableOpacity style={[styles.bookmarkBtn, bookmarked ? styles.bookmarkOn : styles.bookmarkOff]} onPress={onToggleBookmark}>
+          <Text style={styles.bookmarkText}>{bookmarked ? '★ Bookmarked' : '☆ Bookmark'}</Text>
+        </TouchableOpacity>
+      </View>
+
       <QuestionCard
         question={q.question}
         options={q.options}
@@ -65,6 +87,19 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: '#F9FAFB',
   },
+  topRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: 8,
+  },
+  bookmarkBtn: {
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+  },
+  bookmarkOn: { backgroundColor: '#FDE68A' },
+  bookmarkOff: { backgroundColor: '#E5E7EB' },
+  bookmarkText: { fontWeight: '600', color: '#111827' },
   title: {
     fontSize: 22,
     fontWeight: '700',
