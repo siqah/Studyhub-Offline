@@ -1,6 +1,8 @@
-import React from "react";
-import { View, Text, TouchableOpacity, ScrollView, StatusBar, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React, { useEffect, useState, useCallback } from "react";
+import { View, Text, ScrollView, StatusBar, StyleSheet } from "react-native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import SubjectCard from "../components/SubjectCard";
+import { loadProgress, Progress } from "../store/persistence";
 
 type Subject = {
   name: string;
@@ -38,15 +40,37 @@ const subjects: Subject[] = [
 
 export default function HomeScreen() {
   const navigation = useNavigation<any>();
+  const [progress, setProgress] = useState<Progress | null>(null);
+
+  const refreshProgress = useCallback(async () => {
+    const data = await loadProgress();
+    setProgress(data);
+  }, []);
+
+  useEffect(() => {
+    // initial load
+    refreshProgress();
+  }, [refreshProgress]);
+
+  useFocusEffect(
+    useCallback(() => {
+      // refresh whenever screen gains focus
+      refreshProgress();
+      return () => {};
+    }, [refreshProgress])
+  );
+
+  const quizzesTaken = progress?.quizzesTaken ?? 0;
+  const totalAnswered = progress?.sessions?.reduce((s, x) => s + x.total, 0) ?? 0;
+  const avgScore = totalAnswered > 0 ? Math.round((progress!.totalScore / totalAnswered) * 100) : 0;
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#F9FAFB" />
-      
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.title}>StudyHub Offline</Text>
-        <Text style={styles.subtitle}>Master your KCSE subjects with practice quizzes</Text>
+        <Text style={styles.subtitle}>Master your subjects with practice quizzes</Text>
       </View>
 
       <ScrollView style={styles.scrollView}>
@@ -58,28 +82,15 @@ export default function HomeScreen() {
 
         {/* Subjects */}
         <Text style={styles.sectionTitle}>Subjects</Text>
-        
-        {subjects.map((subject, index) => (
-          <TouchableOpacity
+        {subjects.map((subject) => (
+          <SubjectCard
             key={subject.name}
-            style={styles.subjectButton}
+            name={subject.name}
+            description={subject.description}
+            icon={subject.icon}
+            color={subject.color}
             onPress={() => navigation.navigate("Subject", { subject: subject.name })}
-          >
-            <View style={[styles.subjectCard, { backgroundColor: subject.color }]}>
-              <View style={styles.subjectContent}>
-                <View style={styles.subjectInfo}>
-                  <View style={styles.subjectHeader}>
-                    <Text style={styles.subjectIcon}>{subject.icon}</Text>
-                    <Text style={styles.subjectName}>{subject.name}</Text>
-                  </View>
-                  <Text style={styles.subjectDescription}>{subject.description}</Text>
-                </View>
-                <View style={styles.arrow}>
-                  <Text style={styles.arrowText}>→</Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
+          />
         ))}
 
         {/* Stats Card */}
@@ -87,15 +98,15 @@ export default function HomeScreen() {
           <Text style={styles.statsTitle}>📊 Your Progress</Text>
           <View style={styles.statsRow}>
             <View style={styles.statItem}>
-              <Text style={styles.statNumber}>0</Text>
+              <Text style={styles.statNumber}>{quizzesTaken}</Text>
               <Text style={styles.statLabel}>Quizzes Taken</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={[styles.statNumber, { color: '#10B981' }]}>0%</Text>
+              <Text style={[styles.statNumber, { color: '#10B981' }]}>{avgScore}%</Text>
               <Text style={styles.statLabel}>Average Score</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={[styles.statNumber, { color: '#8B5CF6' }]}>0</Text>
+              <Text style={[styles.statNumber, { color: '#8B5CF6' }]}>–</Text>
               <Text style={styles.statLabel}>Hours Studied</Text>
             </View>
           </View>
@@ -161,53 +172,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#1F2937',
     marginBottom: 16,
-  },
-  subjectButton: {
-    marginBottom: 16,
-  },
-  subjectCard: {
-    borderRadius: 16,
-    padding: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  subjectContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  subjectInfo: {
-    flex: 1,
-  },
-  subjectHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  subjectIcon: {
-    fontSize: 24,
-    marginRight: 12,
-  },
-  subjectName: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  subjectDescription: {
-    color: 'rgba(255, 255, 255, 0.9)',
-    fontSize: 16,
-  },
-  arrow: {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 20,
-    padding: 12,
-  },
-  arrowText: {
-    color: 'white',
-    fontSize: 18,
   },
   statsCard: {
     backgroundColor: 'white',

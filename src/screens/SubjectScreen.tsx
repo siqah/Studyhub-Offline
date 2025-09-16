@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useQuizStore } from '../store/useQuizStore';
+import { getWrongForSubject } from '../store/persistence';
 
 import mathData from '../data/math.json';
 import englishData from '../data/english.json';
@@ -14,43 +15,36 @@ export default function SubjectScreen() {
   const { loadQuestions } = useQuizStore();
 
   const subject: string = route.params?.subject ?? 'Mathematics';
+  const [wrongIds, setWrongIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    getWrongForSubject(subject).then(setWrongIds);
+  }, [subject]);
+
+  const dataset = subject === 'Mathematics' ? mathData : subject === 'English' ? englishData : subject === 'Physics' ? physicsData : mlData;
 
   const startQuiz = () => {
-    if (subject === 'Mathematics') {
-      const data = (mathData as any).map((q: any) => ({ ...q, _subject: 'Mathematics' }));
-      loadQuestions(data);
-    }
-    else if (subject === 'English') {
-      const data = (englishData as any).map((q: any) => ({ ...q, _subject: 'English' }));
-      loadQuestions(data);
-    }
-    else if (subject === 'Physics') {
-      const data = (physicsData as any).map((q: any) => ({ ...q, _subject: 'Physics' }));
-      loadQuestions(data);
-    }
-    else if (subject === 'Machine Learning') {
-      const data = (mlData as any).map((q: any) => ({ ...q, _subject: 'Machine Learning' }));
-      loadQuestions(data);
-    }
-    else loadQuestions(mathData as any);
+    const dataWithSubject = (dataset as any).map((q: any) => ({ ...q, _subject: subject }));
+    loadQuestions(dataWithSubject);
+    navigation.navigate('Quiz');
+  };
 
+  const startReview = () => {
+    const filtered = (dataset as any).filter((q: any) => wrongIds.includes(q.id)).map((q: any) => ({ ...q, _subject: subject }));
+    if (filtered.length === 0) return;
+    loadQuestions(filtered);
     navigation.navigate('Quiz');
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{subject} Revision</Text>
-      <Text style={styles.subtitle}>Number of questions: {(() => {
-        if (subject === 'Mathematics') return mathData.length;
-        if (subject === 'English') return englishData.length;
-        if (subject === 'Physics') return physicsData.length;
-        return 0;
-      })()}</Text>
+      <Text style={styles.subtitle}>Number of questions: {dataset.length}</Text>
 
       {/* small preview */}
       <View style={{ marginBottom: 20 }}>
         <Text style={{ fontWeight: '600', marginBottom: 8 }}>Preview</Text>
-        {(subject === 'Mathematics' ? mathData : subject === 'English' ? englishData : physicsData).slice(0,3).map((q: any)=> (
+        {dataset.slice(0,3).map((q: any)=> (
           <Text key={q.id} style={{ color: '#374151' }}>• {q.question}</Text>
         ))}
       </View>
@@ -58,6 +52,12 @@ export default function SubjectScreen() {
       <TouchableOpacity style={styles.startButton} onPress={startQuiz}>
         <Text style={styles.startButtonText}>Start Quiz</Text>
       </TouchableOpacity>
+
+      {wrongIds.length > 0 && (
+        <TouchableOpacity style={[styles.startButton, { marginTop: 12, backgroundColor: '#F59E0B' }]} onPress={startReview}>
+          <Text style={styles.startButtonText}>Review Mistakes ({wrongIds.length})</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { saveProgress, loadProgress, Progress } from './persistence';
+import { saveProgress, loadProgress, Progress, recordAnswer } from './persistence';
 
 export type Question = {
   id: number;
@@ -48,7 +48,8 @@ export const useQuizStore = create<QuizState>((set, get) => ({
     if (isAnswered) return; // ignore repeated taps
     if (!questions || !questions.length) return;
 
-    const correct = questions[currentQuestion].answer === selected;
+    const current = questions[currentQuestion] as any;
+    const correct = current.answer === selected;
     const newScore = correct ? score + 1 : score;
     const newSelectedAnswers = [...selectedAnswers, selected];
 
@@ -58,6 +59,11 @@ export const useQuizStore = create<QuizState>((set, get) => ({
       currentSelected: selected,
       isAnswered: true,
     });
+
+    // persist outcome for review/bookmarks
+    const subject = current._subject ?? 'Unknown';
+    const id = current.id ?? currentQuestion;
+    recordAnswer(subject, id, correct).catch(() => {});
   },
 
   // advance to next question; when finished, persist the session
