@@ -2,11 +2,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PROGRESS_KEY = 'kcse:progress';
 
-export type Session = { subject: string; score: number; total: number; date: string };
+export type Session = { subject: string; score: number; total: number; date: string; durationMs?: number };
 export type Progress = {
   quizzesTaken: number;
   totalScore: number;
   sessions: Session[];
+  totalDurationMs?: number; // accumulated time across sessions
   bookmarks?: Record<string, boolean>; // key: `${subject}:${id}`
   wrong?: Record<string, number>; // key: `${subject}:${id}` count of wrong attempts
 };
@@ -23,7 +24,10 @@ export const loadProgress = async (): Promise<Progress | null> => {
   try {
     const raw = await AsyncStorage.getItem(PROGRESS_KEY);
     if (!raw) return null;
-    return JSON.parse(raw) as Progress;
+    const parsed = JSON.parse(raw) as Progress;
+    // ensure defaults for new fields
+    parsed.totalDurationMs = parsed.totalDurationMs ?? 0;
+    return parsed;
   } catch (e) {
     console.warn('Failed to load progress', e);
     return null;
