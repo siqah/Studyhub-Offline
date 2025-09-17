@@ -1,0 +1,836 @@
+{
+  "subject": "English",
+  "levels": {
+    "Beginner": [
+      {
+        "id": 1,
+        "title": "Alphabet and Pronunciation Basics",
+        "content": "Learn the English alphabet, basic vowel and consonant sounds, and common spelling-sound correspondences. Focus on short vs. long vowels, common consonant pairs, and clear articulation.",
+        "examples": [
+          "Alphabet: A B C D E F G ... Z",
+          "Short vs. long vowels: bit/beat, not/note, cut/cute"
+        ],
+        "steps": [
+          "Step 1: Memorize letter names and typical sounds.",
+          "Step 2: Practice short and long vowel contrasts.",
+          "Step 3: Drill common consonant clusters (bl-, tr-, st-).",
+          "Step 4: Record and compare your pronunciation with models."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Syllables, Word Stress, and Rhythm",
+        "content": "Understand syllable division and primary stress in words. Learn how stress affects vowel quality and overall intelligibility.",
+        "examples": [
+          "ta-ble (2 syllables), com-pu-ter (3 syllables)",
+          "Stress: PHOtograph, phoTOgraphy, photoGRAphic"
+        ],
+        "steps": [
+          "Step 1: Clap out syllables in common words.",
+          "Step 2: Identify primary stress using dictionaries.",
+          "Step 3: Practice minimal pairs with different stress patterns.",
+          "Step 4: Read aloud with a steady rhythm."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Nouns and Pronouns",
+        "content": "Nouns name people, places, things, and ideas. Pronouns replace nouns to avoid repetition and agree in number and person.",
+        "examples": [
+          "The teacher is kind. She explains well.",
+          "The books are on the table. They are new."
+        ],
+        "steps": [
+          "Step 1: Identify common and proper nouns in sentences.",
+          "Step 2: Replace nouns with appropriate pronouns.",
+          "Step 3: Ensure pronoun-antecedent agreement."
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Articles and Basic Determiners",
+        "content": "Use a/an for singular, non-specific nouns; the for specific or known nouns. Learn this/that/these/those and basic quantifiers (some, any, much, many).",
+        "examples": [
+          "I need a pen. The pen is blue.",
+          "This book is new. Those books are old."
+        ],
+        "steps": [
+          "Step 1: Choose a/an based on sound (a dog, an apple).",
+          "Step 2: Use the for previously mentioned or specific items.",
+          "Step 3: Practice demonstratives (this/these vs. that/those)."
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Be, Have, and Do",
+        "content": "Be, have, and do function as main and auxiliary verbs. Master their forms and basic uses in statements, negatives, and questions.",
+        "examples": [
+          "I am a student. She is happy.",
+          "Do you like tea? I do not (don’t).",
+          "I have a car. Have you got a pen?"
+        ],
+        "steps": [
+          "Step 1: Memorize forms: am/is/are; have/has; do/does.",
+          "Step 2: Form negatives and questions correctly.",
+          "Step 3: Practice short answers (Yes, I do. No, she isn’t.)."
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Simple Present",
+        "content": "Use the simple present for habits, routines, and general truths. Add -s/-es for third-person singular.",
+        "examples": [
+          "She works every day.",
+          "Water boils at 100°C."
+        ],
+        "steps": [
+          "Step 1: Conjugate regular verbs in all persons.",
+          "Step 2: Add -s/-es for he/she/it.",
+          "Step 3: Use do/does for questions and negatives."
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Present Continuous",
+        "content": "Use the present continuous for actions happening now or temporary situations.",
+        "examples": [
+          "He is reading now.",
+          "They are staying with friends this week."
+        ],
+        "steps": [
+          "Step 1: Form be + verb-ing.",
+          "Step 2: Learn spelling rules for -ing (run → running).",
+          "Step 3: Contrast with simple present for habits vs. now."
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Simple Past",
+        "content": "Use the simple past for completed actions in the past. Learn regular and common irregular verbs.",
+        "examples": [
+          "She visited her parents yesterday.",
+          "He went to school by bus."
+        ],
+        "steps": [
+          "Step 1: Add -ed for regular verbs.",
+          "Step 2: Memorize key irregular forms (go → went).",
+          "Step 3: Use did for questions and negatives."
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Basic Future: Will and Going To",
+        "content": "Use will for decisions, promises, and predictions; going to for plans and intentions.",
+        "examples": [
+          "I’ll call you tonight.",
+          "We’re going to visit Rome next month."
+        ],
+        "steps": [
+          "Step 1: Form will + base verb and be going to + base verb.",
+          "Step 2: Practice usage differences with timelines.",
+          "Step 3: Make predictions with evidence (Look at those clouds—It’s going to rain.)."
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Adjectives and Adverbs (Basics)",
+        "content": "Adjectives describe nouns; adverbs modify verbs, adjectives, or other adverbs. Learn common -ly adverbs and adjective order.",
+        "examples": [
+          "A very tall building.",
+          "She sings beautifully."
+        ],
+        "steps": [
+          "Step 1: Place adjectives before nouns.",
+          "Step 2: Form adverbs with -ly when appropriate.",
+          "Step 3: Practice basic adjective order (opinion-size-age-color-noun)."
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Countable/Uncountable Nouns and Plurals",
+        "content": "Differentiate countable vs. uncountable nouns and apply correct quantifiers and plural forms.",
+        "examples": [
+          "Many apples, much water.",
+          "Information (uncountable), pieces of information."
+        ],
+        "steps": [
+          "Step 1: Learn common uncountable nouns.",
+          "Step 2: Use some/any, much/many correctly.",
+          "Step 3: Form regular and irregular plurals (child → children)."
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Prepositions of Place and Time",
+        "content": "Use in/on/at for places and times, and basic movement prepositions (to, from, into, out of).",
+        "examples": [
+          "At 7 pm, on Monday, in July.",
+          "The keys are on the table."
+        ],
+        "steps": [
+          "Step 1: Memorize common place/time patterns.",
+          "Step 2: Practice with visual prompts (maps, calendars).",
+          "Step 3: Contrast in/on/at in context."
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Coordinating Conjunctions and Simple Sentences",
+        "content": "Use and, but, or, so to connect words and independent clauses. Build clear simple sentences.",
+        "examples": [
+          "I like tea and coffee.",
+          "He was tired, so he went to bed."
+        ],
+        "steps": [
+          "Step 1: Write simple S-V-O sentences.",
+          "Step 2: Join ideas with coordinating conjunctions.",
+          "Step 3: Avoid run-on sentences with proper punctuation."
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Questions and Negation",
+        "content": "Form yes/no and wh- questions. Use auxiliaries for negatives and questions.",
+        "examples": [
+          "Do you live here? Where do you live?",
+          "She does not (doesn’t) drive."
+        ],
+        "steps": [
+          "Step 1: Invert auxiliary and subject for questions.",
+          "Step 2: Use do/does/did with main verbs.",
+          "Step 3: Practice wh- words (who, what, where, when, why, how)."
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Imperatives and Requests",
+        "content": "Use imperatives for instructions and polite forms for requests.",
+        "examples": [
+          "Open the window, please.",
+          "Could you help me, please?"
+        ],
+        "steps": [
+          "Step 1: Use base verb for imperatives.",
+          "Step 2: Add please and modal can/could for polite requests.",
+          "Step 3: Practice classroom and daily-life instructions."
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Punctuation and Capitalization (Basics)",
+        "content": "Use periods, commas, question marks, and capital letters for sentence starts, proper nouns, and the pronoun I.",
+        "examples": [
+          "My name is Ana. I live in Madrid.",
+          "Where are you from?"
+        ],
+        "steps": [
+          "Step 1: Capitalize sentence starts and proper nouns.",
+          "Step 2: End sentences with correct punctuation.",
+          "Step 3: Use commas in simple lists."
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Spelling Rules and Common Patterns",
+        "content": "Learn basic spelling patterns: adding -s/-es, -ed, -ing, y → ies, doubling consonants.",
+        "examples": [
+          "study → studies; stop → stopped; run → running",
+          "box → boxes; play → played"
+        ],
+        "steps": [
+          "Step 1: Apply rules for plurals and verb endings.",
+          "Step 2: Practice with word families.",
+          "Step 3: Keep a personal spelling list."
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Essential Vocabulary and Collocations (Everyday Life)",
+        "content": "Build core vocabulary for daily routines, food, travel, work, and common collocations.",
+        "examples": [
+          "Make a decision, have breakfast, take a shower.",
+          "Buy groceries, catch a bus."
+        ],
+        "steps": [
+          "Step 1: Learn words in context with phrases.",
+          "Step 2: Create themed word lists with examples.",
+          "Step 3: Review with spaced repetition."
+        ]
+      }
+    ],
+    "Intermediate": [
+      {
+        "id": 1,
+        "title": "Tense Review and Aspect",
+        "content": "Contrast simple vs. continuous vs. perfect aspects to express time and completeness.",
+        "examples": [
+          "I live here. I am living here temporarily.",
+          "I have lived here for five years."
+        ],
+        "steps": [
+          "Step 1: Map timelines for common tenses.",
+          "Step 2: Practice substitution and transformation drills.",
+          "Step 3: Use context clues to choose the correct aspect."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Present Perfect Simple vs. Past Simple",
+        "content": "Use present perfect for life experience and unfinished time; past simple for finished time.",
+        "examples": [
+          "I’ve been to Japan. I went there in 2019.",
+          "She has just left. She left five minutes ago."
+        ],
+        "steps": [
+          "Step 1: Identify finished vs. unfinished time markers.",
+          "Step 2: Use for/since with present perfect.",
+          "Step 3: Practice paired contrasts."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Present Perfect Continuous",
+        "content": "Express actions that started in the past and continue or have recent results.",
+        "examples": [
+          "I’ve been studying for three hours.",
+          "It has been raining, so the ground is wet."
+        ],
+        "steps": [
+          "Step 1: Form have/has been + -ing.",
+          "Step 2: Contrast with present perfect simple (result vs. duration).",
+          "Step 3: Use with for/since and time expressions."
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Past Continuous and Past Perfect",
+        "content": "Use past continuous for background actions; past perfect for the earlier of two past events.",
+        "examples": [
+          "I was cooking when she arrived.",
+          "She had finished before I called."
+        ],
+        "steps": [
+          "Step 1: Build past timelines for sequences.",
+          "Step 2: Combine past simple, continuous, and perfect.",
+          "Step 3: Write narratives with clear sequencing."
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Future Forms in Depth",
+        "content": "Use will, going to, present continuous for plans, and future continuous/perfect for ongoing or completed future actions.",
+        "examples": [
+          "I’m meeting Sara at 6.",
+          "This time next week, I’ll be traveling.",
+          "By 2030, we will have reduced costs."
+        ],
+        "steps": [
+          "Step 1: Match form to function (plan, schedule, prediction, arrangement).",
+          "Step 2: Practice future continuous/perfect timelines.",
+          "Step 3: Write future schedules and forecasts."
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Modals: Ability, Permission, Obligation, and Probability",
+        "content": "Use can/could, may/might, must/have to/should for functions like ability, requests, obligation, advice, and degrees of certainty.",
+        "examples": [
+          "You must wear a seatbelt.",
+          "She might be at home.",
+          "Could you open the window?"
+        ],
+        "steps": [
+          "Step 1: Group modals by function.",
+          "Step 2: Practice past forms and semi-modals (had to, be allowed to).",
+          "Step 3: Use adverbs to fine-tune certainty (probably, definitely)."
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Conditionals (Zero to Third)",
+        "content": "Form and use zero, first, second, and third conditionals for facts, real possibilities, hypotheticals, and regrets.",
+        "examples": [
+          "If you heat water, it boils. (Zero)",
+          "If it rains, I’ll stay home. (First)",
+          "If I had time, I would travel. (Second)",
+          "If I had studied, I would have passed. (Third)"
+        ],
+        "steps": [
+          "Step 1: Learn standard forms for each type.",
+          "Step 2: Practice real vs. hypothetical contexts.",
+          "Step 3: Combine with modals for nuance."
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Passive Voice",
+        "content": "Use the passive to focus on the action or result rather than the actor; form across common tenses.",
+        "examples": [
+          "The report was written yesterday.",
+          "English is spoken worldwide."
+        ],
+        "steps": [
+          "Step 1: Transform active to passive and vice versa.",
+          "Step 2: Choose by-phrases only when needed.",
+          "Step 3: Practice passive in reports and processes."
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Reported Speech (Statements, Questions, Commands)",
+        "content": "Report what others said using backshifting when appropriate and adjusting pronouns, time, and place.",
+        "examples": [
+          "She said (that) she was tired.",
+          "He asked where I lived.",
+          "They told me to wait."
+        ],
+        "steps": [
+          "Step 1: Learn reporting verbs and patterns.",
+          "Step 2: Practice backshifts and time changes.",
+          "Step 3: Report dialogues and interviews."
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Gerunds and Infinitives",
+        "content": "Use -ing or to-infinitive after specific verbs, adjectives, and expressions. Understand meaning differences.",
+        "examples": [
+          "I enjoy reading.",
+          "I decided to leave.",
+          "I stopped smoking vs. I stopped to smoke."
+        ],
+        "steps": [
+          "Step 1: Memorize common verb patterns.",
+          "Step 2: Practice sentence transformations.",
+          "Step 3: Note meaning changes with different forms."
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Relative Clauses",
+        "content": "Use defining and non-defining relative clauses with who, which, that, whose, where, when.",
+        "examples": [
+          "The person who called is my boss.",
+          "Paris, which is beautiful in spring, is crowded."
+        ],
+        "steps": [
+          "Step 1: Punctuate non-defining clauses with commas.",
+          "Step 2: Omit relative pronouns where allowed.",
+          "Step 3: Combine sentences using relative clauses."
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Adverbial and Noun Clauses",
+        "content": "Use adverbial clauses (because, although, if, when) and noun clauses (that, if/whether, wh- clauses) to expand ideas.",
+        "examples": [
+          "I stayed home because I was sick.",
+          "I think (that) he is right.",
+          "Tell me where you live."
+        ],
+        "steps": [
+          "Step 1: Identify clause functions.",
+          "Step 2: Practice subordinators in context.",
+          "Step 3: Embed noun clauses as subjects/objects."
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Phrasal Verbs (Core Set)",
+        "content": "Understand separable vs. inseparable phrasal verbs and common meanings.",
+        "examples": [
+          "Turn on the light / Turn the light on.",
+          "Look after the kids.",
+          "Run into an old friend."
+        ],
+        "steps": [
+          "Step 1: Learn particles and patterns.",
+          "Step 2: Record phrasal verbs in context sentences.",
+          "Step 3: Practice with dialogues and role-plays."
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Word Formation and Collocations",
+        "content": "Build vocabulary using prefixes, suffixes, and common collocations; recognize part-of-speech families.",
+        "examples": [
+          "happy → happiness → unhappiness",
+          "strong coffee, heavy rain, make progress"
+        ],
+        "steps": [
+          "Step 1: Map word families (noun/verb/adj/adv).",
+          "Step 2: Learn productive affixes (un-, re-, -ness, -able).",
+          "Step 3: Study collocations with corpus-informed lists."
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Discourse Markers and Cohesion",
+        "content": "Use linking words for adding, contrasting, sequencing, and concluding to improve flow and clarity.",
+        "examples": [
+          "Furthermore, however, therefore, in conclusion",
+          "First, next, finally"
+        ],
+        "steps": [
+          "Step 1: Categorize markers by function.",
+          "Step 2: Rewrite paragraphs to improve cohesion.",
+          "Step 3: Avoid overuse by varying expressions."
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Paragraph Writing: Unity and Coherence",
+        "content": "Write clear topic sentences, provide supporting details, and end with concluding sentences.",
+        "examples": [
+          "Topic sentence introducing a single main idea.",
+          "Supporting details with examples and explanations."
+        ],
+        "steps": [
+          "Step 1: Outline topic, support, and conclusion.",
+          "Step 2: Use transitions for coherence.",
+          "Step 3: Edit for relevance and clarity."
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Functional Writing: Emails and Notes",
+        "content": "Write polite, clear emails and notes with appropriate greetings, closings, and tone.",
+        "examples": [
+          "Dear Ms. Lee, I am writing to...",
+          "Best regards, Kind regards"
+        ],
+        "steps": [
+          "Step 1: Choose formal vs. informal style.",
+          "Step 2: Use clear subject lines and structure.",
+          "Step 3: Proofread for brevity and correctness."
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Listening and Speaking: Conversation Management",
+        "content": "Use strategies to open, maintain, and close conversations; clarify and confirm information.",
+        "examples": [
+          "Sorry, could you repeat that?",
+          "Just to confirm, you mean...?"
+        ],
+        "steps": [
+          "Step 1: Practice turn-taking and active listening.",
+          "Step 2: Use clarification and confirmation phrases.",
+          "Step 3: Role-play common scenarios."
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Reading Strategies: Skimming, Scanning, Inference",
+        "content": "Develop flexible reading strategies to locate information, get the gist, and infer meaning from context.",
+        "examples": [
+          "Scan schedules for times and dates.",
+          "Infer word meaning from surrounding sentences."
+        ],
+        "steps": [
+          "Step 1: Set a reading purpose.",
+          "Step 2: Practice time-limited skimming and scanning.",
+          "Step 3: Annotate texts and check predictions."
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Pronunciation: Connected Speech and Intonation",
+        "content": "Improve naturalness with linking, reductions (weak forms), and basic intonation patterns for questions and statements.",
+        "examples": [
+          "Gonna, wanna (informal reductions)",
+          "Rising intonation for yes/no questions"
+        ],
+        "steps": [
+          "Step 1: Practice linking between words.",
+          "Step 2: Use weak forms for function words.",
+          "Step 3: Imitate natural intonation in dialogues."
+        ]
+      }
+    ],
+    "Advanced": [
+      {
+        "id": 1,
+        "title": "Advanced Modality and Inference",
+        "content": "Use modal verbs and perfect modals for present and past deduction, speculation, and evaluation.",
+        "examples": [
+          "She must have left early.",
+          "They might be delaying the launch."
+        ],
+        "steps": [
+          "Step 1: Review degrees of certainty with modals.",
+          "Step 2: Use perfect modals for past inferences.",
+          "Step 3: Embed modals in formal arguments."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Complex Conditionals and Wishes",
+        "content": "Use mixed conditionals, inversions, and expressions of wishes, preferences, and regrets.",
+        "examples": [
+          "If I had studied, I would be working there now.",
+          "I wish I had known.",
+          "I’d rather you didn’t smoke."
+        ],
+        "steps": [
+          "Step 1: Map cause-time/result-time in mixed forms.",
+          "Step 2: Practice wish/if only with tense backshifts.",
+          "Step 3: Use inversion for emphasis (Had I known, ...)."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Emphasis, Clefting, and Fronting",
+        "content": "Use cleft sentences, fronting, and inversion to highlight information and manage focus.",
+        "examples": [
+          "It was John who solved the problem.",
+          "Only then did we realize the error."
+        ],
+        "steps": [
+          "Step 1: Identify focus and theme/rheme.",
+          "Step 2: Transform neutral sentences into emphatic forms.",
+          "Step 3: Apply in formal writing and speech."
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Advanced Passive Structures",
+        "content": "Use passives with reporting verbs, causatives, and get-passives to vary style and focus.",
+        "examples": [
+          "The CEO is believed to be retiring.",
+          "We had the report edited.",
+          "He got promoted last year."
+        ],
+        "steps": [
+          "Step 1: Practice passive + infinitive patterns.",
+          "Step 2: Use causatives (have/get something done).",
+          "Step 3: Choose passive for objectivity and flow."
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Reported Speech: Advanced Patterns",
+        "content": "Use a range of reporting verbs and nuanced backshifts; maintain coherence of reference and time.",
+        "examples": [
+          "She admitted having made a mistake.",
+          "They suggested that we postpone the meeting."
+        ],
+        "steps": [
+          "Step 1: Categorize reporting verbs by pattern.",
+          "Step 2: Preserve meaning with accurate backshifts.",
+          "Step 3: Summarize and synthesize multiple sources."
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Complex Noun Phrases and Nominalization",
+        "content": "Build dense academic-style noun phrases with premodifiers, postmodifiers, and nominalizations.",
+        "examples": [
+          "The rapid international expansion of the company",
+          "The implementation of stricter policies"
+        ],
+        "steps": [
+          "Step 1: Layer modifiers logically.",
+          "Step 2: Convert clauses to noun phrases for concision.",
+          "Step 3: Balance density with readability."
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Cohesion and Coherence at Text Level",
+        "content": "Use referencing, substitution, ellipsis, and lexical cohesion to create unified, readable texts.",
+        "examples": [
+          "This/that, the former/the latter for referencing",
+          "Avoid repetition with substitution and ellipsis"
+        ],
+        "steps": [
+          "Step 1: Annotate cohesion devices in model texts.",
+          "Step 2: Revise drafts to improve coherence.",
+          "Step 3: Use parallel structure for balance."
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Style and Register: Formal, Neutral, Informal",
+        "content": "Adapt grammar, vocabulary, and tone to audience and purpose in academic, business, and casual contexts.",
+        "examples": [
+          "Commence vs. begin vs. start",
+          "I am writing to inquire vs. Just checking in"
+        ],
+        "steps": [
+          "Step 1: Analyze audience and purpose.",
+          "Step 2: Choose appropriate lexis and structures.",
+          "Step 3: Edit for consistency of register."
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Argumentation and Critical Writing",
+        "content": "Plan and write analytical and argumentative essays with clear thesis, evidence, counterarguments, and conclusions.",
+        "examples": [
+          "Thesis-driven introduction",
+          "Counterargument with rebuttal"
+        ],
+        "steps": [
+          "Step 1: Outline claims, reasons, and evidence.",
+          "Step 2: Integrate quotations and paraphrases.",
+          "Step 3: Conclude with implications and limitations."
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Research Skills: Summarizing, Paraphrasing, and Citation",
+        "content": "Condense sources accurately, paraphrase without plagiarism, and cite using common styles.",
+        "examples": [
+          "Concise abstracts and executive summaries",
+          "Signal phrases: According to..., X (2023) argues..."
+        ],
+        "steps": [
+          "Step 1: Take structured notes (key points, terms, data).",
+          "Step 2: Paraphrase with transformations and synonyms.",
+          "Step 3: Provide attributions and references."
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Phrasal Verbs and Idioms (Advanced)",
+        "content": "Master high-frequency phrasal verbs with multiple meanings and idiomatic expressions for nuance.",
+        "examples": [
+          "Bring up, put off, work out (multiple senses)",
+          "Idioms: on the same page, hit the ground running"
+        ],
+        "steps": [
+          "Step 1: Learn meanings by context and metaphor.",
+          "Step 2: Record collocates and patterns.",
+          "Step 3: Practice in professional scenarios."
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Vocabulary: Collocations and Lexical Bundles",
+        "content": "Use discipline-specific collocations and multiword units to sound natural and precise.",
+        "examples": [
+          "Bear in mind, as a result of, in terms of",
+          "Conduct research, pose a question"
+        ],
+        "steps": [
+          "Step 1: Build domain glossaries with examples.",
+          "Step 2: Extract bundles from model texts.",
+          "Step 3: Recycle target items across tasks."
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Pronunciation: Advanced Intonation and Clarity",
+        "content": "Control pitch, stress, rhythm, and reduction for clarity in presentations and discussions.",
+        "examples": [
+          "Contrastive stress for emphasis",
+          "Falling vs. rising-falling contours"
+        ],
+        "steps": [
+          "Step 1: Mark nuclear stress in sentences.",
+          "Step 2: Practice scripts for presentations.",
+          "Step 3: Get feedback from recordings."
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Professional Communication and Presentations",
+        "content": "Deliver structured presentations; handle Q&A; write reports, proposals, and executive summaries.",
+        "examples": [
+          "Signposting: First, I’ll outline...",
+          "Bridging questions: That’s a great question; to clarify..."
+        ],
+        "steps": [
+          "Step 1: Plan with audience-focused structure.",
+          "Step 2: Use visuals and signposting effectively.",
+          "Step 3: Anticipate questions and rehearse answers."
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Editing and Proofreading",
+        "content": "Revise for grammar, style, concision, and coherence; use checklists and tools to improve accuracy.",
+        "examples": [
+          "Eliminate redundancy and wordiness.",
+          "Ensure subject–verb agreement in complex sentences."
+        ],
+        "steps": [
+          "Step 1: Edit in stages (content, structure, language).",
+          "Step 2: Use style guides and consistency checks.",
+          "Step 3: Apply readability and grammar tools."
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Reading: Critical Analysis and Synthesis",
+        "content": "Evaluate arguments, identify bias, and synthesize multiple sources into a coherent perspective.",
+        "examples": [
+          "Identify assumptions and evidence quality.",
+          "Compare and contrast authors’ positions."
+        ],
+        "steps": [
+          "Step 1: Annotate claims, evidence, and warrants.",
+          "Step 2: Create comparison matrices.",
+          "Step 3: Write literature-mapped summaries."
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Listening: Lectures and Note-Taking",
+        "content": "Follow complex talks using signposting, chunking, and structured note-taking systems.",
+        "examples": [
+          "Cornell notes with cues and summaries",
+          "Recognize signals: to begin with, moving on to..."
+        ],
+        "steps": [
+          "Step 1: Pre-listen by previewing key terms.",
+          "Step 2: Take notes using consistent formats.",
+          "Step 3: Review and expand notes post-listening."
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Literary Analysis",
+        "content": "Interpret themes, symbols, narrative perspective, and stylistic devices across genres.",
+        "examples": [
+          "Analyzing Shakespeare’s imagery in Macbeth.",
+          "Exploring justice and empathy in To Kill a Mockingbird."
+        ],
+        "steps": [
+          "Step 1: Close-read passages and annotate devices.",
+          "Step 2: Connect textual evidence to thematic claims.",
+          "Step 3: Write a thesis-driven analytical essay."
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Grammar in Academic Writing: Precision and Clarity",
+        "content": "Use parallelism, subordination, and punctuation for precise, readable academic prose.",
+        "examples": [
+          "Parallel structure in lists and comparisons",
+          "Semicolons for complex coordination"
+        ],
+        "steps": [
+          "Step 1: Diagnose sentence-level issues.",
+          "Step 2: Apply targeted rewrites.",
+          "Step 3: Maintain consistency in tense and voice."
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Exam and Assessment Strategies",
+        "content": "Develop strategies for timed tasks, error correction, and performance on standardized assessments.",
+        "examples": [
+          "Allocate time per section and question type.",
+          "Use elimination and inference in reading tasks."
+        ],
+        "steps": [
+          "Step 1: Analyze test formats and rubrics.",
+          "Step 2: Create practice plans with feedback loops.",
+          "Step 3: Reflect on errors to prevent recurrence."
+        ]
+      }
+    ]
+  }
+}

@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, ScrollView, RefreshControl, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, RefreshControl, StyleSheet, Platform } from 'react-native';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import SubjectCard from "../components/SubjectCard";
 import { loadProgress, Progress } from "../store/persistence";
+import { loadNotes, SubjectKey } from "../data/loaders";
 
 type Subject = {
   name: string;
@@ -43,25 +44,32 @@ export default function HomeScreen() {
   const navigation = useNavigation<any>();
   const [progress, setProgress] = useState<Progress | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [notesCounts, setNotesCounts] = useState<Record<string, number>>({});
 
   const refreshProgress = useCallback(async () => {
     setIsRefreshing(true);
     try {
       const data = await loadProgress();
       setProgress(data);
+      // also refresh notes counts in background
+      const entries = await Promise.all(
+        subjects.map(async (s) => {
+          const list = await loadNotes(s.name as SubjectKey);
+          return [s.name, list.length] as const;
+        })
+      );
+      setNotesCounts(Object.fromEntries(entries));
     } finally {
       setIsRefreshing(false);
     }
   }, []);
 
   useEffect(() => {
-    // initial load
     refreshProgress();
   }, [refreshProgress]);
 
   useFocusEffect(
     useCallback(() => {
-      // refresh whenever screen gains focus
       refreshProgress();
       return () => {};
     }, [refreshProgress])
@@ -69,15 +77,14 @@ export default function HomeScreen() {
 
   const quizzesTaken = progress?.quizzesTaken ?? 0;
   const totalAnswered = progress?.sessions?.reduce((s, x) => s + x.total, 0) ?? 0;
-  const avgScore = totalAnswered > 0 ? Math.round((progress!.totalScore / totalAnswered) * 100) : 0;
+  const avgScore = totalAnswered > 0 && progress ? Math.round((progress.totalScore / totalAnswered) * 100) : 0;
 
   const totalDurationMs = progress?.totalDurationMs ?? 0;
   const hours = Math.floor(totalDurationMs / (1000 * 60 * 60));
   const minutes = Math.floor((totalDurationMs % (1000 * 60 * 60)) / (1000 * 60));
   const timeLabel = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
 
-  // per-subject stats map: { [subject]: { attempts, avg } }
-  const perSubject = React.useMemo(() => {
+  const perSubject = useMemo(() => {
     const map: Record<string, { attempts: number; avg: number }> = {};
     const sessions = progress?.sessions ?? [];
     const grouped: Record<string, { totalScore: number; total: number; attempts: number }> = {};
@@ -98,162 +105,206 @@ export default function HomeScreen() {
   }, [progress?.sessions]);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      {/* Custom top section */}
-      <View className="px-6 pt-2 pb-4">
-        <Text className="text-2xl font-extrabold text-gray-900">StudyHub Offline</Text>
-        <Text className="text-sm text-gray-500 mt-1">Learn anywhere. No internet required.</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.headerRow}>
+          <Text style={styles.appTitle}>StudyHub Offline</Text>
+        </View>
+        <Text style={styles.appSubtitle}>Learn anywhere. No internet required.</Text>
       </View>
 
-      {/* Content */}
       <ScrollView
-        className="flex-1"
-        contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24 }}
+        contentContainerStyle={styles.contentContainer}
         refreshControl={
           <RefreshControl refreshing={isRefreshing} onRefresh={refreshProgress} />
         }
       >
-        {/* Welcome Card */}
         <View style={styles.welcomeCard}>
-          <Text style={styles.welcomeTitle}>🎯 Ready to Practice?</Text>
-          <Text style={styles.welcomeText}>Choose a subject below and start your revision journey!</Text>
+          <Text style={styles.welcomeTitle}>🎯 Ready to practice?</Text>
+          <Text style={styles.welcomeText}>
+            Choose a subject below and start your revision journey.
+          </Text>
         </View>
 
-        {/* Subjects */}
-        <Text style={styles.sectionTitle}>Subjects</Text>
-        {subjects.map((subject) => {
-          const stats = perSubject[subject.name] ?? { attempts: 0, avg: 0 };
-          return (
-            <SubjectCard
-              key={subject.name}
-              name={subject.name}
-              description={subject.description}
-              icon={subject.icon}
-              color={subject.color}
-              onPress={() => navigation.navigate("Subject", { subject: subject.name })}
-              rightSlot={
-                <View style={{ alignItems: 'flex-end' }}>
-                  <Text style={{ color: 'white', fontWeight: '600' }}>{stats.avg}%</Text>
-                  <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{stats.attempts} tries</Text>
-                </View>
-              }
-            />
-          );
-        })}
-
-        {/* Stats Card */}
-        <View style={styles.statsCard}>
-          <Text style={styles.statsTitle}>📊 Your Progress</Text>
+          <View style={styles.statsCard}>
+          <Text style={styles.statsTitle}>Your Progress</Text>
           <View style={styles.statsRow}>
-            <View style={styles.statItem}>
+            <View style={[styles.statItem, styles.statDividerRight]}>
               <Text style={styles.statNumber}>{quizzesTaken}</Text>
               <Text style={styles.statLabel}>Quizzes Taken</Text>
             </View>
-            <View style={styles.statItem}>
-              <Text style={[styles.statNumber, { color: '#10B981' }]}>{avgScore}%</Text>
+            <View style={[styles.statItem, styles.statDividerRight]}>
+              <Text style={[styles.statNumber, styles.statNumberPositive]}>{avgScore}%</Text>
               <Text style={styles.statLabel}>Average Score</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={[styles.statNumber, { color: '#8B5CF6' }]}>{timeLabel}</Text>
+              <Text style={[styles.statNumber, styles.statNumberAccent]}>{timeLabel}</Text>
               <Text style={styles.statLabel}>Time Studied</Text>
             </View>
           </View>
         </View>
+
+        <Text style={styles.sectionTitle}>Subjects</Text>
+        <View style={styles.subjectList}>
+          {subjects.map((subject) => {
+            const stats = perSubject[subject.name] ?? { attempts: 0, avg: 0 };
+            const nCount = notesCounts[subject.name] ?? 0;
+            return (
+              <View key={subject.name} style={styles.subjectItem}>
+                <SubjectCard
+                  name={subject.name}
+                  description={subject.description}
+                  icon={subject.icon}
+                  color={subject.color}
+                  onPress={() => navigation.navigate("Subject", { subject: subject.name })}
+                  rightSlot={
+                    <View style={{ alignItems: 'flex-end' }}>
+                      <Text style={{ color: 'white', fontWeight: '700', fontSize: 16 }}>{stats.avg}%</Text>
+                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{stats.attempts} tries</Text>
+                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{nCount} notes</Text>
+                    </View>
+                  }
+                />
+              </View>
+            );
+          })}
+        </View>
+
+      
       </ScrollView>
     </SafeAreaView>
   );
 }
 
+const shadow = Platform.select({
+  ios: {
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+  },
+  android: {
+    elevation: 3,
+  },
+});
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#F8FAFC', // slate-50
   },
+
   header: {
-    backgroundColor: 'white',
-    paddingTop: 48,
-    paddingBottom: 24,
-    paddingHorizontal: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
+    paddingTop: 8,
+    paddingBottom: 16,
+    paddingHorizontal: 20,
+    backgroundColor: 'transparent',
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#1F2937',
-    marginBottom: 8,
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  subtitle: {
-    color: '#6B7280',
-    fontSize: 18,
+  appTitle: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#0F172A', // slate-900
+    letterSpacing: 0.2,
   },
-  scrollView: {
-    flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 24,
+  appSubtitle: {
+    marginTop: 4,
+    fontSize: 14,
+    color: '#64748B', // slate-500
   },
+
+  contentContainer: {
+    paddingHorizontal: 20,
+    paddingBottom: 28,
+  },
+
   welcomeCard: {
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
-    padding: 24,
-    marginBottom: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+    padding: 20,
+    marginTop: 4,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#EEF2F7',
+    ...shadow,
   },
   welcomeTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#1F2937',
-    marginBottom: 8,
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#0F172A',
+    marginBottom: 6,
   },
   welcomeText: {
-    color: '#6B7280',
+    fontSize: 14,
+    color: '#64748B',
+    lineHeight: 20,
   },
+
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#1F2937',
-    marginBottom: 16,
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0F172A',
+    marginBottom: 12,
+    letterSpacing: 0.3,
   },
+
+  subjectList: {
+    gap: 12,
+  },
+  subjectItem: {
+    marginBottom: 0,
+  },
+
   statsCard: {
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
-    padding: 24,
-    marginTop: 16,
-    marginBottom: 32,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+    padding: 20,
+    marginTop: 20,
+    marginBottom: 36,
+    borderWidth: 1,
+    borderColor: '#EEF2F7',
+    ...shadow,
   },
   statsTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#1F2937',
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0F172A',
     marginBottom: 12,
   },
   statsRow: {
     flexDirection: 'row',
+    alignItems: 'stretch',
     justifyContent: 'space-between',
   },
   statItem: {
+    flex: 1,
     alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 6,
+  },
+  statDividerRight: {
+    borderRightWidth: 1,
+    borderRightColor: '#E5E7EB',
   },
   statNumber: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#3B82F6',
+    fontSize: 22,
+    fontWeight: '800',
+    color: '#2563EB', // blue-600
+    marginBottom: 2,
+  },
+  statNumberPositive: {
+    color: '#10B981', // emerald-500
+  },
+  statNumberAccent: {
+    color: '#8B5CF6', // violet-500
   },
   statLabel: {
-    color: '#6B7280',
     fontSize: 12,
-    textAlign: 'center',
+    color: '#6B7280',
+    letterSpacing: 0.3,
   },
 });
