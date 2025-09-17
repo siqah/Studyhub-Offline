@@ -13,10 +13,31 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" >
-        <Stack.Screen name="Home"  component={HomeScreen} />
-        <Stack.Screen name="Subject"  component={SubjectScreen} />
-        <Stack.Screen name="Quiz"  component={QuizScreen} />
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerShadowVisible: false,
+          headerTitleAlign: 'center',
+          headerStyle: { backgroundColor: '#fff' },
+          headerTintColor: '#111',
+          headerTitleStyle: { fontWeight: '600' },
+        }}
+      >
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Subject"
+          component={SubjectScreen}
+          options={{ title: 'Subjects' }}
+        />
+        <Stack.Screen
+          name="Quiz"
+          component={QuizScreen}
+          options={{ title: 'Quiz' }}
+        />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
