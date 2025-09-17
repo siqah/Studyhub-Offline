@@ -1,0 +1,817 @@
+{
+  "subject": "Math",
+  "levels": {
+    "Beginner": [
+      {
+        "id": 1,
+        "title": "Basic Arithmetic",
+        "content": "Covers addition, subtraction, multiplication, and division.",
+        "examples": [
+          "2 + 3 = 5",
+          "12 / 4 = 3"
+        ],
+        "steps": [
+          "Step 1: Practice with single-digit operations.",
+          "Step 2: Move to multi-digit problems."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Order of Operations (PEMDAS)",
+        "content": "Evaluate expressions using Parentheses, Exponents, Multiplication/Division, Addition/Subtraction.",
+        "examples": [
+          "3 + 6 × 2 = 15",
+          "(3 + 6) × 2 = 18"
+        ],
+        "steps": [
+          "Step 1: Resolve parentheses and exponents.",
+          "Step 2: Apply multiplication/division left-to-right, then addition/subtraction."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Factors, Multiples, and Primes",
+        "content": "Prime factorization and divisibility are foundations for fractions and number theory.",
+        "examples": [
+          "60 = 2^2 × 3 × 5",
+          "LCM(6, 8) = 24, GCD(12, 18) = 6"
+        ],
+        "steps": [
+          "Step 1: Learn divisibility rules.",
+          "Step 2: Compute GCD and LCM using prime factors or Euclid's algorithm."
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Fractions and Mixed Numbers",
+        "content": "Work with equivalent fractions, simplification, and operations.",
+        "examples": [
+          "1/2 = 2/4",
+          "2 1/3 = 7/3"
+        ],
+        "steps": [
+          "Step 1: Reduce fractions to simplest form.",
+          "Step 2: Add/subtract with common denominators; multiply/divide directly."
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Decimals and Place Value",
+        "content": "Relate decimals to fractions; rounding and comparison.",
+        "examples": [
+          "0.25 = 1/4",
+          "Round 3.14159 to 3.14"
+        ],
+        "steps": [
+          "Step 1: Convert between decimals and fractions.",
+          "Step 2: Practice rounding and comparing decimals."
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Ratios and Proportions",
+        "content": "Express relationships and scale quantities.",
+        "examples": [
+          "Ratio 2:3",
+          "If 3/5 = x/20 then x = 12"
+        ],
+        "steps": [
+          "Step 1: Write ratios as fractions.",
+          "Step 2: Solve proportions by cross-multiplication."
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Percentages",
+        "content": "Convert between fractions, decimals, and percents; compute increases/decreases.",
+        "examples": [
+          "20% of 50 = 10",
+          "Price 120 with 10% off => 108"
+        ],
+        "steps": [
+          "Step 1: Convert percent to decimal (p% -> p/100).",
+          "Step 2: Apply base × rate to find part."
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Exponents and Roots (Intro)",
+        "content": "Powers, square roots, and basic laws.",
+        "examples": [
+          "2^3 = 8",
+          "sqrt(25) = 5"
+        ],
+        "steps": [
+          "Step 1: Learn exponent rules (product, quotient, power).",
+          "Step 2: Practice roots and fractional exponents."
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Scientific Notation",
+        "content": "Represent very large/small numbers compactly.",
+        "examples": [
+          "3.2 × 10^6",
+          "4.5 × 10^-3"
+        ],
+        "steps": [
+          "Step 1: Normalize mantissa to [1, 10).",
+          "Step 2: Adjust exponent to shift decimal."
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Basic Equations",
+        "content": "Solve one- and two-step linear equations.",
+        "examples": [
+          "x + 5 = 10 => x = 5",
+          "2x - 3 = 7 => x = 5"
+        ],
+        "steps": [
+          "Step 1: Inverse operations to isolate variable.",
+          "Step 2: Check solutions by substitution."
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Coordinate Plane and Graphing",
+        "content": "Plot points and simple lines on the Cartesian plane.",
+        "examples": [
+          "Point (2, -1)",
+          "y = 2x + 1"
+        ],
+        "steps": [
+          "Step 1: Understand (x, y) pairs.",
+          "Step 2: Use slope-intercept form to graph lines."
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Basic Geometry",
+        "content": "Perimeter, area, and volume of common shapes.",
+        "examples": [
+          "Area of rectangle: A = lw",
+          "Volume of cube: V = s^3"
+        ],
+        "steps": [
+          "Step 1: Memorize key formulas.",
+          "Step 2: Apply with correct units."
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Units, Conversions, and Significant Figures",
+        "content": "Convert between units and record measurements with proper precision.",
+        "examples": [
+          "1 inch = 2.54 cm",
+          "3.40 has 3 significant figures"
+        ],
+        "steps": [
+          "Step 1: Use conversion factors.",
+          "Step 2: Round results to correct sig figs."
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Introductory Probability",
+        "content": "Basic outcomes, events, and simple probabilities.",
+        "examples": [
+          "P(Heads) = 1/2",
+          "P(rolling 6) = 1/6"
+        ],
+        "steps": [
+          "Step 1: Count total outcomes.",
+          "Step 2: Compute favorable/total."
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Descriptive Statistics (Basics)",
+        "content": "Mean, median, mode, range, and basic plots.",
+        "examples": [
+          "Mean of [2, 4, 6] = 4",
+          "Median of [1, 3, 5, 9] = 4"
+        ],
+        "steps": [
+          "Step 1: Summarize data with central tendency.",
+          "Step 2: Visualize with histograms/boxplots."
+        ]
+      }
+    ],
+    "Intermediate": [
+      {
+        "id": 1,
+        "title": "Algebra Basics",
+        "content": "Algebra uses symbols and letters to represent numbers and quantities.",
+        "examples": [
+          "x + 5 = 10",
+          "2y = 8"
+        ],
+        "steps": [
+          "Step 1: Learn to isolate variables.",
+          "Step 2: Solve simple linear equations."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Linear Equations and Inequalities",
+        "content": "Solve and graph linear equations/inequalities; slope, intercepts.",
+        "examples": [
+          "3x - 2 = 10 => x = 4",
+          "y > -1/2 x + 3"
+        ],
+        "steps": [
+          "Step 1: Convert to slope-intercept or standard form.",
+          "Step 2: Graph and test points for inequalities."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Systems of Linear Equations",
+        "content": "Solve 2x2 and 3x3 systems by substitution, elimination, or matrices.",
+        "examples": [
+          "x + y = 5, x - y = 1",
+          "Ax = b"
+        ],
+        "steps": [
+          "Step 1: Use elimination/substitution for small systems.",
+          "Step 2: Express as matrices and apply row-reduction."
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Functions and Transformations",
+        "content": "Domain, range, function notation, shifts/scales/reflections.",
+        "examples": [
+          "f(x) = x^2",
+          "g(x) = 2f(x - 1) + 3"
+        ],
+        "steps": [
+          "Step 1: Determine domain/range.",
+          "Step 2: Apply transformation rules to graphs."
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Polynomials and Factoring",
+        "content": "Operations on polynomials; factoring techniques.",
+        "examples": [
+          "(x + 2)(x - 3) = x^2 - x - 6",
+          "a^2 - b^2 = (a - b)(a + b)"
+        ],
+        "steps": [
+          "Step 1: Expand and simplify polynomials.",
+          "Step 2: Factor by common terms, grouping, or formulas."
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Quadratic Functions",
+        "content": "Vertex form, roots, completing the square, quadratic formula.",
+        "examples": [
+          "x^2 - 5x + 6 = 0 => x = 2, 3",
+          "y = a(x - h)^2 + k"
+        ],
+        "steps": [
+          "Step 1: Identify a, b, c and compute discriminant.",
+          "Step 2: Solve via factoring, completing the square, or formula."
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Exponential and Logarithmic Functions",
+        "content": "Laws of exponents/logs; growth/decay; change of base.",
+        "examples": [
+          "log_a(x) = ln(x)/ln(a)",
+          "y = Ce^{kt}"
+        ],
+        "steps": [
+          "Step 1: Apply exponent/log rules.",
+          "Step 2: Solve equations by taking logs/exponentiating."
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Rational Expressions and Equations",
+        "content": "Simplify and solve with factoring and common denominators.",
+        "examples": [
+          "(x^2 - 1)/(x - 1) = x + 1 (x != 1)",
+          "1/x + 1/(x + 1) = 3/4"
+        ],
+        "steps": [
+          "Step 1: Factor and cancel common factors.",
+          "Step 2: Multiply both sides by LCD to clear denominators."
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Sequences and Series",
+        "content": "Arithmetic and geometric sequences; partial sums.",
+        "examples": [
+          "a_n = a_1 + (n - 1)d",
+          "S_n = a_1(1 - r^n)/(1 - r)"
+        ],
+        "steps": [
+          "Step 1: Identify type (arithmetic vs geometric).",
+          "Step 2: Use appropriate nth term and sum formulas."
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Trigonometry Basics",
+        "content": "Angles, right-triangle trig, unit circle, sine/cosine graphs.",
+        "examples": [
+          "sin^2 x + cos^2 x = 1",
+          "sin(30°) = 1/2"
+        ],
+        "steps": [
+          "Step 1: Use SOH-CAH-TOA for right triangles.",
+          "Step 2: Learn key angles on the unit circle."
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Matrices and Vectors (Intro)",
+        "content": "Vector addition/scalar multiplication; matrix addition and multiplication.",
+        "examples": [
+          "[1, 2] + [3, 4] = [4, 6]",
+          "[[1, 2], [0, 1]] × [x, y]^T"
+        ],
+        "steps": [
+          "Step 1: Practice dot products and matrix multiplication.",
+          "Step 2: Interpret vectors as points and directions."
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Complex Numbers",
+        "content": "Arithmetic with i = sqrt(-1); polar form and Euler's formula.",
+        "examples": [
+          "(3 + 2i) + (1 - 5i) = 4 - 3i",
+          "e^{iθ} = cos θ + i sin θ"
+        ],
+        "steps": [
+          "Step 1: Add/multiply using i^2 = -1.",
+          "Step 2: Convert between rectangular and polar forms."
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Coordinate Geometry (Conics)",
+        "content": "Circles, parabolas, ellipses, hyperbolas.",
+        "examples": [
+          "(x - h)^2 + (y - k)^2 = r^2",
+          "y = ax^2 + bx + c"
+        ],
+        "steps": [
+          "Step 1: Identify standard forms.",
+          "Step 2: Complete the square to rewrite and analyze."
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Combinatorics (Basics)",
+        "content": "Counting principles, permutations, and combinations.",
+        "examples": [
+          "P(n, k) = n!/(n - k)!",
+          "C(n, k) = n!/(k!(n - k)!)"
+        ],
+        "steps": [
+          "Step 1: Decide if order matters.",
+          "Step 2: Apply permutations or combinations accordingly."
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Discrete Probability Distributions (Intro)",
+        "content": "Bernoulli, Binomial, geometric distributions.",
+        "examples": [
+          "X ~ Bernoulli(p), P(X=1)=p",
+          "X ~ Binomial(n, p), E[X]=np"
+        ],
+        "steps": [
+          "Step 1: Identify trial structure and parameters.",
+          "Step 2: Compute pmf, expectation, and variance."
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Descriptive Statistics and z-scores",
+        "content": "Variance, standard deviation, standardization.",
+        "examples": [
+          "z = (x - μ)/σ",
+          "Var(X) = E[X^2] - (E[X])^2"
+        ],
+        "steps": [
+          "Step 1: Compute mean and variance.",
+          "Step 2: Standardize values to compare across scales."
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Limits and Continuity (Intro)",
+        "content": "Limit laws and identifying continuity.",
+        "examples": [
+          "lim_{x->0} (sin x)/x = 1",
+          "Piecewise continuity checks"
+        ],
+        "steps": [
+          "Step 1: Apply algebraic simplification.",
+          "Step 2: Use one-sided limits to check continuity."
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Introduction to Derivatives",
+        "content": "Instantaneous rate of change and basic differentiation rules.",
+        "examples": [
+          "d/dx(x^n) = n x^{n-1}",
+          "d/dx(e^x) = e^x"
+        ],
+        "steps": [
+          "Step 1: Apply power/product/quotient rules.",
+          "Step 2: Chain rule for compositions."
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Introduction to Integrals",
+        "content": "Antiderivatives and area under curves; Riemann sums.",
+        "examples": [
+          "∫ x^n dx = x^{n+1}/(n+1) + C",
+          "∫ e^x dx = e^x + C"
+        ],
+        "steps": [
+          "Step 1: Learn basic antiderivative formulas.",
+          "Step 2: Use FTC to connect derivatives and integrals."
+        ]
+      }
+    ],
+    "Advanced": [
+      {
+        "id": 1,
+        "title": "Calculus - Derivatives",
+        "content": "Derivatives represent the rate of change of a function.",
+        "examples": [
+          "d/dx(x^2) = 2x",
+          "d/dx(sin(x)) = cos(x)"
+        ],
+        "steps": [
+          "Step 1: Learn derivative rules (power, product, quotient, chain).",
+          "Step 2: Apply to real-world problems like velocity and acceleration."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Calculus - Integrals",
+        "content": "Definite/indefinite integrals, substitution, parts, improper integrals.",
+        "examples": [
+          "∫_a^b f'(x) dx = f(b) - f(a)",
+          "∫ x e^x dx (integration by parts)"
+        ],
+        "steps": [
+          "Step 1: Choose techniques (substitution, parts, partial fractions).",
+          "Step 2: Evaluate definite integrals numerically if needed."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Multivariable Calculus",
+        "content": "Partial derivatives, gradients, Hessians, Taylor expansion.",
+        "examples": [
+          "∇f(x) = [∂f/∂x_i]",
+          "H_f(x) = [∂^2 f/∂x_i ∂x_j]"
+        ],
+        "steps": [
+          "Step 1: Compute partials and gradient.",
+          "Step 2: Use Hessian for curvature and optimization."
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Vector Calculus",
+        "content": "Divergence, curl, line/surface integrals; Green, Gauss, Stokes theorems.",
+        "examples": [
+          "∮_C F·dr = ∬_S (∇×F)·n dS",
+          "∭_V ∇·F dV = ∬_∂V F·n dS"
+        ],
+        "steps": [
+          "Step 1: Parameterize curves/surfaces.",
+          "Step 2: Apply fundamental theorems to simplify integrals."
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Differential Equations (ODE)",
+        "content": "First/second-order ODEs, linear systems, stability.",
+        "examples": [
+          "y' + ky = 0 => y = Ce^{-kt}",
+          "x' = Ax"
+        ],
+        "steps": [
+          "Step 1: Classify ODE and select method (separable, linear, exact).",
+          "Step 2: Analyze equilibrium and stability."
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Linear Algebra: Vector Spaces and Bases",
+        "content": "Span, linear independence, basis, dimension, rank-nullity.",
+        "examples": [
+          "Rank(A) + Nullity(A) = n",
+          "Span{v1, v2, ...} = vector space"
+        ],
+        "steps": [
+          "Step 1: Row-reduce to analyze independence and rank.",
+          "Step 2: Construct bases and compute coordinates."
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Linear Algebra: Orthogonality and Projections",
+        "content": "Inner products, orthonormal bases, least squares.",
+        "examples": [
+          "proj_u(v) = (v·u)/(u·u) u",
+          "x* = argmin ||Ax - b||_2"
+        ],
+        "steps": [
+          "Step 1: Orthonormalize (Gram-Schmidt).",
+          "Step 2: Solve least squares via normal equations or QR."
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Matrix Decompositions (LU, QR, SVD, Eig)",
+        "content": "Core tools for solving systems, regression, and dimensionality reduction.",
+        "examples": [
+          "A = LU",
+          "A = UΣV^T (SVD)"
+        ],
+        "steps": [
+          "Step 1: Choose decomposition based on task (solve, orthonormal basis, low-rank).",
+          "Step 2: Use SVD for PCA and conditioning analysis."
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Matrix Calculus",
+        "content": "Derivatives of scalars/vectors/matrices; trace tricks.",
+        "examples": [
+          "∂/∂x (x^T A x) = (A + A^T)x",
+          "∂/∂W ||XW - Y||_F^2 = 2X^T(XW - Y)"
+        ],
+        "steps": [
+          "Step 1: Convert expressions to traces.",
+          "Step 2: Apply derivative identities systematically."
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Convex Analysis and Duality",
+        "content": "Convex sets/functions, subgradients, Fenchel and Lagrange duality.",
+        "examples": [
+          "f(tx + (1 - t)y) <= t f(x) + (1 - t) f(y)",
+          "Dual of Lasso and SVM derivations"
+        ],
+        "steps": [
+          "Step 1: Verify convexity via epigraph or Hessian.",
+          "Step 2: Formulate Lagrangian and derive KKT conditions."
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Optimization Algorithms",
+        "content": "Gradient descent, SGD, momentum, Adam, Newton, LBFGS, line search.",
+        "examples": [
+          "x_{k+1} = x_k - α_k ∇f(x_k)",
+          "Adam with (β1, β2) moment estimates"
+        ],
+        "steps": [
+          "Step 1: Analyze smoothness/convexity to pick method.",
+          "Step 2: Tune stepsizes and stopping criteria."
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Probability Theory",
+        "content": "Random variables, expectation, variance, conditional probability, LLN, CLT.",
+        "examples": [
+          "E[g(X)] = ∑ g(x) p(x) or ∫ g(x) f(x) dx",
+          "Var(X) = E[X^2] - (E[X])^2"
+        ],
+        "steps": [
+          "Step 1: Identify distribution and its parameters.",
+          "Step 2: Compute moments and conditionals."
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Bayesian Inference",
+        "content": "Priors, likelihoods, posteriors, conjugacy, credible intervals.",
+        "examples": [
+          "Posterior ∝ Likelihood × Prior",
+          "Beta-Binomial conjugacy"
+        ],
+        "steps": [
+          "Step 1: Choose prior compatible with likelihood.",
+          "Step 2: Derive posterior and summarize with moments/intervals."
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Statistical Inference (MLE, MAP, Testing)",
+        "content": "Point estimation, bias-variance, CIs, hypothesis tests.",
+        "examples": [
+          "θ_MLE = argmax_θ L(θ; data)",
+          "t-test, chi-square test"
+        ],
+        "steps": [
+          "Step 1: Formulate likelihood and estimator.",
+          "Step 2: Assess uncertainty and test hypotheses."
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Information Theory",
+        "content": "Entropy, cross-entropy, KL divergence, mutual information; relevant to ML losses.",
+        "examples": [
+          "H(X) = -∑ p log p",
+          "KL(P||Q) = ∑ P log(P/Q)"
+        ],
+        "steps": [
+          "Step 1: Compute entropies from distributions.",
+          "Step 2: Use KL/CE as optimization objectives."
+        ]
+      },
+      {
+        "id": 16,
+        "title": "Sampling Methods",
+        "content": "Monte Carlo, importance sampling, MCMC (Metropolis-Hastings, Gibbs).",
+        "examples": [
+          "E[f(X)] ≈ (1/N) ∑ f(X_i)",
+          "Reweight with w_i ∝ p/q"
+        ],
+        "steps": [
+          "Step 1: Choose proposal/sampler.",
+          "Step 2: Diagnose convergence and effective sample size."
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Graphs and Networks",
+        "content": "Graph theory basics, Laplacian, spectral properties.",
+        "examples": [
+          "L = D - A (graph Laplacian)",
+          "Semisupervised learning with Laplacian regularization"
+        ],
+        "steps": [
+          "Step 1: Construct adjacency/degree matrices.",
+          "Step 2: Use eigenvectors of L for clustering/embedding."
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Kernel Methods and RKHS",
+        "content": "Positive definite kernels, feature maps, representer theorem.",
+        "examples": [
+          "k(x, x') = exp(-||x - x'||^2/(2σ^2))",
+          "K ≽ 0 Gram matrix"
+        ],
+        "steps": [
+          "Step 1: Verify kernel PSD.",
+          "Step 2: Solve in dual with kernel trick."
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Numerical Linear Algebra",
+        "content": "Conditioning, stability, iterative solvers (CG), preconditioning.",
+        "examples": [
+          "cond_2(A) = σ_max/σ_min",
+          "CG for symmetric positive definite systems"
+        ],
+        "steps": [
+          "Step 1: Analyze conditioning and scaling.",
+          "Step 2: Choose stable algorithms and preconditioners."
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Fourier Analysis and Signal Processing",
+        "content": "Fourier series/transform, convolution, spectral methods.",
+        "examples": [
+          "F{f * g} = F{f}·F{g}",
+          "DFT/FFT"
+        ],
+        "steps": [
+          "Step 1: Transform to frequency domain.",
+          "Step 2: Filter/denoise via spectral manipulation."
+        ]
+      },
+      {
+        "id": 21,
+        "title": "Stochastic Processes",
+        "content": "Markov chains, Poisson processes, HMM basics.",
+        "examples": [
+          "π^T P = π^T (stationary)",
+          "λ for Poisson inter-arrival times"
+        ],
+        "steps": [
+          "Step 1: Build transition models.",
+          "Step 2: Analyze stationarity and mixing."
+        ]
+      },
+      {
+        "id": 22,
+        "title": "High-Dimensional Statistics",
+        "content": "Concentration inequalities, curse of dimensionality, sparsity.",
+        "examples": [
+          "Hoeffding/Chernoff bounds",
+          "Johnson–Lindenstrauss lemma"
+        ],
+        "steps": [
+          "Step 1: Apply concentration to generalization bounds.",
+          "Step 2: Use sparsity/regularization to control complexity."
+        ]
+      },
+      {
+        "id": 23,
+        "title": "Random Matrix Theory (Intro)",
+        "content": "Spectral distributions and implications for optimization/ML.",
+        "examples": [
+          "Marchenko–Pastur for sample covariance spectra",
+          "Wigner semicircle law"
+        ],
+        "steps": [
+          "Step 1: Study eigenvalue distributions.",
+          "Step 2: Relate spectra to generalization and conditioning."
+        ]
+      },
+      {
+        "id": 24,
+        "title": "Measure-Theoretic Probability (Basics)",
+        "content": "Sigma-algebras, measures, Lebesgue integration; foundations for advanced ML theory.",
+        "examples": [
+          "(Ω, F, P)",
+          "E[X] = ∫ X dP"
+        ],
+        "steps": [
+          "Step 1: Define probability space.",
+          "Step 2: Work with convergence notions (a.s., L2)."
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Tensors and Tensor Decompositions",
+        "content": "Order-k arrays, CP/Tucker decompositions, tensor rank.",
+        "examples": [
+          "CP: X ≈ ∑ r a_r ⊗ b_r ⊗ c_r",
+          "Tensor unfolding/matricization"
+        ],
+        "steps": [
+          "Step 1: Choose decomposition model.",
+          "Step 2: Fit with ALS or gradient-based methods."
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Automatic Differentiation and Computational Graphs",
+        "content": "Forward/reverse mode AD, graph-based derivatives.",
+        "examples": [
+          "Backprop as reverse-mode AD",
+          "Jacobian-vector vs vector-Jacobian products"
+        ],
+        "steps": [
+          "Step 1: Build computational graph.",
+          "Step 2: Accumulate derivatives efficiently."
+        ]
+      },
+      {
+        "id": 27,
+        "title": "PDEs and Variational Methods",
+        "content": "Euler–Lagrange equations, energy minimization, diffusion.",
+        "examples": [
+          "δ∫ L(u, ∇u) dx = 0",
+          "Heat equation u_t = Δu"
+        ],
+        "steps": [
+          "Step 1: Formulate functional to minimize.",
+          "Step 2: Derive EL equations and solve/approximate."
+        ]
+      },
+      {
+        "id": 28,
+        "title": "Regularization and Norms",
+        "content": "L1/L2 norms, elastic net, constraints and penalties; bias-variance trade-off.",
+        "examples": [
+          "Ridge: min ||Xw - y||_2^2 + λ||w||_2^2",
+          "Lasso: λ||w||_1"
+        ],
+        "steps": [
+          "Step 1: Choose norm/penalty fitting problem structure.",
+          "Step 2: Analyze effects on sparsity and stability."
+        ]
+      }
+    ]
+  }
+}

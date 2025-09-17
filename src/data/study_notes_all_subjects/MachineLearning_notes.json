@@ -1,0 +1,348 @@
+{
+  "subject": "MachineLearning",
+  "levels": {
+    "Beginner": [
+      {
+        "id": 0,
+        "title": "Learning Path Overview",
+        "content": "A structured roadmap from zero to production-ready ML. You will build foundations (Python, math, data handling), master classical ML on tabular data, learn deep learning for vision/text, and finish with MLOps and a capstone. Emphasis on reproducibility, evaluation, and real-world constraints (limited data, imbalance, drift). Deliverables include notebooks, cleaned datasets, reproducible pipelines, and a deployed model with monitoring.",
+        "diagram": "[Foundations] -> [Classical ML] -> [Deep Learning] -> [MLOps & Capstone]\n\nFoundations: Python, Math (LA/Prob/Calc), Data handling, EDA, Reproducibility\nClassical ML: Regression, Classification, Trees, Ensembles, Validation\nDeep Learning: PyTorch/TF, CNNs, RNNs/Transformers, Optimization\nMLOps & Capstone: Pipelines, CI/CD, Registry, Deployment, Monitoring",
+        "examples": [
+          "Foundations: write NumPy vectorized code and pandas ETL scripts.",
+          "Classical ML: baseline + tuned Gradient Boosting on tabular data.",
+          "Deep Learning: fine-tune a pretrained ResNet or BERT.",
+          "MLOps: package a pipeline, serve via FastAPI, log with Prometheus."
+        ],
+        "steps": [
+          "Step 1: Set up Python (3.10+), venv/conda, Jupyter/VSCode, git.",
+          "Step 2: Learn NumPy, pandas, plotting, and the sklearn API (fit/transform/predict).",
+          "Step 3: Study math essentials for optimization and uncertainty.",
+          "Step 4: Practice EDA and data cleaning on 2–3 datasets (Iris, Titanic, House Prices).",
+          "Step 5: Build baselines, add validation, and iterate with feature engineering.",
+          "Step 6: Learn DL frameworks and train a small CNN/RNN.",
+          "Step 7: Package pipelines, add tests, track experiments, and deploy.",
+          "Step 8: Ship a capstone end-to-end with README, report, and demo."
+        ]
+      },
+      {
+        "id": 1,
+        "title": "Introduction to Machine Learning",
+        "content": "Machine Learning builds statistical models that generalize from data to make predictions or decisions. Core ideas: representation (features), objective (loss/metric), optimization (training), and generalization (performance on unseen data). Types: supervised (regression/classification), unsupervised (clustering, dimensionality reduction), semi/self-supervised, reinforcement learning. Key concerns: data quality, bias/leakage, overfitting vs. underfitting, and evaluation aligned with business impact.",
+        "examples": [
+          "Spam detection: binary classification with precision-recall trade-offs.",
+          "Recommenders: implicit feedback, ranking metrics (MAP/NDCG).",
+          "Anomaly detection: unsupervised or one-class methods.",
+          "Demand forecasting: regression with time-based validation."
+        ],
+        "steps": [
+          "Step 1: Differentiate supervised vs. unsupervised learning and common tasks.",
+          "Step 2: Understand datasets (features/labels), splits (train/val/test), and leakage.",
+          "Step 3: Learn bias-variance trade-off and regularization at a high level.",
+          "Step 4: Link metrics to business costs (e.g., false positive vs. false negative)."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Python and Tools for ML",
+        "content": "Set up a reproducible environment with venv/conda/poetry and pin dependencies. Use Jupyter/VSCode for exploration and scripts for pipelines. Core libraries: NumPy (vectorization, broadcasting), pandas (DataFrame ops, joins, groupby), Matplotlib/Seaborn/Plotly (visualization), scikit-learn (estimators, transformers, pipelines). Add linting/formatting (ruff/flake8, black), type hints (mypy), and experiment tracking (MLflow, Weights & Biases).",
+        "examples": [
+          "Create and activate a virtual env; export requirements.txt or environment.yml.",
+          "Load CSV with pandas, handle dtypes, missing values, and categories.",
+          "Vectorize operations in NumPy to avoid Python loops.",
+          "Use sklearn's fit/transform/predict and Pipeline to avoid leakage."
+        ],
+        "steps": [
+          "Step 1: Install Python, create env, and set up Jupyter or VSCode notebooks.",
+          "Step 2: Learn NumPy arrays, broadcasting, indexing, and vectorization patterns.",
+          "Step 3: Practice pandas: merge, groupby, pivot, datetime, categorical dtype.",
+          "Step 4: Visualize distributions and relationships with Seaborn/Matplotlib.",
+          "Step 5: Use sklearn estimators and transformers; inspect get_params/set_params.",
+          "Step 6: Add black/ruff/mypy pre-commit hooks; version code with git."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Math Essentials for ML",
+        "content": "Linear Algebra: vectors, matrices, norms, projections, eigenvalues/SVD for PCA and stability. Probability/Statistics: random variables, expectation/variance, common distributions, Bayes' rule, conditional independence, sampling, confidence intervals. Calculus/Optimization: derivatives, chain rule, gradients/Jacobians, convexity, gradient descent variants, saddle points. Intuition: how parameters influence loss; uncertainty quantification; bias-variance.",
+        "examples": [
+          "Dot product and matrix multiply in NumPy for linear models.",
+          "SVD for dimensionality reduction and ill-conditioned systems.",
+          "Bayes rule for Naive Bayes; log-odds for logistic regression.",
+          "Gradient descent to minimize mean squared error."
+        ],
+        "steps": [
+          "Step 1: Review vectors, matrices, norms (L1/L2), and geometry.",
+          "Step 2: Learn distributions (Normal/Binomial/Poisson) and sampling.",
+          "Step 3: Apply Bayes’ theorem and log-likelihoods.",
+          "Step 4: Compute gradients and practice gradient descent on simple losses.",
+          "Step 5: Understand overfitting, bias-variance, and regularization effects."
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Data Preparation",
+        "content": "Data quality drives results. Handle missing values (drop, mean/median, model-based imputation), outliers (robust scaling, winsorizing), categoricals (One-Hot, ordinal, target encoding with extreme care), scaling (standard/robust/min-max). Engineer features (dates, text, interactions), ensure no leakage across splits, and document assumptions. Use Pipeline/ColumnTransformer to apply transforms consistently.",
+        "examples": [
+          "Impute numeric with median and add missing-indicator.",
+          "One-Hot encode low-cardinality categoricals; handle rare categories.",
+          "Scale numeric features for distance-based or linear models.",
+          "Split by time or group to prevent leakage in time series/grouped data."
+        ],
+        "steps": [
+          "Step 1: Audit missingness patterns and outliers; decide per-feature strategies.",
+          "Step 2: Encode categoricals appropriately; limit cardinality or use hashing.",
+          "Step 3: Scale/normalize as needed; prefer RobustScaler with heavy tails.",
+          "Step 4: Create train/validation/test splits before any target-informed transform.",
+          "Step 5: Build preprocessing as a sklearn Pipeline and persist with joblib."
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Exploratory Data Analysis (EDA)",
+        "content": "EDA reveals distributions, relationships, leakage, and data issues. Summarize numeric/categorical variables, visualize univariate/bivariate plots, check class imbalance, spot multicollinearity, and understand temporal or group structure. Form hypotheses to drive feature engineering and modeling choices. Maintain a data profiling report and a checklist to avoid common pitfalls (duplicate rows, label leakage, incorrect joins).",
+        "examples": [
+          "Histograms, KDE, boxplots for distributions and outliers.",
+          "Pairplots and correlation heatmaps; VIF for multicollinearity.",
+          "Target vs. feature plots; group-wise statistics for leakage detection.",
+          "Time series seasonality and trend decomposition."
+        ],
+        "steps": [
+          "Step 1: Use describe(), value_counts(), isnull(), duplicated(), unique().",
+          "Step 2: Visualize distributions and relationships; segment by key cohorts.",
+          "Step 3: Check target leakage and temporal ordering; verify joins and keys.",
+          "Step 4: Document findings and data quality issues; define next experiments."
+        ]
+      }
+    ],
+    "Intermediate": [
+      {
+        "id": 1,
+        "title": "Regression Models",
+        "content": "Model continuous targets with linear and regularized regressions. Understand OLS assumptions (linearity, independence, homoscedasticity, normality of errors) and when they fail. Use Ridge/Lasso/ElasticNet to control variance and perform feature selection. Evaluate with RMSE/MAE/R2 and residual diagnostics. Engineer features (polynomials, interactions, splines) and guard against leakage and multicollinearity.",
+        "examples": [
+          "House price prediction: baseline mean, LinearRegression, then ElasticNet.",
+          "Heteroscedasticity: use log-transform on skewed targets.",
+          "Regularization path to inspect coefficient shrinkage."
+        ],
+        "steps": [
+          "Step 1: Establish a baseline (mean/median) and a simple LinearRegression.",
+          "Step 2: Add regularization (Ridge/Lasso/ElasticNet) with CV for alpha.",
+          "Step 3: Analyze residual plots; consider transforms or features.",
+          "Step 4: Compare MAE/RMSE/R2 with confidence intervals via bootstrapping."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Classification Models",
+        "content": "Build classifiers with logistic regression, k-NN, SVM, Naive Bayes, and tree-based models. Tune decision thresholds for business-aligned metrics. Handle class imbalance with stratification, class weights, or resampling (SMOTE). Evaluate with confusion matrix, precision/recall, F1, ROC-AUC, PR-AUC, calibration curves, and cost-sensitive analysis.",
+        "examples": [
+          "Email spam vs. ham using LogisticRegression with calibrated probabilities.",
+          "Imbalanced fraud detection with class_weight='balanced' and PR-AUC.",
+          "k-NN sensitivity to scaling and k; SVM with RBF kernel."
+        ],
+        "steps": [
+          "Step 1: Start with LogisticRegression + StandardScaler in a Pipeline.",
+          "Step 2: Evaluate using stratified CV; report multiple metrics.",
+          "Step 3: Address imbalance via class weights or resampling; tune threshold.",
+          "Step 4: Compare SVM/k-NN/NaiveBayes; analyze calibration and confusion matrix."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Model Evaluation and Validation",
+        "content": "Reliable estimates require proper data splitting and hyperparameter tuning. Use train/validation/test with strict separation. For small data, use k-fold or stratified k-fold; for time series, use expanding/rolling windows (TimeSeriesSplit). Use Grid/Random search; for efficiency, consider Bayesian/Hyperband. Report uncertainty (std/CI) and perform ablation studies. Prevent leakage with Pipelines and group-aware splits when needed.",
+        "examples": [
+          "Nested CV for unbiased hyperparameter selection.",
+          "TimeSeriesSplit for forecasting; no shuffling across time.",
+          "Bootstrapping to estimate metric confidence intervals."
+        ],
+        "steps": [
+          "Step 1: Choose split strategy (StratifiedKFold/GroupKFold/TimeSeriesSplit).",
+          "Step 2: Wrap preprocessing + model in Pipeline and tune via CV.",
+          "Step 3: Use RandomizedSearchCV for broad search; refine with GridSearchCV.",
+          "Step 4: Keep a hold-out test set for final evaluation; report CI via bootstrap."
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Feature Engineering and Pipelines",
+        "content": "Automate preprocessing with Pipeline and ColumnTransformer to avoid leakage and ensure reproducibility. Add custom transformers (FunctionTransformer or custom classes). Use feature selection (variance threshold, mutual information, model-based, permutation importance). Manage categorical cardinality, target leakage risks, and feature interactions. Serialize artifacts with joblib and track versions and schemas.",
+        "diagram": "Raw Data -> [Impute] -> [Encode/Scale] -> [Feature Select] -> [Model]\nTrain: fit all steps; Inference: transform then predict",
+        "examples": [
+          "Numeric: RobustScaler; Categorical: OneHotEncoder(handle_unknown='ignore').",
+          "Permutation importance to assess feature usefulness post-fit.",
+          "Custom date features (year, month, dow, lag) for time series."
+        ],
+        "steps": [
+          "Step 1: Define numeric/categorical columns and preprocessing per type.",
+          "Step 2: Build ColumnTransformer + Pipeline for end-to-end processing.",
+          "Step 3: Add feature selection step; evaluate via CV.",
+          "Step 4: Persist the fitted pipeline with joblib and log with MLflow."
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Decision Trees and Ensembles",
+        "content": "Trees capture nonlinearities and interactions; ensembles improve generalization. Use DecisionTree for interpretability; RandomForest for robustness; Gradient Boosted Trees (XGBoost/LightGBM/CatBoost) for state-of-the-art tabular performance. Key knobs: depth, learning rate, n_estimators, subsampling, column sampling, regularization. Analyze feature importance and SHAP for local/global explanations.",
+        "examples": [
+          "RandomForest baseline vs. tuned GradientBoosting/XGBoost.",
+          "CatBoost for high-cardinality categoricals without heavy preprocessing.",
+          "Early stopping with a validation set to avoid overfitting in boosting."
+        ],
+        "steps": [
+          "Step 1: Train a DecisionTree; control depth/min_samples to reduce overfit.",
+          "Step 2: Use RandomForest and tune n_estimators/max_features/max_depth.",
+          "Step 3: Try GradientBoosting/XGBoost/LightGBM; tune lr, trees, depth, subsamples.",
+          "Step 4: Inspect feature importances and SHAP values; validate stability."
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Unsupervised Learning",
+        "content": "Discover structure without labels. Clustering (KMeans, DBSCAN, hierarchical) and dimensionality reduction (PCA, t-SNE, UMAP). Standardize features, pick distance metrics, and choose hyperparameters (k for KMeans, eps/min_samples for DBSCAN). Validate with silhouette score, Davies-Bouldin, or downstream task performance. Use PCA for compression/denoising; t-SNE/UMAP for visualization (beware of artifacts).",
+        "examples": [
+          "Customer segmentation with KMeans and silhouette analysis.",
+          "DBSCAN to find arbitrary-shaped clusters with noise.",
+          "PCA to reduce dimensionality before modeling."
+        ],
+        "steps": [
+          "Step 1: Scale features; run KMeans with multiple k and random seeds.",
+          "Step 2: Evaluate stability and silhouette; select k via elbow/silhouette.",
+          "Step 3: Try DBSCAN; tune eps via k-distance plot and adjust min_samples.",
+          "Step 4: Apply PCA; inspect explained_variance_ratio_ and visualize components."
+        ]
+      }
+    ],
+    "Advanced": [
+      {
+        "id": 1,
+        "title": "Deep Learning and Neural Networks",
+        "content": "Neural networks learn hierarchical representations through layers. Understand tensors, autograd, initialization, loss functions (cross-entropy, MSE), and the training loop (forward, loss, backward, step). Choose batch size, epochs, and learning rates; monitor train vs. validation curves for overfitting. Use frameworks (PyTorch/TF), DataLoader pipelines, and GPU acceleration. Start with MLPs and progress to specialized architectures.",
+        "diagram": "Input -> [Dense + Nonlinearity] x N -> [Dense + Softmax/Sigmoid] -> Output\nTrain Loop: forward -> loss -> backward -> optimizer.step()",
+        "examples": [
+          "Tabular MLP baseline vs. Gradient Boosted Trees comparison.",
+          "Hyperparameter sweeps with learning rate finders.",
+          "Mixed precision training for faster GPU throughput."
+        ],
+        "steps": [
+          "Step 1: Implement a small MLP for MNIST/Tabular in PyTorch or TensorFlow.",
+          "Step 2: Choose loss/optimizer; verify training loop and gradients.",
+          "Step 3: Track metrics, visualize learning curves, and add early stopping.",
+          "Step 4: Experiment with initialization, batch size, and lr schedules."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Optimization and Regularization",
+        "content": "Use optimizers (SGD+Momentum, Adam/AdamW) and schedulers (step, cosine, OneCycle). Regularize with weight decay, dropout, batch/layer norm, data augmentation, gradient clipping, and label smoothing. Combat over/underfitting via capacity control and early stopping. Monitor training dynamics (loss plateaus, exploding/vanishing grads) and adjust learning rate or normalization.",
+        "examples": [
+          "AdamW + cosine annealing + warmup for transformers.",
+          "Dropout in dense layers; data augmentation for images/text.",
+          "Gradient clipping to stabilize RNN training."
+        ],
+        "steps": [
+          "Step 1: Pick an optimizer and tune base lr with a lr range test.",
+          "Step 2: Add regularizers (weight decay, dropout) and normalization.",
+          "Step 3: Apply scheduler (cosine/OneCycle) and early stopping on val metric.",
+          "Step 4: Use gradient clipping and label smoothing when training is unstable."
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Convolutional Neural Networks (CNNs)",
+        "content": "CNNs exploit locality and weight sharing to extract spatial features. Concepts: convolution, padding, stride, pooling, receptive fields, and modern blocks (ResNet, EfficientNet). Training best practices: data augmentation, mixed precision, transfer learning, and class imbalance handling. Evaluate with accuracy, top-k, confusion matrix, calibration; use Grad-CAM for interpretability.",
+        "examples": [
+          "Train a small CNN on CIFAR-10; compare to transfer learning with ResNet18.",
+          "Fine-tune with various freeze strategies and discriminative lrs.",
+          "Use MixUp/CutMix and AutoAugment to improve generalization."
+        ],
+        "steps": [
+          "Step 1: Implement a small CNN; verify shapes and parameter counts.",
+          "Step 2: Add augmentation pipeline; monitor overfitting via val loss.",
+          "Step 3: Fine-tune a pretrained backbone; try freezing vs. full finetune.",
+          "Step 4: Interpret with Grad-CAM and evaluate robustness (corruptions)."
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Sequence Models and Attention",
+        "content": "Sequences require handling order and long-range dependencies. RNN/LSTM/GRU manage short contexts; attention and Transformers scale to long contexts with self-attention and positional encodings. Key components: multi-head attention, feed-forward blocks, layer norm, residuals, masking. Train with teacher forcing (for seq2seq) and evaluate with perplexity, BLEU/ROUGE, or downstream metrics. Handle padding, batching, and masking correctly.",
+        "diagram": "[Embedding] -> [Positional Encoding] -> [Self-Attention x N] -> [FFN] -> [Head]\nMasks: padding mask, causal mask",
+        "examples": [
+          "Text classification with a Transformer encoder.",
+          "Time-series forecasting with temporal fusion or attention layers.",
+          "Machine translation with encoder-decoder attention."
+        ],
+        "steps": [
+          "Step 1: Compare LSTM vs. Transformer on a small text dataset.",
+          "Step 2: Implement attention with masking; verify shapes and masks.",
+          "Step 3: Tune depth/width/heads, dropout, and lr schedule; monitor perplexity."
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Natural Language Processing (NLP)",
+        "content": "Text processing pipeline: normalization, tokenization (WordPiece/BPE), subword handling, and truncation/padding. Representations: static embeddings (word2vec, GloVe) vs. contextual (BERT). Fine-tuning strategies: full fine-tune, adapters/LoRA, prompt tuning. Handle long documents (chunking) and domain adaptation. Evaluate with accuracy/F1 for classification, ROUGE for summarization, and quality checks for toxicity/bias.",
+        "examples": [
+          "Fine-tune BERT with LoRA for sentiment classification.",
+          "Build a QA model with an encoder-decoder (T5).",
+          "Compute calibration and add confidence thresholds."
+        ],
+        "steps": [
+          "Step 1: Preprocess text and tokenize with a pretrained tokenizer.",
+          "Step 2: Use pretrained encoders; fine-tune with appropriate heads.",
+          "Step 3: Apply PEFT (LoRA/adapters) for efficiency; monitor val metrics.",
+          "Step 4: Evaluate fairness/bias; add safety filters and calibration."
+        ]
+      },
+      {
+        "id": 6,
+        "title": "MLOps and Deployment",
+        "content": "Operationalize ML with reproducibility, automation, and monitoring. Package pipelines, pin dependencies, and capture metadata. Use model registries, experiment tracking, and artifact stores. Build CI/CD for training/inference, containerize with Docker, and deploy via REST/gRPC. Monitor data quality, drift, and performance; set alerts and retraining triggers. Manage schemas with contracts and validate with tests.",
+        "examples": [
+          "FastAPI inference service with a pydantic schema and dockerized deployment.",
+          "MLflow model registry with staged promotion (staging -> production).",
+          "Data drift detection with PSI/KS and performance dashboards."
+        ],
+        "steps": [
+          "Step 1: Define input/output schemas; add unit/integration tests and data checks.",
+          "Step 2: Containerize the pipeline; add CI to build, test, and scan images.",
+          "Step 3: Deploy behind an API; enable logging, tracing, and metrics.",
+          "Step 4: Add monitoring for data/feature drift and performance; automate retraining."
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Ethics, Fairness, and Explainability",
+        "content": "Design responsible ML by assessing fairness, transparency, privacy, and safety. Measure group fairness (demographic parity, equal opportunity), perform bias audits, and mitigate via reweighing, thresholds, or constrained optimization. Explain models with SHAP/LIME and global summaries; communicate limitations via model cards. Protect PII, follow data minimization, and ensure human oversight for high-risk decisions.",
+        "examples": [
+          "Compute fairness metrics across sensitive groups and report deltas.",
+          "Use SHAP to explain individual credit decisions.",
+          "Document a model card with intended use, caveats, and evaluation."
+        ],
+        "steps": [
+          "Step 1: Define sensitive attributes and fairness goals aligned with policy.",
+          "Step 2: Measure fairness metrics alongside performance in validation.",
+          "Step 3: Apply mitigation strategies; re-evaluate trade-offs.",
+          "Step 4: Publish documentation and set up periodic fairness monitoring."
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Capstone Project and Portfolio",
+        "content": "Deliver an end-to-end system: problem framing, data acquisition, EDA, modeling, evaluation, deployment, and monitoring. Emphasize reproducibility (pipelines, seeds), clear KPIs, and decision-focused metrics. Include tests, docs, and a demo. Reflect on failures and future work. Present results with compelling narratives, visualizations, and a well-structured repository.",
+        "examples": [
+          "Forecasting app with automated retraining and drift alerts.",
+          "Image or NLP service deployed with CI/CD and scalable inference.",
+          "Interactive dashboard with model explanations for stakeholders."
+        ],
+        "steps": [
+          "Step 1: Define scope, KPIs, and a success checklist; set a project board.",
+          "Step 2: Build data pipeline, EDA, and a strong baseline with proper validation.",
+          "Step 3: Iterate with feature engineering/modeling; track experiments and artifacts.",
+          "Step 4: Package, deploy, monitor; write a README/report and record a short demo."
+        ]
+      }
+    ]
+  }
+}

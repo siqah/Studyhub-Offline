@@ -1,0 +1,161 @@
+{
+  "subject": "Physics",
+  "levels": {
+    "Beginner": [
+      {
+        "id": 1,
+        "title": "Kinematics (Motion in 1D and 2D)",
+        "content": "Kinematics describes how objects move using displacement, velocity, and acceleration without invoking forces. For constant acceleration, use the kinematic equations to connect position, velocity, time, and acceleration in 1D. Projectile motion separates into independent horizontal (constant velocity) and vertical (constant acceleration) components, assuming no air resistance. Graphical analysis with x–t and v–t plots helps extract average and instantaneous quantities and interpret motion."
+      },
+      {
+        "id": 2,
+        "title": "Newton's Laws of Motion",
+        "content": "Newton’s laws relate forces to changes in motion: inertia resists changes, net force produces acceleration, and forces come in equal-and-opposite pairs. The net force is the vector sum of all real forces (weight, normal, tension, friction, drag, etc.) acting on a body. Static and kinetic friction have different magnitudes and directions, and mass (inertia) differs from weight (gravitational force). These laws strictly apply in inertial frames; apparent (fictitious) forces arise in accelerating frames."
+      },
+      {
+        "id": 3,
+        "title": "Work, Energy, and Power",
+        "content": "Work is the energy transferred by a force acting through a displacement, given by the dot product of force and displacement. Kinetic and potential energy track motion and position; mechanical energy is conserved when only conservative forces act, while nonconservative forces (like friction) convert mechanical energy to thermal energy. The work–energy theorem states that net work equals the change in kinetic energy. Power quantifies the rate of energy transfer, with instantaneous power given by the dot product of force and velocity."
+      },
+      {
+        "id": 4,
+        "title": "Momentum and Collisions",
+        "content": "Linear momentum (mass times velocity) is conserved in isolated systems, regardless of internal forces. Impulse (force integrated over time) equals the change in momentum and explains effects of short, large forces. Collisions can be elastic (kinetic energy conserved) or inelastic (some kinetic energy transformed), with the perfectly inelastic case sticking together; analyze in 1D or 2D using components and, if helpful, the center-of-mass frame. The coefficient of restitution characterizes how bouncy a collision is."
+      },
+      {
+        "id": 5,
+        "title": "Uniform Circular Motion and Gravitation (Intro)",
+        "content": "Uniform circular motion requires a centripetal acceleration directed toward the center with magnitude v^2/r; the net radial force provides this centripetal force. Real forces like tension, friction, or gravity supply the needed inward force, and their balance determines speed limits and safe turning conditions. Newton’s law of universal gravitation gives the attractive force between masses and leads to circular orbit speeds, periods, and gravitational potential energy. Banked curves and satellites illustrate how geometry and gravity set required speeds."
+      },
+      {
+        "id": 6,
+        "title": "Fluids at Rest (Hydrostatics)",
+        "content": "Hydrostatics relates density to pressure and buoyancy in fluids at rest, with pressure increasing linearly with depth relative to a reference pressure. Gauge pressure measures pressure above atmospheric, while absolute pressure includes it. Archimedes’ principle states the buoyant force equals the weight of displaced fluid, determining whether objects float or sink and their apparent weight. Pascal’s principle enables force multiplication in hydraulic systems and underlies devices like car lifts and syringes."
+      },
+      {
+        "id": 7,
+        "title": "Waves and Sound (Basics)",
+        "content": "A wave transfers energy and momentum through a medium or space without transporting matter, characterized by amplitude, wavelength, frequency, speed, and phase. Transverse waves oscillate perpendicular to propagation; sound is a longitudinal pressure wave whose speed depends on the medium’s elastic and inertial properties. Superposition leads to interference, beats, and standing waves with nodes and antinodes set by boundary conditions. Intensity and the decibel scale quantify sound power and perceived loudness."
+      },
+      {
+        "id": 8,
+        "title": "Thermodynamics (Intro)",
+        "content": "Thermodynamics connects heat, work, and internal energy, with temperature measuring average microscopic kinetic energy. The first law, ΔU = Q − W, tracks energy conservation for processes like isobaric, isochoric, isothermal, and adiabatic changes. Specific and latent heats quantify energy needed to change temperature or phase, while work by/on gases relates to pressure–volume changes. The second law introduces directionality via entropy and explains why heat flows spontaneously from hot to cold and why heat engines have limited efficiency."
+      },
+      {
+        "id": 9,
+        "title": "Geometric Optics (Basics)",
+        "content": "Geometric optics models light as rays obeying reflection and refraction, with Snell’s law relating angles via refractive indices. Mirrors and thin lenses form images governed by the mirror/lens equation and magnification, with sign conventions distinguishing real versus virtual, upright versus inverted images. Total internal reflection occurs above the critical angle when light goes from higher to lower refractive index. Ray diagrams provide qualitative insight into image formation and help verify algebraic solutions."
+      },
+      {
+        "id": 10,
+        "title": "Electricity (Charge, Fields, and Simple Circuits)",
+        "content": "Electric charge is conserved and comes in discrete positive and negative amounts, creating electric fields and forces described by Coulomb’s law and superposition. Voltage (electric potential difference) relates to energy per unit charge, while current measures charge flow through conductors with resistance set by material and geometry. Ohm’s law connects voltage, current, and resistance in many materials, enabling analysis of series and parallel circuits and power dissipation. Basic circuit laws (Kirchhoff’s) extend these ideas to multi-element networks and motivate concepts like capacitance."
+      }
+    ],
+    "Intermediate": [
+      {
+        "id": 1,
+        "title": "Electrostatics and Gauss's Law",
+        "content": "Electrostatics determines electric fields and potentials due to stationary charges using Coulomb’s law, superposition, and symmetry. Gauss’s law equates electric flux through a closed surface to enclosed charge and simplifies fields for symmetric charge distributions (spherical, cylindrical, planar). Conductors in electrostatic equilibrium have zero internal electric field and charges residing on surfaces, fixing boundary conditions for fields and potentials. Potential differences follow from line integrals of the field, and equipotential surfaces are perpendicular to field lines."
+      },
+      {
+        "id": 2,
+        "title": "DC Circuits, Kirchhoff's Laws, and Capacitors",
+        "content": "Kirchhoff’s current and voltage laws generalize charge and energy conservation to complex DC circuits, enabling node-voltage and mesh-current methods. Capacitors store charge and energy in electric fields, set time scales in RC circuits, and alter voltages via dividers and filters. Transients in RC networks exhibit exponential behavior with time constant τ = RC, with well-defined initial and final conditions. Dielectrics increase capacitance, reduce field strength in a given geometry, and store energy dependent on V and C."
+      },
+      {
+        "id": 3,
+        "title": "Magnetism and Magnetic Forces",
+        "content": "Magnetic fields exert forces perpendicular to both charge motion and field lines, shaping circular or helical paths for moving charges. Currents experience forces and torques in magnetic fields, enabling devices like motors and galvanometers. Fields arise from currents and changing electric fields, computed using Biot–Savart or Ampère’s law when symmetry allows. Magnetic materials respond to fields via domains and permeability, qualitatively altering field distributions."
+      },
+      {
+        "id": 4,
+        "title": "Electromagnetic Induction and Inductors",
+        "content": "Faraday’s law states that changing magnetic flux through a loop induces an emf whose direction opposes the change (Lenz’s law), embodying energy conservation. Motional emf appears when conductors move through fields, and transformers use mutual induction to transfer energy between coils. Inductors resist changes in current with a voltage proportional to the time rate of change of current, storing energy in magnetic fields. RL circuits have exponential transients with time constant L/R and exhibit back-emf during switching."
+      },
+      {
+        "id": 5,
+        "title": "AC Circuits and Resonance",
+        "content": "Sinusoidal steady-state analysis uses phasors and complex impedances to convert differential equations into algebraic relations. Reactors (inductors and capacitors) store and release energy each cycle, shifting phase between voltage and current and affecting power factor. RLC circuits exhibit resonance, bandwidth, and quality factor that control selectivity and energy storage. Simple filters (low-pass, high-pass, band-pass) are built from R, L, C and characterized by cutoff frequency and phase response."
+      },
+      {
+        "id": 6,
+        "title": "Oscillations and Simple Harmonic Motion",
+        "content": "Near stable equilibrium, restoring forces approximately linearize, producing simple harmonic motion with sinusoidal solutions and a natural frequency set by system parameters. Damping introduces energy loss and can be underdamped, critically damped, or overdamped, altering amplitude and response speed. Driven oscillators respond strongly near resonance, with amplitude and phase depending on drive frequency and damping; the quality factor quantifies narrowness of resonance. Energy continually exchanges between kinetic and potential forms in undamped oscillations."
+      },
+      {
+        "id": 7,
+        "title": "Fluid Dynamics",
+        "content": "Incompressible flow conserves volume flux via the continuity equation, linking speed and cross-sectional area. Bernoulli’s equation relates pressure, kinetic energy per volume, and height along a streamline when viscosity and turbulence are negligible. Viscous effects cause pressure drops and set laminar Poiseuille flow rates; the Reynolds number predicts transition to turbulence. Real applications combine continuity, Bernoulli, and viscous losses to estimate speeds, pressures, and flow rates."
+      },
+      {
+        "id": 8,
+        "title": "Thermal Physics and Kinetic Theory",
+        "content": "The kinetic theory connects macroscopic gas laws to molecular motion, with average translational energy tied to temperature and distributions of speeds. The ideal gas law emerges from particle collisions with container walls, while degrees of freedom determine heat capacities via equipartition within validity limits. Adiabatic and isothermal processes reflect different heat exchange constraints, with the adiabatic index setting P–V relations. Mean free path and collision rates influence transport properties like diffusion and viscosity."
+      },
+      {
+        "id": 9,
+        "title": "Wave Optics: Interference and Diffraction",
+        "content": "Wave superposition with controlled phase and coherence produces interference patterns, revealing the wave nature of light. Double-slit and multi-slit (grating) experiments create fringes whose spacing depends on wavelength, geometry, and distance to the screen. Diffraction by apertures limits resolution, with minima and envelopes characteristic of slit width and shape. Thin films and multiple reflections yield color patterns through wavelength-dependent phase shifts and path differences."
+      },
+      {
+        "id": 10,
+        "title": "Special Relativity",
+        "content": "Special relativity postulates identical physics in all inertial frames and invariant light speed, leading to time dilation, length contraction, and relativity of simultaneity. The Lorentz transformation replaces Galilean transformations at high speeds and preserves spacetime intervals. Velocities combine via relativistic addition, and energy–momentum relations unify mass, energy, and motion, including E = mc^2. Physical predictions are frame-consistent and verified by particle lifetimes, GPS timing, and electromagnetic theory."
+      }
+    ],
+    "Advanced": [
+      {
+        "id": 1,
+        "title": "Lagrangian and Hamiltonian Mechanics",
+        "content": "Generalized coordinates incorporate constraints elegantly and yield equations of motion from the variational principle applied to L = T − V. Euler–Lagrange equations expose conserved quantities when coordinates are cyclic, illustrating Noether’s theorem relating symmetries to conservation laws. Hamiltonian mechanics reformulates dynamics in phase space with canonical equations and often simplifies integrability and perturbation methods. Canonical transformations and action–angle variables provide deep structure for periodic systems."
+      },
+      {
+        "id": 2,
+        "title": "Continuum Mechanics (Elasticity and Fluids)",
+        "content": "Continuum mechanics models materials with fields of stress and strain, linked by constitutive laws like linear elasticity with tensorial Hooke’s law. Elastic moduli (Young’s, shear, bulk) quantify stiffness under different loading, while boundary conditions enforce traction or displacement constraints. For fluids, the Navier–Stokes equations express momentum balance with viscosity and, with incompressibility, capture shear-driven and pressure-driven flows. Dimensional analysis and nondimensional numbers (e.g., Reynolds) guide regime identification and scaling."
+      },
+      {
+        "id": 3,
+        "title": "Maxwell's Equations and Electromagnetic Waves",
+        "content": "Maxwell’s equations unify electric and magnetic fields and predict electromagnetic waves propagating at the speed of light with transverse E and B. Boundary conditions at material interfaces control reflection, transmission, and polarization. Energy density and momentum flow reside in the fields, quantified by u = (ε0 E^2 + B^2/μ0)/2 and the Poynting vector for power per area. Plane waves carry radiation pressure and exhibit superposition, interference, and polarization phenomena."
+      },
+      {
+        "id": 4,
+        "title": "Quantum Mechanics I: Postulates and 1D Systems",
+        "content": "Quantum states are vectors in Hilbert space, observables are Hermitian operators, and measurement outcomes are probabilistic with expectation values from state–operator averages. The time-independent Schrödinger equation yields stationary states and quantized energies under boundary conditions like infinite wells or harmonic potentials. Tunneling through finite barriers gives nonzero transmission probability, illustrating wave–particle duality and sensitivity to barrier width and height. Normalization, orthogonality, and completeness underpin expansions in eigenbases for computing observables."
+      },
+      {
+        "id": 5,
+        "title": "Quantum Mechanics II: Angular Momentum and Perturbation",
+        "content": "Angular momentum operators satisfy specific commutation relations, leading to quantized projections and ladder operations for orbital and spin degrees of freedom. Coupling multiple angular momenta uses addition rules and Clebsch–Gordan coefficients to form composite states. The hydrogen atom’s central potential yields exact bound states with degeneracies broken by external fields (Zeeman, Stark) and fine structure. Time-independent perturbation theory approximates energy shifts and state corrections for weak disturbances, with special care for degeneracy."
+      },
+      {
+        "id": 6,
+        "title": "Statistical Mechanics",
+        "content": "Statistical mechanics links microscopic states to macroscopic thermodynamics using ensembles and the partition function as a generating object. Thermodynamic quantities (free energies, entropy, averages, fluctuations) follow from derivatives of ln Z, with different ensembles fixing different constraints. Quantum statistics distinguishes bosons and fermions, leading to phenomena like Bose–Einstein condensation and Fermi degeneracy pressure. Phase transitions and critical phenomena emerge from collective behavior and nonanalyticities in thermodynamic limits."
+      },
+      {
+        "id": 7,
+        "title": "Solid State Physics",
+        "content": "Periodic crystal potentials lead to Bloch waves and energy bands separated by gaps, explaining conduction, insulation, and semiconducting behavior. Reciprocal space and Brillouin zones organize diffraction and band structures, while effective mass captures carrier dynamics near band extrema. Doping controls electron and hole concentrations, enabling pn junctions, diodes, and transistor action. Transport phenomena involve scattering, mobility, and density of states shaping conductivity and device performance."
+      },
+      {
+        "id": 8,
+        "title": "Nuclear and Particle Physics",
+        "content": "Nuclear binding arises from the strong force, with the semi-empirical mass formula capturing trends and fission/fusion energetics. Radioactive decay follows exponential laws with characteristic half-lives and distinct signatures (alpha, beta, gamma). Particle physics organizes matter and forces into the Standard Model of quarks, leptons, gauge bosons, and their interactions, constrained by conservation laws. Cross sections, reaction Q-values, and decay chains quantify reaction likelihoods and energy balances."
+      },
+      {
+        "id": 9,
+        "title": "General Relativity (Basics)",
+        "content": "General relativity models gravity as spacetime curvature produced by mass–energy, with free-fall following geodesics in curved geometry. The Schwarzschild solution describes spherically symmetric masses, predicting gravitational time dilation, redshift, and light bending. In the weak-field, slow-motion limit, GR recovers Newtonian gravity and explains anomalies like Mercury’s perihelion precession. Experimental tests include gravitational lensing, Shapiro delay, and precise timing in GPS systems."
+      },
+      {
+        "id": 10,
+        "title": "Astrophysics and Cosmology",
+        "content": "Stars balance gravity with pressure via hydrostatic equilibrium and evolve through nuclear burning stages to compact remnants like white dwarfs, neutron stars, or black holes. Observables like luminosity, temperature, and spectra map onto the HR diagram and track stellar lifetimes and masses. Cosmology describes large-scale expansion with Hubble’s law and models the universe’s contents (matter, radiation, dark matter, dark energy) through Friedmann-like dynamics. The cosmic microwave background and structure formation provide evidence for the standard cosmological model."
+      }
+    ]
+  }
+}

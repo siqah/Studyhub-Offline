@@ -3,8 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useQuizStore } from '../store/useQuizStore';
 import QuestionCard from '../components/QuestionCard';
 import { toggleBookmark, isBookmarked } from '../store/persistence';
+import useStudyTimer from '../hooks/useStudyTimer';
 
 export default function QuizScreen() {
+  useStudyTimer('quiz');
   const { questions, currentQuestion, submitAnswer, nextQuestion, score, isQuizComplete, reset, currentSelected, isAnswered } = useQuizStore();
   const [bookmarked, setBookmarked] = useState(false);
 

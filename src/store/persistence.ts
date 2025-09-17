@@ -45,6 +45,17 @@ export const resetProgress = async () => {
 // --- new helpers ---
 const keyFor = (subject: string, id: number | string) => `${subject}:${id}`;
 
+/**
+ * Adds elapsed study time (in ms) to the accumulated totalDurationMs.
+ * Safe to call frequently; initializes defaults if needed.
+ */
+export async function addStudyDuration(deltaMs: number) {
+  if (!Number.isFinite(deltaMs) || deltaMs <= 0) return;
+  const current = (await loadProgress()) ?? { quizzesTaken: 0, totalScore: 0, sessions: [] } as Progress;
+  current.totalDurationMs = (current.totalDurationMs ?? 0) + deltaMs;
+  await saveProgress(current);
+}
+
 export async function toggleBookmark(subject: string, id: number, on: boolean) {
   const current = (await loadProgress()) ?? { quizzesTaken: 0, totalScore: 0, sessions: [], bookmarks: {}, wrong: {} };
   current.bookmarks = current.bookmarks ?? {};

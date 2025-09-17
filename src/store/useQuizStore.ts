@@ -91,7 +91,8 @@ export const useQuizStore = create<QuizState>((set, get) => ({
               ...existing.sessions,
               { subject, score, total: questions.length, date: new Date().toISOString(), durationMs }
             ],
-            totalDurationMs: (existing.totalDurationMs ?? 0) + durationMs,
+            // Do not adjust totalDurationMs here; it's tracked by useStudyTimer across screens
+            totalDurationMs: existing.totalDurationMs ?? 0,
           };
           await saveProgress(newProgress);
         } catch (e) {

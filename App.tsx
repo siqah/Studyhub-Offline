@@ -7,6 +7,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import SubjectScreen from './src/screens/SubjectScreen';
 import QuizScreen from './src/screens/QuizScreen';
+import NotesListScreen from './src/screens/NotesListScreen';
+import NoteDetailScreen from './src/screens/NoteDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,16 @@ export default function App() {
           name="Quiz"
           component={QuizScreen}
           options={{ title: 'Quiz' }}
+        />
+        <Stack.Screen
+          name="NotesList"
+          component={NotesListScreen}
+          options={{ title: 'Notes' }}
+        />
+        <Stack.Screen
+          name="NoteDetail"
+          component={NoteDetailScreen}
+          options={{ title: 'Lesson' }}
         />
       </Stack.Navigator>
       <StatusBar style="auto" />
