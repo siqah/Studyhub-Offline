@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { View, Text, ScrollView, StatusBar, StyleSheet, RefreshControl } from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, ScrollView, RefreshControl, StyleSheet } from 'react-native';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import SubjectCard from "../components/SubjectCard";
 import { loadProgress, Progress } from "../store/persistence";
@@ -97,15 +98,21 @@ export default function HomeScreen() {
   }, [progress?.sessions]);
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#F9FAFB" />
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.title}>StudyHub Offline</Text>
-        <Text style={styles.subtitle}>Master your subjects with practice quizzes</Text>
+    <SafeAreaView className="flex-1 bg-white">
+      {/* Custom top section */}
+      <View className="px-6 pt-2 pb-4">
+        <Text className="text-2xl font-extrabold text-gray-900">StudyHub Offline</Text>
+        <Text className="text-sm text-gray-500 mt-1">Learn anywhere. No internet required.</Text>
       </View>
 
-      <ScrollView style={styles.scrollView} refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={refreshProgress} />}>
+      {/* Content */}
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24 }}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshing} onRefresh={refreshProgress} />
+        }
+      >
         {/* Welcome Card */}
         <View style={styles.welcomeCard}>
           <Text style={styles.welcomeTitle}>🎯 Ready to Practice?</Text>
@@ -153,7 +160,7 @@ export default function HomeScreen() {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
