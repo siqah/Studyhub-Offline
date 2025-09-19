@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, ScrollView, RefreshControl, StyleSheet, Platform } from 'react-native';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
@@ -46,32 +46,49 @@ export default function HomeScreen() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [notesCounts, setNotesCounts] = useState<Record<string, number>>({});
 
-  const refreshProgress = useCallback(async () => {
+  const lastNotesRefreshRef = useRef<number>(0);
+  const refreshProgress = useCallback(async (includeNotes: boolean = false) => {
     setIsRefreshing(true);
     try {
       const data = await loadProgress();
       setProgress(data);
-      // also refresh notes counts in background
-      const entries = await Promise.all(
-        subjects.map(async (s) => {
-          const list = await loadNotes(s.name as SubjectKey);
-          return [s.name, list.length] as const;
-        })
-      );
-      setNotesCounts(Object.fromEntries(entries));
+      if (includeNotes) {
+        const entries = await Promise.all(
+          subjects.map(async (s) => {
+            const list = await loadNotes(s.name as SubjectKey);
+            return [s.name, list.length] as const;
+          })
+        );
+        setNotesCounts(Object.fromEntries(entries));
+        lastNotesRefreshRef.current = Date.now();
+      }
     } finally {
       setIsRefreshing(false);
     }
   }, []);
 
   useEffect(() => {
-    refreshProgress();
+    // initial load includes notes counts
+    refreshProgress(true);
   }, [refreshProgress]);
 
+  // Refresh on focus and keep stats live with a lightweight interval.
+  // Only refresh notes counts occasionally to avoid heavy work.
   useFocusEffect(
     useCallback(() => {
-      refreshProgress();
-      return () => {};
+      let mounted = true;
+      // on focus, include notes refresh once
+      refreshProgress(true);
+      const interval = setInterval(() => {
+        if (!mounted) return;
+        const now = Date.now();
+        const shouldRefreshNotes = now - (lastNotesRefreshRef.current || 0) > 30000; // 30s
+        refreshProgress(shouldRefreshNotes);
+      }, 1000);
+      return () => {
+        mounted = false;
+        clearInterval(interval);
+      };
     }, [refreshProgress])
   );
 
