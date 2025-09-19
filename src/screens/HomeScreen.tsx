@@ -101,6 +101,11 @@ export default function HomeScreen() {
   const minutes = Math.floor((totalDurationMs % (1000 * 60 * 60)) / (1000 * 60));
   const timeLabel = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
 
+  const todayMs = progress?.todayDurationMs ?? 0;
+  const tHours = Math.floor(todayMs / (1000 * 60 * 60));
+  const tMinutes = Math.floor((todayMs % (1000 * 60 * 60)) / (1000 * 60));
+  const todayLabel = tHours > 0 ? `${tHours}h ${tMinutes}m` : `${tMinutes}m`;
+
   const perSubject = useMemo(() => {
     const map: Record<string, { attempts: number; avg: number; timeMs: number }> = {};
     const sessions = progress?.sessions ?? [];
@@ -160,6 +165,12 @@ export default function HomeScreen() {
               <Text style={styles.statLabel}>Time Studied</Text>
             </View>
           </View>
+          <View style={[styles.statsRow, { marginTop: 10 }]}>
+            <View style={styles.statItemSmall}>
+              <Text style={[styles.statNumberSmall, styles.statNumberAccent]}>{todayLabel}</Text>
+              <Text style={styles.statLabel}>Today</Text>
+            </View>
+          </View>
         </View>
 
         <Text style={styles.sectionTitle}>Subjects</Text>
@@ -169,6 +180,10 @@ export default function HomeScreen() {
             const tHrs = Math.floor((stats.timeMs ?? 0) / (1000 * 60 * 60));
             const tMin = Math.floor(((stats.timeMs ?? 0) % (1000 * 60 * 60)) / (1000 * 60));
             const timeStr = tHrs > 0 ? `${tHrs}h ${tMin}m` : `${tMin}m`;
+            const subTodayMs = progress?.perSubjectTodayDuration?.[subject.name] ?? 0;
+            const subTHrs = Math.floor(subTodayMs / (1000 * 60 * 60));
+            const subTMin = Math.floor((subTodayMs % (1000 * 60 * 60)) / (1000 * 60));
+            const subTodayStr = subTHrs > 0 ? `${subTHrs}h ${subTMin}m` : `${subTMin}m`;
             const nCount = notesCounts[subject.name] ?? 0;
             return (
               <View key={subject.name} style={styles.subjectItem}>
@@ -184,6 +199,7 @@ export default function HomeScreen() {
                       <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{stats.attempts} tries</Text>
                       <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{nCount} notes</Text>
                       <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>⏱ {timeStr}</Text>
+                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>Today: {subTodayStr}</Text>
                     </View>
                   }
                 />
@@ -242,6 +258,15 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingHorizontal: 20,
     paddingBottom: 28,
+  },
+  statItemSmall: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  statNumberSmall: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0F172A',
   },
 
   welcomeCard: {

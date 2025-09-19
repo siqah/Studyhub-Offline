@@ -9,6 +9,10 @@ export type Progress = {
   sessions: Session[];
   totalDurationMs?: number; // accumulated time across sessions
   perSubjectDuration?: Record<string, number>; // ms by subject
+  // Daily tracking (resets when local date changes)
+  todayDurationMs?: number; // today's accumulated ms
+  perSubjectTodayDuration?: Record<string, number>;
+  todayDate?: string; // YYYY-MM-DD of the last update
   bookmarks?: Record<string, boolean>; // key: `${subject}:${id}`
   wrong?: Record<string, number>; // key: `${subject}:${id}` count of wrong attempts
 };
@@ -29,6 +33,9 @@ export const loadProgress = async (): Promise<Progress | null> => {
     // ensure defaults for new fields
     parsed.totalDurationMs = parsed.totalDurationMs ?? 0;
     parsed.perSubjectDuration = parsed.perSubjectDuration ?? {};
+    parsed.todayDurationMs = parsed.todayDurationMs ?? 0;
+    parsed.perSubjectTodayDuration = parsed.perSubjectTodayDuration ?? {};
+    parsed.todayDate = parsed.todayDate ?? formatLocalDate(new Date());
     return parsed;
   } catch (e) {
     console.warn('Failed to load progress', e);
@@ -47,17 +54,36 @@ export const resetProgress = async () => {
 // --- new helpers ---
 const keyFor = (subject: string, id: number | string) => `${subject}:${id}`;
 
+function formatLocalDate(d: Date): string {
+  const year = d.getFullYear();
+  const month = `${d.getMonth() + 1}`.padStart(2, '0');
+  const day = `${d.getDate()}`.padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 /**
  * Adds elapsed study time (in ms) to the accumulated totalDurationMs.
  * Safe to call frequently; initializes defaults if needed.
  */
 export async function addStudyDuration(deltaMs: number, subject?: string) {
   if (!Number.isFinite(deltaMs) || deltaMs <= 0) return;
-  const current = (await loadProgress()) ?? { quizzesTaken: 0, totalScore: 0, sessions: [] } as Progress;
+  const today = formatLocalDate(new Date());
+  const current = (await loadProgress()) ?? ({ quizzesTaken: 0, totalScore: 0, sessions: [], totalDurationMs: 0, perSubjectDuration: {}, todayDurationMs: 0, perSubjectTodayDuration: {}, todayDate: today } as Progress);
+
+  // Daily rollover
+  if (current.todayDate !== today) {
+    current.todayDate = today;
+    current.todayDurationMs = 0;
+    current.perSubjectTodayDuration = {};
+  }
+
   current.totalDurationMs = (current.totalDurationMs ?? 0) + deltaMs;
+  current.todayDurationMs = (current.todayDurationMs ?? 0) + deltaMs;
   if (subject) {
     current.perSubjectDuration = current.perSubjectDuration ?? {};
     current.perSubjectDuration[subject] = (current.perSubjectDuration[subject] ?? 0) + deltaMs;
+    current.perSubjectTodayDuration = current.perSubjectTodayDuration ?? {};
+    current.perSubjectTodayDuration[subject] = (current.perSubjectTodayDuration[subject] ?? 0) + deltaMs;
   }
   await saveProgress(current);
 }
