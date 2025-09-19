@@ -47,8 +47,8 @@ export default function HomeScreen() {
   const [notesCounts, setNotesCounts] = useState<Record<string, number>>({});
 
   const lastNotesRefreshRef = useRef<number>(0);
-  const refreshProgress = useCallback(async (includeNotes: boolean = false) => {
-    setIsRefreshing(true);
+  const refreshProgress = useCallback(async (includeNotes: boolean = false, showSpinner: boolean = false) => {
+    if (showSpinner) setIsRefreshing(true);
     try {
       const data = await loadProgress();
       setProgress(data);
@@ -63,32 +63,22 @@ export default function HomeScreen() {
         lastNotesRefreshRef.current = Date.now();
       }
     } finally {
-      setIsRefreshing(false);
+      if (showSpinner) setIsRefreshing(false);
     }
   }, []);
 
   useEffect(() => {
-    // initial load includes notes counts
-    refreshProgress(true);
+    // initial load includes notes counts (show spinner once)
+    refreshProgress(true, true);
   }, [refreshProgress]);
 
   // Refresh on focus and keep stats live with a lightweight interval.
   // Only refresh notes counts occasionally to avoid heavy work.
   useFocusEffect(
     useCallback(() => {
-      let mounted = true;
-      // on focus, include notes refresh once
-      refreshProgress(true);
-      const interval = setInterval(() => {
-        if (!mounted) return;
-        const now = Date.now();
-        const shouldRefreshNotes = now - (lastNotesRefreshRef.current || 0) > 30000; // 30s
-        refreshProgress(shouldRefreshNotes);
-      }, 1000);
-      return () => {
-        mounted = false;
-        clearInterval(interval);
-      };
+      // On focus, do a single refresh including notes (no spinner)
+      refreshProgress(true, false);
+      return () => {};
     }, [refreshProgress])
   );
 
@@ -139,7 +129,7 @@ export default function HomeScreen() {
       <ScrollView
         contentContainerStyle={styles.contentContainer}
         refreshControl={
-          <RefreshControl refreshing={isRefreshing} onRefresh={refreshProgress} />
+          <RefreshControl refreshing={isRefreshing} onRefresh={() => refreshProgress(true, true)} />
         }
       >
         <View style={styles.welcomeCard}>
