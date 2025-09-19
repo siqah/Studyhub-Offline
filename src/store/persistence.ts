@@ -8,6 +8,7 @@ export type Progress = {
   totalScore: number;
   sessions: Session[];
   totalDurationMs?: number; // accumulated time across sessions
+  perSubjectDuration?: Record<string, number>; // ms by subject
   bookmarks?: Record<string, boolean>; // key: `${subject}:${id}`
   wrong?: Record<string, number>; // key: `${subject}:${id}` count of wrong attempts
 };
@@ -27,6 +28,7 @@ export const loadProgress = async (): Promise<Progress | null> => {
     const parsed = JSON.parse(raw) as Progress;
     // ensure defaults for new fields
     parsed.totalDurationMs = parsed.totalDurationMs ?? 0;
+    parsed.perSubjectDuration = parsed.perSubjectDuration ?? {};
     return parsed;
   } catch (e) {
     console.warn('Failed to load progress', e);
@@ -49,10 +51,14 @@ const keyFor = (subject: string, id: number | string) => `${subject}:${id}`;
  * Adds elapsed study time (in ms) to the accumulated totalDurationMs.
  * Safe to call frequently; initializes defaults if needed.
  */
-export async function addStudyDuration(deltaMs: number) {
+export async function addStudyDuration(deltaMs: number, subject?: string) {
   if (!Number.isFinite(deltaMs) || deltaMs <= 0) return;
   const current = (await loadProgress()) ?? { quizzesTaken: 0, totalScore: 0, sessions: [] } as Progress;
   current.totalDurationMs = (current.totalDurationMs ?? 0) + deltaMs;
+  if (subject) {
+    current.perSubjectDuration = current.perSubjectDuration ?? {};
+    current.perSubjectDuration[subject] = (current.perSubjectDuration[subject] ?? 0) + deltaMs;
+  }
   await saveProgress(current);
 }
 

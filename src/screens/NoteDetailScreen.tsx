@@ -8,7 +8,7 @@ export default function NoteDetailScreen() {
   const route = useRoute<any>();
   const lesson = route.params.lesson as Lesson;
   const subject = route.params.subject as SubjectKey;
-  useStudyTimer('note-detail');
+  useStudyTimer('note-detail', subject);
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }} contentContainerStyle={{ padding: 16 }}>
