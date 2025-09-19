@@ -8,7 +8,7 @@ export default function NotesListScreen() {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const subject = route.params.subject as SubjectKey;
-  useStudyTimer('notes-list');
+  useStudyTimer('notes-list', subject);
 
   const [notes, setNotes] = React.useState<Lesson[] | null>(null);
   const [query, setQuery] = React.useState('');

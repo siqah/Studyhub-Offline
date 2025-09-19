@@ -6,7 +6,7 @@ import { addStudyDuration } from '../store/persistence';
  * Tracks focused time on a screen and accumulates it into total study duration.
  * Starts a timer on focus and saves elapsed time on blur/unmount.
  */
-export function useStudyTimer(key?: string) {
+export function useStudyTimer(key?: string, subject?: string) {
   const startRef = useRef<number | null>(null);
 
   useFocusEffect(
@@ -18,7 +18,7 @@ export function useStudyTimer(key?: string) {
         if (start) {
           const delta = Date.now() - start;
           // fire and forget; persistence handles merging
-          addStudyDuration(delta).catch(() => {});
+          addStudyDuration(delta, subject).catch(() => {});
           startRef.current = null;
         }
       };

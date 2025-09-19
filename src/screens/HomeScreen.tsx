@@ -102,7 +102,7 @@ export default function HomeScreen() {
   const timeLabel = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
 
   const perSubject = useMemo(() => {
-    const map: Record<string, { attempts: number; avg: number }> = {};
+    const map: Record<string, { attempts: number; avg: number; timeMs: number }> = {};
     const sessions = progress?.sessions ?? [];
     const grouped: Record<string, { totalScore: number; total: number; attempts: number }> = {};
     for (const s of sessions) {
@@ -116,10 +116,11 @@ export default function HomeScreen() {
       map[key] = {
         attempts: g.attempts,
         avg: g.total > 0 ? Math.round((g.totalScore / g.total) * 100) : 0,
+        timeMs: progress?.perSubjectDuration?.[key] ?? 0,
       };
     }
     return map;
-  }, [progress?.sessions]);
+  }, [progress?.sessions, progress?.perSubjectDuration]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -164,7 +165,10 @@ export default function HomeScreen() {
         <Text style={styles.sectionTitle}>Subjects</Text>
         <View style={styles.subjectList}>
           {subjects.map((subject) => {
-            const stats = perSubject[subject.name] ?? { attempts: 0, avg: 0 };
+            const stats = perSubject[subject.name] ?? { attempts: 0, avg: 0, timeMs: 0 };
+            const tHrs = Math.floor((stats.timeMs ?? 0) / (1000 * 60 * 60));
+            const tMin = Math.floor(((stats.timeMs ?? 0) % (1000 * 60 * 60)) / (1000 * 60));
+            const timeStr = tHrs > 0 ? `${tHrs}h ${tMin}m` : `${tMin}m`;
             const nCount = notesCounts[subject.name] ?? 0;
             return (
               <View key={subject.name} style={styles.subjectItem}>
@@ -179,6 +183,7 @@ export default function HomeScreen() {
                       <Text style={{ color: 'white', fontWeight: '700', fontSize: 16 }}>{stats.avg}%</Text>
                       <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{stats.attempts} tries</Text>
                       <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{nCount} notes</Text>
+                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>⏱ {timeStr}</Text>
                     </View>
                   }
                 />

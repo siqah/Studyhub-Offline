@@ -6,8 +6,10 @@ import { toggleBookmark, isBookmarked } from '../store/persistence';
 import useStudyTimer from '../hooks/useStudyTimer';
 
 export default function QuizScreen() {
-  useStudyTimer('quiz');
   const { questions, currentQuestion, submitAnswer, nextQuestion, score, isQuizComplete, reset, currentSelected, isAnswered } = useQuizStore();
+  const current = questions && questions.length > 0 ? (questions[0] as any) : null;
+  const subj = current?._subject ?? undefined;
+  useStudyTimer('quiz', subj);
   const [bookmarked, setBookmarked] = useState(false);
 
   useEffect(() => {
