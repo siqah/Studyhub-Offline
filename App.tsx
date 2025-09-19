@@ -33,7 +33,8 @@ export default function App() {
         <Stack.Screen
           name="Subject"
           component={SubjectScreen}
-          options={{ title: 'Subjects' }}
+
+          options={{ title: 'Subjects'}}
         />
         <Stack.Screen
           name="Quiz"
