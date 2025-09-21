@@ -5,6 +5,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import SubjectCard from "../components/SubjectCard";
 import { loadProgress, Progress } from "../store/persistence";
 import { loadNotes, SubjectKey } from "../data/loaders";
+import { getGitStats, getTimeSinceLastCommit, GitStats } from "../utils/gitUtils";
 
 type Subject = {
   name: string;
@@ -45,13 +46,18 @@ export default function HomeScreen() {
   const [progress, setProgress] = useState<Progress | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [notesCounts, setNotesCounts] = useState<Record<string, number>>({});
+  const [gitStats, setGitStats] = useState<GitStats | null>(null);
 
   const lastNotesRefreshRef = useRef<number>(0);
   const refreshProgress = useCallback(async (includeNotes: boolean = false, showSpinner: boolean = false) => {
     if (showSpinner) setIsRefreshing(true);
     try {
-      const data = await loadProgress();
+      const [data, stats] = await Promise.all([
+        loadProgress(),
+        getGitStats()
+      ]);
       setProgress(data);
+      setGitStats(stats);
       if (includeNotes) {
         const entries = await Promise.all(
           subjects.map(async (s) => {
@@ -159,6 +165,14 @@ export default function HomeScreen() {
             <View style={styles.statItemSmall}>
               <Text style={[styles.statNumberSmall, styles.statNumberAccent]}>{todayLabel}</Text>
               <Text style={styles.statLabel}>Today</Text>
+            </View>
+            <View style={styles.statItemSmall}>
+              <Text style={[styles.statNumberSmall, styles.statNumberPositive]}>{gitStats?.totalCommits ?? 0}</Text>
+              <Text style={styles.statLabel}>Commits</Text>
+            </View>
+            <View style={styles.statItemSmall}>
+              <Text style={[styles.statNumberSmall, { fontSize: 12 }]}>{getTimeSinceLastCommit(gitStats?.lastCommitDate ?? null)}</Text>
+              <Text style={styles.statLabel}>Last Commit</Text>
             </View>
           </View>
         </View>
