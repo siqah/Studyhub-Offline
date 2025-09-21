@@ -30,16 +30,22 @@ export async function getGitStats(): Promise<GitStats> {
     // In a real implementation, this would be generated during build
     const commits: CommitInfo[] = [
       {
+        hash: "f590ff2",
+        message: "Add git commit statistics to HomeScreen stats section",
+        author: "copilot-swe-agent[bot]",
+        date: new Date(Date.now() - 2 * 60 * 1000).toISOString() // 2 minutes ago
+      },
+      {
         hash: "fd66840",
         message: "Initial plan",
         author: "copilot-swe-agent[bot]",
-        date: new Date(Date.now() - 10 * 60 * 1000).toISOString() // 10 minutes ago
+        date: new Date(Date.now() - 15 * 60 * 1000).toISOString() // 15 minutes ago
       },
       {
         hash: "8244bba", 
         message: "feat: Refactor SubjectScreen to improve data loading and error handling",
         author: "siqah",
-        date: new Date(Date.now() - 20 * 60 * 1000).toISOString() // 20 minutes ago
+        date: new Date(Date.now() - 25 * 60 * 1000).toISOString() // 25 minutes ago
       }
     ];
 
