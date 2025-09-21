@@ -1,89 +1,170 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useRoute, useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useQuizStore } from '../store/useQuizStore';
 import { getWrongForSubject } from '../store/persistence';
 import { loadQuiz, loadNotes, SubjectKey, Question } from '../data/loaders';
 
+type RouteParams = { subject?: SubjectKey };
+type WithSubject = Question & { _subject: SubjectKey };
+
+const MAX_QUESTIONS = 15;
+
 export default function SubjectScreen() {
-  const route = useRoute<any>();
+  const route = useRoute<any>(); // Keep loose to avoid coupling with app-wide types
   const navigation = useNavigation<any>();
   const { loadQuestions } = useQuizStore();
 
-  const subject: SubjectKey = route.params?.subject ?? 'Mathematics';
+  const subject: SubjectKey = (route.params as RouteParams)?.subject ?? 'Mathematics';
+
   const [wrongIds, setWrongIds] = useState<number[]>([]);
   const [dataset, setDataset] = useState<Question[] | null>(null);
   const [notesCount, setNotesCount] = useState<number>(0);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    getWrongForSubject(subject).then(setWrongIds);
-    let mounted = true;
+  const isLoading = dataset === null;
+
+  const refreshWrongAndNotes = useCallback(() => {
+    let active = true;
     (async () => {
-      const [qz, nts] = await Promise.all([
-        loadQuiz(subject),
-        loadNotes(subject)
-      ]);
-      if (!mounted) return;
-      setDataset(qz);
-      setNotesCount(nts.length);
+      try {
+        const [ids, notes] = await Promise.all([
+          getWrongForSubject(subject),
+          loadNotes(subject),
+        ]);
+        if (!active) return;
+        setWrongIds(ids);
+        setNotesCount(notes.length);
+      } catch (e) {
+        if (!active) return;
+        setError('Failed to load progress and notes.');
+      }
     })();
-    return () => { mounted = false; };
+    return () => {
+      active = false;
+    };
   }, [subject]);
 
-  const startQuiz = () => {
-    if (!dataset) return;
-    // Shuffle and take up to 15 questions for each quiz session
-    const shuffled = [...(dataset as any)];
+  useFocusEffect(refreshWrongAndNotes);
+
+  useEffect(() => {
+    let active = true;
+    setError(null);
+    setDataset(null);
+    (async () => {
+      try {
+        const qz = await loadQuiz(subject);
+        if (!active) return;
+        setDataset(qz);
+      } catch {
+        if (!active) return;
+        setError('Failed to load questions.');
+        setDataset([]);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [subject]);
+
+  const startQuiz = useCallback(() => {
+    if (!dataset || dataset.length === 0) return;
+
+    // Fisher–Yates shuffle on a copy
+    const shuffled = dataset.slice();
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    const sampled = shuffled.slice(0, Math.min(15, shuffled.length));
-    const dataWithSubject = sampled.map((q: any) => ({ ...q, _subject: subject }));
-    loadQuestions(dataWithSubject);
-    navigation.navigate('Quiz');
-  };
 
-  const startReview = () => {
-    if (!dataset) return;
-    const filtered = (dataset as any).filter((q: any) => wrongIds.includes(q.id)).map((q: any) => ({ ...q, _subject: subject }));
+    const sampled = shuffled.slice(0, Math.min(MAX_QUESTIONS, shuffled.length));
+    const withSubject: WithSubject[] = sampled.map(q => ({ ...q, _subject: subject }));
+    loadQuestions(withSubject);
+    navigation.navigate('Quiz');
+  }, [dataset, subject, loadQuestions, navigation]);
+
+  const startReview = useCallback(() => {
+    if (!dataset || dataset.length === 0) return;
+    const filtered: WithSubject[] = dataset
+      .filter(q => wrongIds.includes(q.id))
+      .map(q => ({ ...q, _subject: subject }));
     if (filtered.length === 0) return;
     loadQuestions(filtered);
     navigation.navigate('Quiz');
-  };
+  }, [dataset, wrongIds, subject, loadQuestions, navigation]);
+
+  const preview = useMemo(() => (dataset ?? []).slice(0, 3), [dataset]);
+
+  const hasQuestions = (dataset?.length ?? 0) > 0;
+  const reviewCount = useMemo(
+    () => (dataset ? dataset.filter(q => wrongIds.includes(q.id)).length : 0),
+    [dataset, wrongIds]
+  );
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{subject} Revision</Text>
-      {!dataset ? (
-        <View style={{ marginBottom: 24, flexDirection: 'row', alignItems: 'center' }}>
+
+      {isLoading && (
+        <View style={styles.loadingRow}>
           <ActivityIndicator />
-          <Text style={{ marginLeft: 8, color: '#6B7280' }}>Loading…</Text>
+          <Text style={styles.loadingText}>Loading…</Text>
         </View>
-      ) : (
-        <Text style={styles.subtitle}>Number of questions: {dataset.length}</Text>
       )}
 
-      {/* small preview */}
-      <View style={{ marginBottom: 20 }}>
-        <Text style={{ fontWeight: '600', marginBottom: 8 }}>Preview</Text>
-        {(dataset ?? []).slice(0,3).map((q: any)=> (
-          <Text key={q.id} style={{ color: '#374151' }}>• {q.question}</Text>
-        ))}
-      </View>
+      {!isLoading && error && (
+        <Text style={styles.errorText}>{error}</Text>
+      )}
 
-      <TouchableOpacity style={styles.startButton} onPress={startQuiz}>
-        <Text style={styles.startButtonText}>Start Quiz</Text>
+      {!isLoading && !error && (
+        <Text style={styles.subtitle}>Number of questions: {dataset?.length ?? 0}</Text>
+      )}
+
+      {!isLoading && hasQuestions && (
+        <View style={styles.previewContainer}>
+          <Text style={styles.previewTitle}>Preview</Text>
+          {preview.map(q => (
+            <Text key={q.id} style={styles.previewItem}>• {q.question}</Text>
+          ))}
+        </View>
+      )}
+
+      {!isLoading && !hasQuestions && !error && (
+        <Text style={styles.emptyText}>No questions available for this subject.</Text>
+      )}
+
+      <TouchableOpacity
+        style={[styles.primaryButton, (!hasQuestions || isLoading) && styles.disabledButton]}
+        onPress={startQuiz}
+        disabled={!hasQuestions || isLoading}
+        accessibilityRole="button"
+        accessibilityLabel="Start Quiz"
+        testID="start-quiz"
+      >
+        <Text style={styles.buttonText}>Start Quiz</Text>
       </TouchableOpacity>
 
-      {wrongIds.length > 0 && (
-        <TouchableOpacity style={[styles.startButton, { marginTop: 12, backgroundColor: '#F59E0B' }]} onPress={startReview}>
-          <Text style={styles.startButtonText}>Review Mistakes ({wrongIds.length})</Text>
+      {reviewCount > 0 && (
+        <TouchableOpacity
+          style={[styles.primaryButton, styles.reviewButton]}
+          onPress={startReview}
+          accessibilityRole="button"
+          accessibilityLabel="Review Mistakes"
+          testID="review-mistakes"
+        >
+          <Text style={styles.buttonText}>Review Mistakes ({reviewCount})</Text>
         </TouchableOpacity>
       )}
 
-      <TouchableOpacity style={[styles.startButton, { marginTop: 12, backgroundColor: '#3B82F6' }]} onPress={() => navigation.navigate('NotesList', { subject })}>
-        <Text style={styles.startButtonText}>View Notes ({notesCount})</Text>
+      <TouchableOpacity
+        style={[styles.primaryButton, styles.notesButton, notesCount === 0 && styles.disabledButton]}
+        onPress={() => navigation.navigate('NotesList', { subject })}
+        disabled={notesCount === 0}
+        accessibilityRole="button"
+        accessibilityLabel="View Notes"
+        testID="view-notes"
+      >
+        <Text style={styles.buttonText}>View Notes ({notesCount})</Text>
       </TouchableOpacity>
     </View>
   );
@@ -103,15 +184,54 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: '#6B7280',
-    marginBottom: 24,
+    marginBottom: 16,
   },
-  startButton: {
+  loadingRow: {
+    marginBottom: 24,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginLeft: 8,
+    color: '#6B7280',
+  },
+  errorText: {
+    color: '#DC2626',
+    marginBottom: 16,
+  },
+  previewContainer: {
+    marginBottom: 20,
+  },
+  previewTitle: {
+    fontWeight: '600',
+    marginBottom: 8,
+    color: '#111827',
+  },
+  previewItem: {
+    color: '#374151',
+  },
+  emptyText: {
+    color: '#6B7280',
+    marginBottom: 16,
+  },
+  primaryButton: {
     backgroundColor: '#10B981',
     paddingVertical: 14,
     borderRadius: 12,
     alignItems: 'center',
   },
-  startButtonText: {
+  reviewButton: {
+    marginTop: 12,
+    backgroundColor: '#F59E0B',
+  },
+  notesButton: {
+    marginTop: 12,
+    backgroundColor: '#3B82F6',
+  },
+  disabledButton: {
+    opacity: 0.6,
+  },
+  buttonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: '600',
