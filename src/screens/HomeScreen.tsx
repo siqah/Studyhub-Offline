@@ -5,7 +5,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import SubjectCard from "../components/SubjectCard";
 import { loadProgress, Progress } from "../store/persistence";
 import { loadNotes, SubjectKey } from "../data/loaders";
-import { getGitStats, getTimeSinceLastCommit, GitStats } from "../utils/gitUtils";
+// Removed git commit stats utilities as they are not relevant to user progress
 
 type Subject = {
   name: string;
@@ -46,18 +46,14 @@ export default function HomeScreen() {
   const [progress, setProgress] = useState<Progress | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [notesCounts, setNotesCounts] = useState<Record<string, number>>({});
-  const [gitStats, setGitStats] = useState<GitStats | null>(null);
+  // Removed git stats state
 
   const lastNotesRefreshRef = useRef<number>(0);
   const refreshProgress = useCallback(async (includeNotes: boolean = false, showSpinner: boolean = false) => {
     if (showSpinner) setIsRefreshing(true);
     try {
-      const [data, stats] = await Promise.all([
-        loadProgress(),
-        getGitStats()
-      ]);
+      const data = await loadProgress();
       setProgress(data);
-      setGitStats(stats);
       if (includeNotes) {
         const entries = await Promise.all(
           subjects.map(async (s) => {
