@@ -7,14 +7,13 @@ export type Progress = {
   quizzesTaken: number;
   totalScore: number;
   sessions: Session[];
-  totalDurationMs?: number; // accumulated time across sessions
-  perSubjectDuration?: Record<string, number>; // ms by subject
-  // Daily tracking (resets when local date changes)
-  todayDurationMs?: number; // today's accumulated ms
+  totalDurationMs?: number; 
+  perSubjectDuration?: Record<string, number>; 
+  todayDurationMs?: number;
   perSubjectTodayDuration?: Record<string, number>;
-  todayDate?: string; // YYYY-MM-DD of the last update
-  bookmarks?: Record<string, boolean>; // key: `${subject}:${id}`
-  wrong?: Record<string, number>; // key: `${subject}:${id}` count of wrong attempts
+  todayDate?: string;
+  bookmarks?: Record<string, boolean>;
+  wrong?: Record<string, number>;
 };
 
 export const saveProgress = async (progress: Progress) => {

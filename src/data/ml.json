@@ -1,62 +1,182 @@
 [
   {
     "id": 1,
+    "question": "What does 'ML' stand for?",
+    "options": ["Machine Learning", "Meta Language", "Model Logic", "Managed Layer"],
+    "answer": "Machine Learning"
+  },
+  {
+    "id": 2,
+    "question": "What is a dataset?",
+    "options": ["A collection of data samples", "A learning algorithm", "A loss function", "A graphics library"],
+    "answer": "A collection of data samples"
+  },
+  {
+    "id": 3,
+    "question": "What is a feature in machine learning?",
+    "options": ["An input variable describing data", "The final model output", "A type of optimizer", "A training loop"],
+    "answer": "An input variable describing data"
+  },
+  {
+    "id": 4,
+    "question": "What is a label (target)?",
+    "options": ["The target value to predict", "The input variable", "A type of regularization", "A data split method"],
+    "answer": "The target value to predict"
+  },
+  {
+    "id": 5,
+    "question": "What is supervised learning?",
+    "options": ["Learning from labeled data", "Learning from unlabeled data", "Learning by trial and error", "Learning from rewards only"],
+    "answer": "Learning from labeled data"
+  },
+  {
+    "id": 6,
     "question": "What is the primary goal of supervised learning?",
     "options": ["To find hidden patterns in data", "To predict outcomes based on labeled data", "To group similar data points", "To learn from rewards and punishments"],
     "answer": "To predict outcomes based on labeled data"
   },
   {
-    "id": 2,
+    "id": 7,
     "question": "Which algorithm is commonly used for regression tasks?",
     "options": ["K-Means Clustering", "Decision Trees", "Linear Regression", "Principal Component Analysis"],
     "answer": "Linear Regression"
   },
   {
-    "id": 3,
-    "question": "What does 'overfitting' mean in machine learning?",
-    "options": ["The model performs well on training data but poorly on new data", "The model is too simple to capture patterns", "The model uses too few features", "The model is trained on unlabeled data"],
-    "answer": "The model performs well on training data but poorly on new data"
-  },
-  {
-    "id": 4,
+    "id": 8,
     "question": "Which of the following is an example of unsupervised learning?",
     "options": ["Predicting house prices", "Classifying emails as spam", "Grouping customers by behavior", "Recommending movies based on ratings"],
     "answer": "Grouping customers by behavior"
   },
   {
-    "id": 5,
+    "id": 9,
     "question": "What is the role of a loss function in training a model?",
     "options": ["To measure how well the model performs", "To initialize model weights", "To select features", "To visualize data"],
     "answer": "To measure how well the model performs"
   },
   {
-    "id": 6,
-    "question": "Which technique is used to prevent overfitting?",
-    "options": ["Increasing model complexity", "Using regularization", "Adding more training data", "Ignoring validation data"],
-    "answer": "Using regularization"
-  },
-  {
-    "id": 7,
-    "question": "What is a neural network primarily inspired by?",
-    "options": ["Human brain structure", "Database systems", "Statistical models", "Search algorithms"],
-    "answer": "Human brain structure"
-  },
-  {
-    "id": 8,
-    "question": "In reinforcement learning, what is an 'agent'?",
-    "options": ["The environment", "The learner that makes decisions", "The reward system", "The training dataset"],
-    "answer": "The learner that makes decisions"
-  },
-  {
-    "id": 9,
+    "id": 10,
     "question": "What does 'gradient descent' optimize?",
     "options": ["Model accuracy", "The loss function", "Data preprocessing", "Feature selection"],
     "answer": "The loss function"
   },
   {
-    "id": 10,
+    "id": 11,
+    "question": "Which technique is used to prevent overfitting?",
+    "options": ["Increasing model complexity", "Using regularization", "Adding noise to labels", "Ignoring validation data"],
+    "answer": "Using regularization"
+  },
+  {
+    "id": 12,
+    "question": "What is cross-validation used for?",
+    "options": ["To evaluate a model on resampled splits", "To increase training speed", "To visualize data", "To reduce dataset size"],
+    "answer": "To evaluate a model on resampled splits"
+  },
+  {
+    "id": 13,
     "question": "Which library is popular for machine learning in Python?",
     "options": ["Pandas", "Scikit-learn", "Matplotlib", "NumPy"],
     "answer": "Scikit-learn"
+  },
+  {
+    "id": 14,
+    "question": "Why apply feature scaling?",
+    "options": ["To put features on comparable ranges", "To increase dataset size", "To add new labels", "To remove the need for training"],
+    "answer": "To put features on comparable ranges"
+  },
+  {
+    "id": 15,
+    "question": "What does one-hot encoding do?",
+    "options": ["Converts categories to binary vectors", "Reduces dimensionality", "Normalizes numerical features", "Removes outliers"],
+    "answer": "Converts categories to binary vectors"
+  },
+  {
+    "id": 16,
+    "question": "k-Nearest Neighbors (k-NN) makes predictions based on:",
+    "options": ["Gradient updates", "Distance to nearby samples", "Decision rules", "Backpropagation"],
+    "answer": "Distance to nearby samples"
+  },
+  {
+    "id": 17,
+    "question": "Support Vector Machines (SVM) aim to find:",
+    "options": ["The smallest loss", "A maximum-margin hyperplane", "The deepest tree", "The largest cluster"],
+    "answer": "A maximum-margin hyperplane"
+  },
+  {
+    "id": 18,
+    "question": "Decision trees are especially prone to:",
+    "options": ["Underfitting", "Data leakage", "Overfitting", "Vanishing gradients"],
+    "answer": "Overfitting"
+  },
+  {
+    "id": 19,
+    "question": "Which ensemble method uses bagging?",
+    "options": ["Random Forest", "AdaBoost", "K-Means", "PCA"],
+    "answer": "Random Forest"
+  },
+  {
+    "id": 20,
+    "question": "Which of the following is a boosting algorithm?",
+    "options": ["AdaBoost", "Random Forest", "K-Nearest Neighbors", "Naive Bayes"],
+    "answer": "AdaBoost"
+  },
+  {
+    "id": 21,
+    "question": "L1 regularization tends to:",
+    "options": ["Encourage sparsity in weights", "Increase model variance", "Reduce learning rate", "Increase dataset size"],
+    "answer": "Encourage sparsity in weights"
+  },
+  {
+    "id": 22,
+    "question": "What is a neural network primarily inspired by?",
+    "options": ["Human brain structure", "Database systems", "Statistical tables", "Search algorithms"],
+    "answer": "Human brain structure"
+  },
+  {
+    "id": 23,
+    "question": "Which activation function is commonly used in deep networks?",
+    "options": ["ReLU", "Linear", "Sigmoid only", "Step"],
+    "answer": "ReLU"
+  },
+  {
+    "id": 24,
+    "question": "Backpropagation is used to:",
+    "options": ["Compute gradients to update weights", "Shuffle the dataset", "Scale features", "Split the data"],
+    "answer": "Compute gradients to update weights"
+  },
+  {
+    "id": 25,
+    "question": "What does batch normalization help with?",
+    "options": ["Stabilizing and speeding up training", "Increasing dataset size", "Reducing labels", "Improving plotting"],
+    "answer": "Stabilizing and speeding up training"
+  },
+  {
+    "id": 26,
+    "question": "What is the purpose of dropout?",
+    "options": ["Reduce overfitting by randomly deactivating units", "Increase learning rate", "Expand feature space", "Normalize features"],
+    "answer": "Reduce overfitting by randomly deactivating units"
+  },
+  {
+    "id": 27,
+    "question": "A key advantage of the Adam optimizer is:",
+    "options": ["Adaptive learning rates with momentum", "Zero memory usage", "No hyperparameters", "Exact global minima"],
+    "answer": "Adaptive learning rates with momentum"
+  },
+  {
+    "id": 28,
+    "question": "Early stopping is used to:",
+    "options": ["Stop training when validation performance stops improving", "Shuffle data before training", "Reduce feature count", "Increase batch size"],
+    "answer": "Stop training when validation performance stops improving"
+  },
+  {
+    "id": 29,
+    "question": "In reinforcement learning, what is an 'agent'?",
+    "options": ["The environment", "The learner that makes decisions", "The reward signal", "The dataset"],
+    "answer": "The learner that makes decisions"
+  },
+  {
+    "id": 30,
+    "question": "In reinforcement learning, a policy defines:",
+    "options": ["A mapping from states to actions", "The loss function", "The dataset split", "The optimizer type"],
+    "answer": "A mapping from states to actions"
   }
 ]

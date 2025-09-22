@@ -144,6 +144,18 @@ export default function SubjectScreen() {
         <Text style={styles.buttonText}>Start Quiz</Text>
       </TouchableOpacity>
 
+      {/* Pick specific questions */}
+      <TouchableOpacity
+        style={[styles.primaryButton, styles.pickButton, (!hasQuestions || isLoading) && styles.disabledButton]}
+        onPress={() => navigation.navigate('QuestionsPicker', { subject })}
+        disabled={!hasQuestions || isLoading}
+        accessibilityRole="button"
+        accessibilityLabel="Pick Questions"
+        testID="pick-questions"
+      >
+        <Text style={styles.buttonText}>Pick Questions</Text>
+      </TouchableOpacity>
+
       {reviewCount > 0 && (
         <TouchableOpacity
           style={[styles.primaryButton, styles.reviewButton]}
@@ -227,6 +239,10 @@ const styles = StyleSheet.create({
   notesButton: {
     marginTop: 12,
     backgroundColor: '#3B82F6',
+  },
+  pickButton: {
+    marginTop: 12,
+    backgroundColor: '#8B5CF6',
   },
   disabledButton: {
     opacity: 0.6,

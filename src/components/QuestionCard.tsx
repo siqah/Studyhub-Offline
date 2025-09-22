@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default function QuestionCard({ question, options, onSelect, selected, isAnswered, correctAnswer }: any) {
+const QuestionCard = ({ question, options, onSelect, selected, isAnswered, correctAnswer }: any) =>{
   return (
     <View style={styles.card}>
       <Text style={styles.question}>{question}</Text>
@@ -24,6 +24,8 @@ export default function QuestionCard({ question, options, onSelect, selected, is
     </View>
   );
 }
+
+export default QuestionCard
 
 const styles = StyleSheet.create({
   card: {

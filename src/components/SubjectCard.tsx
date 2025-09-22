@@ -5,13 +5,13 @@ type Props = {
   name: string;
   description: string;
   icon?: string;
-  color?: string; // background color
+  color?: string; 
   onPress?: () => void;
-  rightSlot?: React.ReactNode; // optional right-side content (e.g., chevron, progress)
+  rightSlot?: React.ReactNode;
   style?: ViewStyle;
 };
 
-export default function SubjectCard({ name, description, icon = '📚', color = '#3B82F6', onPress, rightSlot, style }: Props) {
+const SubjectCard = ({ name, description, icon = '📚', color = '#3B82F6', onPress, rightSlot, style }: Props) => {
   return (
     <TouchableOpacity style={[styles.wrapper, style]} onPress={onPress} activeOpacity={0.85}>
       <View style={[styles.card, { backgroundColor: color }]}>
@@ -33,6 +33,8 @@ export default function SubjectCard({ name, description, icon = '📚', color = 
     </TouchableOpacity>
   );
 }
+
+export default SubjectCard;
 
 const styles = StyleSheet.create({
   wrapper: { marginBottom: 16 },

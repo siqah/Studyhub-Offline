@@ -46,5 +46,167 @@
     "question": "Identify the verb in: 'The cat sleeps on the mat.'",
     "options": ["cat", "sleeps", "mat", "the"],
     "answer": "sleeps"
+  },
+  {
+    "id": 9,
+    "question": "Choose the correct article: 'I saw ___ apple.'",
+    "options": ["a", "an", "the", "no article"],
+    "answer": "an"
+  },
+  {
+    "id": 10,
+    "question": "What is the antonym of 'hot'?",
+    "options": ["cold", "warm", "heat", "boil"],
+    "answer": "cold"
+  },
+  {
+    "id": 11,
+    "question": "Choose the correctly capitalized sentence.",
+    "options": ["it is monday.", "It is monday.", "it is Monday.", "It is Monday."],
+    "answer": "It is Monday."
+  },
+  {
+    "id": 12,
+    "question": "Fill in the blank: 'She is _____ than her brother.'",
+    "options": ["tall", "taller", "tallest", "more tall"],
+    "answer": "taller"
+  },
+  {
+    "id": 13,
+    "question": "Fill in the blank: '_____ are my books.'",
+    "options": ["This", "These", "Those", "It"],
+    "answer": "These"
+  },
+  {
+    "id": 14,
+    "question": "Choose the past tense: 'They _____ soccer yesterday.'",
+    "options": ["play", "plays", "played", "playing"],
+    "answer": "played"
+  },
+  {
+    "id": 15,
+    "question": "Subject-verb agreement: 'Neither of the boys _____ late.'",
+    "options": ["was", "were", "are", "be"],
+    "answer": "was"
+  },
+  {
+    "id": 16,
+    "question": "Choose the correct preposition: 'He sat _____ the chair.'",
+    "options": ["in", "on", "at", "over"],
+    "answer": "on"
+  },
+  {
+    "id": 17,
+    "question": "Choose the correct word: 'They went to _____ house.'",
+    "options": ["their", "there", "they're", "theirs"],
+    "answer": "their"
+  },
+  {
+    "id": 18,
+    "question": "Choose the correct punctuation: 'Yes I can help'.",
+    "options": ["Yes I can help.", "Yes, I can help.", "Yes I can, help.", "Yes I, can help."],
+    "answer": "Yes, I can help."
+  },
+  {
+    "id": 19,
+    "question": "Identify the adjective in: 'The tall tree swayed.'",
+    "options": ["tall", "tree", "swayed", "the"],
+    "answer": "tall"
+  },
+  {
+    "id": 20,
+    "question": "Which is the correct spelling?",
+    "options": ["accomodate", "accommodate", "acommodate", "accomadate"],
+    "answer": "accommodate"
+  },
+  {
+    "id": 21,
+    "question": "Fill in the blank: 'If I _____ time, I will call you.'",
+    "options": ["have", "had", "have had", "am having"],
+    "answer": "have"
+  },
+  {
+    "id": 22,
+    "question": "Change to passive voice: 'They built the bridge.'",
+    "options": ["The bridge was built by them.", "The bridge is built by them.", "The bridge has built by them.", "The bridge will built by them."],
+    "answer": "The bridge was built by them."
+  },
+  {
+    "id": 23,
+    "question": "Choose the correct reported speech: He said, 'I am tired.'",
+    "options": ["He said that he was tired.", "He said that I was tired.", "He says that he was tired.", "He said that he is tired."],
+    "answer": "He said that he was tired."
+  },
+  {
+    "id": 24,
+    "question": "Identify the clause type in: 'I left because I was late.' (because I was late)",
+    "options": ["Noun clause", "Adjective clause", "Adverb clause", "Independent clause"],
+    "answer": "Adverb clause"
+  },
+  {
+    "id": 25,
+    "question": "Fill in the blank: 'If I _____ you, I would study more.'",
+    "options": ["am", "were", "was", "be"],
+    "answer": "were"
+  },
+  {
+    "id": 26,
+    "question": "Choose the correct subjunctive: 'It is essential that he _____ on time.'",
+    "options": ["is", "be", "was", "being"],
+    "answer": "be"
+  },
+  {
+    "id": 27,
+    "question": "Choose the sentence with correct parallel structure.",
+    "options": ["She likes running, to swim, and biking.", "She likes to run, to swim, and to bike.", "She likes to run, swimming, and to bike.", "She likes running, swim, and bike."],
+    "answer": "She likes to run, to swim, and to bike."
+  },
+  {
+    "id": 28,
+    "question": "Choose the correct punctuation: 'I finished my work I went home.'",
+    "options": ["I finished my work; I went home.", "I finished my work, I went home.", "I finished my work: I went home.", "I finished my work. And went home."],
+    "answer": "I finished my work; I went home."
+  },
+  {
+    "id": 29,
+    "question": "Choose the sentence without a dangling modifier.",
+    "options": ["Walking down the street, the trees were beautiful.", "Walking down the street, I saw beautiful trees.", "I saw walking down the street, beautiful trees.", "Walking down the street beautiful trees I saw."],
+    "answer": "Walking down the street, I saw beautiful trees."
+  },
+  {
+    "id": 30,
+    "question": "Identify the figure of speech: 'He is as brave as a lion.'",
+    "options": ["Simile", "Metaphor", "Hyperbole", "Personification"],
+    "answer": "Simile"
+  },
+  {
+    "id": 31,
+    "question": "Choose the correct word: 'The new law will _____ small businesses.'",
+    "options": ["affect", "effect", "effects", "effected"],
+    "answer": "affect"
+  },
+  {
+    "id": 32,
+    "question": "Subject-verb agreement: 'The team _____ winning this season.'",
+    "options": ["is", "are", "were", "have been"],
+    "answer": "is"
+  },
+  {
+    "id": 33,
+    "question": "Fill in the blank: 'To _____ did you speak?'",
+    "options": ["who", "whom", "whose", "who's"],
+    "answer": "whom"
+  },
+  {
+    "id": 34,
+    "question": "Choose the correct tense: 'By next year, they _____ the project.'",
+    "options": ["complete", "completed", "will have completed", "have completed"],
+    "answer": "will have completed"
+  },
+  {
+    "id": 35,
+    "question": "Fill in the blank: 'If she had seen the sign, she _____.'",
+    "options": ["will stop", "would stop", "would have stopped", "had stopped"],
+    "answer": "would have stopped"
   }
 ]

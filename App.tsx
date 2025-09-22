@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import SubjectScreen from './src/screens/SubjectScreen';
 import QuizScreen from './src/screens/QuizScreen';
+import QuestionsPickerScreen from './src/screens/QuestionsPickerScreen';
 import NotesListScreen from './src/screens/NotesListScreen';
 import NoteDetailScreen from './src/screens/NoteDetailScreen';
 
@@ -40,6 +41,11 @@ export default function App() {
           name="Quiz"
           component={QuizScreen}
           options={{ title: 'Quiz' }}
+        />
+        <Stack.Screen
+          name="QuestionsPicker"
+          component={QuestionsPickerScreen}
+          options={{ title: 'Choose Questions' }}
         />
         <Stack.Screen
           name="NotesList"

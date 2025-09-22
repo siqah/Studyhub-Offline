@@ -1,50 +1,146 @@
 [
   {
     "id": 1,
-    "question": "Solve: 2x + 3 = 7",
-    "options": ["x=1", "x=2", "x=3", "x=4"],
-    "answer": "x=2"
+    "question": "What is 5 + 3?",
+    "options": ["6", "7", "8", "9"],
+    "answer": "8"
   },
   {
     "id": 2,
+    "question": "What is 12 - 7?",
+    "options": ["3", "4", "5", "6"],
+    "answer": "5"
+  },
+  {
+    "id": 3,
+    "question": "What is 3 × 4?",
+    "options": ["7", "11", "12", "15"],
+    "answer": "12"
+  },
+  {
+    "id": 4,
+    "question": "What is 20 ÷ 5?",
+    "options": ["2", "3", "4", "5"],
+    "answer": "4"
+  },
+  {
+    "id": 5,
     "question": "Simplify: (x² × x³)",
     "options": ["x⁵", "x⁶", "x⁸", "x⁹"],
     "answer": "x⁵"
   },
   {
-    "id": 3,
+    "id": 6,
     "question": "What is the value of log₁₀(1000)?",
     "options": ["2", "3", "4", "5"],
     "answer": "3"
   },
   {
-    "id": 4,
-    "question": "If a triangle has sides 3, 4, and 5, what type of triangle is it?",
-    "options": ["Acute", "Right", "Obtuse", "Isosceles"],
-    "answer": "Right"
+    "id": 7,
+    "question": "What is the value of sin 30°?",
+    "options": ["1/2", "√3/2", "√2/2", "1"],
+    "answer": "1/2"
   },
   {
-    "id": 5,
+    "id": 8,
+    "question": "Solve: 2x + 3 = 7",
+    "options": ["x=1", "x=2", "x=3", "x=4"],
+    "answer": "x=2"
+  },
+  {
+    "id": 9,
     "question": "Solve: 3x - 12 = 0",
     "options": ["x=3", "x=4", "x=5", "x=6"],
     "answer": "x=4"
   },
   {
-    "id": 6,
-    "question": "What is the derivative of x³?",
-    "options": ["3x²", "x⁴", "3x", "x²"],
-    "answer": "3x²"
+    "id": 10,
+    "question": "If a triangle has sides 3, 4, and 5, what type of triangle is it?",
+    "options": ["Acute", "Right", "Obtuse", "Isosceles"],
+    "answer": "Right"
   },
   {
-    "id": 7,
+    "id": 11,
     "question": "Find the area of a circle with radius 7 cm (use π = 22/7)",
     "options": ["154 cm²", "144 cm²", "164 cm²", "174 cm²"],
     "answer": "154 cm²"
   },
   {
-    "id": 8,
-    "question": "What is the value of sin 30°?",
-    "options": ["1/2", "√3/2", "√2/2", "1"],
-    "answer": "1/2"
+    "id": 12,
+    "question": "Simplify: (x²)³",
+    "options": ["x⁵", "x⁶", "x⁷", "x⁸"],
+    "answer": "x⁶"
+  },
+  {
+    "id": 13,
+    "question": "Expand: (x + 2)(x + 3)",
+    "options": ["x² + 5x + 6", "x² + 6x + 5", "x² + 5x + 3", "x² + 3x + 5"],
+    "answer": "x² + 5x + 6"
+  },
+  {
+    "id": 14,
+    "question": "Factorize: x² - 9",
+    "options": ["(x - 3)(x + 3)", "(x - 9)(x + 1)", "(x - 1)(x + 9)", "(x - 3)²"],
+    "answer": "(x - 3)(x + 3)"
+  },
+  {
+    "id": 15,
+    "question": "Solve: x² - 5x + 6 = 0",
+    "options": ["x=2 or x=3", "x=1 or x=6", "x=−2 or x=−3", "No real roots"],
+    "answer": "x=2 or x=3"
+  },
+  {
+    "id": 16,
+    "question": "Find the determinant of the matrix [[1, 2], [3, 4]]",
+    "options": ["-2", "2", "-5", "5"],
+    "answer": "-2"
+  },
+  {
+    "id": 17,
+    "question": "What is the probability of rolling a 4 on a fair six-sided die?",
+    "options": ["1/6", "1/4", "1/3", "1/5"],
+    "answer": "1/6"
+  },
+  {
+    "id": 18,
+    "question": "What is the value of i²?",
+    "options": ["-1", "1", "i", "-i"],
+    "answer": "-1"
+  },
+  {
+    "id": 19,
+    "question": "What is the derivative of x³?",
+    "options": ["3x²", "x⁴", "3x", "x²"],
+    "answer": "3x²"
+  },
+  {
+    "id": 20,
+    "question": "What is d/dx (e^x)?",
+    "options": ["e^x", "x e^{x-1}", "x e^x", "e^{x+1}"],
+    "answer": "e^x"
+  },
+  {
+    "id": 21,
+    "question": "Evaluate the limit: lim x→0 (sin x)/x",
+    "options": ["0", "1", "Does not exist", "∞"],
+    "answer": "1"
+  },
+  {
+    "id": 22,
+    "question": "Evaluate: ∫ x dx",
+    "options": ["x²/2 + C", "x² + C", "2x + C", "ln|x| + C"],
+    "answer": "x²/2 + C"
+  },
+  {
+    "id": 23,
+    "question": "Solve the system: x + y = 5, x - y = 1",
+    "options": ["x=3, y=2", "x=2, y=3", "x=4, y=1", "x=1, y=4"],
+    "answer": "x=3, y=2"
+  },
+  {
+    "id": 24,
+    "question": "How many permutations of 5 distinct objects are there?",
+    "options": ["60", "100", "120", "240"],
+    "answer": "120"
   }
 ]

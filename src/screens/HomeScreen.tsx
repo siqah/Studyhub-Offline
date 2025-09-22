@@ -161,20 +161,6 @@ export default function HomeScreen() {
               <Text style={styles.statLabel}>Time Studied</Text>
             </View>
           </View>
-          <View style={[styles.statsRow, { marginTop: 10 }]}>
-            <View style={styles.statItemSmall}>
-              <Text style={[styles.statNumberSmall, styles.statNumberAccent]}>{todayLabel}</Text>
-              <Text style={styles.statLabel}>Today</Text>
-            </View>
-            <View style={styles.statItemSmall}>
-              <Text style={[styles.statNumberSmall, styles.statNumberPositive]}>{gitStats?.totalCommits ?? 0}</Text>
-              <Text style={styles.statLabel}>Commits</Text>
-            </View>
-            <View style={styles.statItemSmall}>
-              <Text style={[styles.statNumberSmall, { fontSize: 12 }]}>{getTimeSinceLastCommit(gitStats?.lastCommitDate ?? null)}</Text>
-              <Text style={styles.statLabel}>Last Commit</Text>
-            </View>
-          </View>
         </View>
 
         <Text style={styles.sectionTitle}>Subjects</Text>
@@ -202,8 +188,6 @@ export default function HomeScreen() {
                       <Text style={{ color: 'white', fontWeight: '700', fontSize: 16 }}>{stats.avg}%</Text>
                       <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{stats.attempts} tries</Text>
                       <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{nCount} notes</Text>
-                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>⏱ {timeStr}</Text>
-                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>Today: {subTodayStr}</Text>
                     </View>
                   }
                 />
