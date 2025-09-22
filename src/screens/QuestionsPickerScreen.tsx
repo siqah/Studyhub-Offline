@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { loadQuiz, SubjectKey, Question } from '../data/loaders';
+import useStudyTimer from '../hooks/useStudyTimer';
 import { useQuizStore } from '../store/useQuizStore';
 
 type RouteParams = { subject: SubjectKey };
@@ -11,6 +12,7 @@ export default function QuestionsPickerScreen() {
   const navigation = useNavigation<any>();
   const { loadQuestions } = useQuizStore();
   const subject: SubjectKey = (route.params as RouteParams)?.subject ?? 'Mathematics';
+  useStudyTimer('questions-picker', subject);
 
   const [questions, setQuestions] = React.useState<Question[] | null>(null);
   const [selected, setSelected] = React.useState<Set<number>>(new Set());

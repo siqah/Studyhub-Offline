@@ -80,20 +80,44 @@ export const useQuizStore = create<QuizState>((set, get) => ({
       // persist session
       (async () => {
         try {
-          const existing = (await loadProgress()) || ({ quizzesTaken: 0, totalScore: 0, sessions: [], totalDurationMs: 0 } as Progress);
+          const existing = (await loadProgress()) || ({
+            quizzesTaken: 0,
+            totalScore: 0,
+            sessions: [],
+            totalDurationMs: 0,
+            perSubjectDuration: {},
+            todayDurationMs: 0,
+            perSubjectTodayDuration: {},
+            todayDate: undefined,
+            bookmarks: {},
+            wrong: {},
+          } as unknown as Progress);
+
           const subject = (questions as any)[0]?._subject ?? 'Unknown';
           const start = get()._sessionStart ?? Date.now();
           const durationMs = Math.max(0, Date.now() - start);
+
           const newProgress: Progress = {
-            quizzesTaken: existing.quizzesTaken + 1,
-            totalScore: existing.totalScore + score,
+            // preserve everything from existing first
+            ...existing,
+            // update aggregate counters
+            quizzesTaken: (existing.quizzesTaken ?? 0) + 1,
+            totalScore: (existing.totalScore ?? 0) + score,
+            // append session record
             sessions: [
-              ...existing.sessions,
-              { subject, score, total: questions.length, date: new Date().toISOString(), durationMs }
+              ...(existing.sessions ?? []),
+              { subject, score, total: questions.length, date: new Date().toISOString(), durationMs },
             ],
-            // Do not adjust totalDurationMs here; it's tracked by useStudyTimer across screens
+            // keep time fields as-is; time tracked by useStudyTimer() separately
             totalDurationMs: existing.totalDurationMs ?? 0,
+            perSubjectDuration: existing.perSubjectDuration ?? {},
+            todayDurationMs: existing.todayDurationMs ?? 0,
+            perSubjectTodayDuration: existing.perSubjectTodayDuration ?? {},
+            // preserve other maps
+            bookmarks: existing.bookmarks ?? {},
+            wrong: existing.wrong ?? {},
           };
+
           await saveProgress(newProgress);
         } catch (e) {
           console.warn('Error saving progress', e);

@@ -4,6 +4,7 @@ import { useRoute, useNavigation, useFocusEffect } from '@react-navigation/nativ
 import { useQuizStore } from '../store/useQuizStore';
 import { getWrongForSubject } from '../store/persistence';
 import { loadQuiz, loadNotes, SubjectKey, Question } from '../data/loaders';
+import useStudyTimer from '../hooks/useStudyTimer';
 
 type RouteParams = { subject?: SubjectKey };
 type WithSubject = Question & { _subject: SubjectKey };
@@ -16,6 +17,7 @@ export default function SubjectScreen() {
   const { loadQuestions } = useQuizStore();
 
   const subject: SubjectKey = (route.params as RouteParams)?.subject ?? 'Mathematics';
+  useStudyTimer('subject', subject);
 
   const [wrongIds, setWrongIds] = useState<number[]>([]);
   const [dataset, setDataset] = useState<Question[] | null>(null);

@@ -4,8 +4,10 @@ import { useQuizStore } from '../store/useQuizStore';
 import QuestionCard from '../components/QuestionCard';
 import { toggleBookmark, isBookmarked } from '../store/persistence';
 import useStudyTimer from '../hooks/useStudyTimer';
+import { useNavigation } from '@react-navigation/native';
 
 export default function QuizScreen() {
+  const navigation = useNavigation<any>();
   const { questions, currentQuestion, submitAnswer, nextQuestion, score, isQuizComplete, reset, currentSelected, isAnswered } = useQuizStore();
   const current = questions && questions.length > 0 ? (questions[0] as any) : null;
   const subj = current?._subject ?? undefined;
@@ -33,7 +35,7 @@ export default function QuizScreen() {
         <Text style={styles.title}>Quiz Finished!</Text>
         <Text style={styles.subtitle}>Your Score: {score}/{questions.length}</Text>
 
-        <TouchableOpacity style={[styles.startButton, { marginTop: 20 }]} onPress={() => { reset(); }}>
+        <TouchableOpacity style={[styles.startButton, { marginTop: 20 }]} onPress={() => { reset(); navigation.navigate('Home'); }}>
           <Text style={styles.startButtonText}>Back to Home</Text>
         </TouchableOpacity>
       </View>

@@ -76,11 +76,14 @@ export default function HomeScreen() {
 
   // Refresh on focus and keep stats live with a lightweight interval.
   // Only refresh notes counts occasionally to avoid heavy work.
+  // Always refresh progress on focus, even after quiz/note actions
   useFocusEffect(
     useCallback(() => {
-      // On focus, do a single refresh including notes (no spinner)
-      refreshProgress(true, false);
-      return () => {};
+      let active = true;
+      (async () => {
+        await refreshProgress(true, false);
+      })();
+      return () => { active = false; };
     }, [refreshProgress])
   );
 
