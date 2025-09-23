@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "kcse-study-app",
-    "slug": "kcse-study-app",
+    "name": "Studyhub Offline",
+    "slug": "studyhub-offline",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.masika.kcsestudyapp"
+      "bundleIdentifier": "com.masika.Studyhub-Offline"
     },
     "android": {
       "adaptiveIcon": {
