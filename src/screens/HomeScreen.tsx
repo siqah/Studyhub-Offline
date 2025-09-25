@@ -5,7 +5,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import SubjectCard from "../components/SubjectCard";
 import { loadProgress, Progress } from "../store/persistence";
 import { loadNotes, SubjectKey } from "../data/loaders";
-// Removed git commit stats utilities as they are not relevant to user progress
+import { formatDuration } from "../utils/timeUtils";
 
 type Subject = {
   name: string;
@@ -46,81 +46,115 @@ export default function HomeScreen() {
   const [progress, setProgress] = useState<Progress | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [notesCounts, setNotesCounts] = useState<Record<string, number>>({});
-  // Removed git stats state
+  const [isLoading, setIsLoading] = useState(true);
 
   const lastNotesRefreshRef = useRef<number>(0);
+  
   const refreshProgress = useCallback(async (includeNotes: boolean = false, showSpinner: boolean = false) => {
     if (showSpinner) setIsRefreshing(true);
     try {
       const data = await loadProgress();
       setProgress(data);
+      
       if (includeNotes) {
         const entries = await Promise.all(
           subjects.map(async (s) => {
-            const list = await loadNotes(s.name as SubjectKey);
-            return [s.name, list.length] as const;
+            try {
+              const list = await loadNotes(s.name as SubjectKey);
+              return [s.name, list.length] as const;
+            } catch (error) {
+              console.warn(`Failed to load notes for ${s.name}:`, error);
+              return [s.name, 0] as const;
+            }
           })
         );
         setNotesCounts(Object.fromEntries(entries));
         lastNotesRefreshRef.current = Date.now();
       }
+    } catch (error) {
+      console.error('Failed to refresh progress:', error);
     } finally {
       if (showSpinner) setIsRefreshing(false);
+      setIsLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    // initial load includes notes counts (show spinner once)
     refreshProgress(true, true);
   }, [refreshProgress]);
 
-  // Refresh on focus and keep stats live with a lightweight interval.
-  // Only refresh notes counts occasionally to avoid heavy work.
-  // Always refresh progress on focus, even after quiz/note actions
   useFocusEffect(
     useCallback(() => {
       let active = true;
       (async () => {
-        await refreshProgress(true, false);
+        if (active) {
+          await refreshProgress(true, false);
+        }
       })();
       return () => { active = false; };
     }, [refreshProgress])
   );
 
+  // Calculate quiz statistics
   const quizzesTaken = progress?.quizzesTaken ?? 0;
-  const totalAnswered = progress?.sessions?.reduce((s, x) => s + x.total, 0) ?? 0;
-  const avgScore = totalAnswered > 0 && progress ? Math.round((progress.totalScore / totalAnswered) * 100) : 0;
+  const sessions = progress?.sessions ?? [];
+  const totalAnswered = sessions.reduce((sum, session) => sum + (session.total || 0), 0);
+  const totalScore = sessions.reduce((sum, session) => sum + (session.score || 0), 0);
+  const avgScore = totalAnswered > 0 ? Math.round((totalScore / totalAnswered) * 100) : 0;
 
+  // Calculate time statistics
   const totalDurationMs = progress?.totalDurationMs ?? 0;
-  const hours = Math.floor(totalDurationMs / (1000 * 60 * 60));
-  const minutes = Math.floor((totalDurationMs % (1000 * 60 * 60)) / (1000 * 60));
-  const timeLabel = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+  const timeLabel = formatDuration(totalDurationMs);
 
   const todayMs = progress?.todayDurationMs ?? 0;
-  const tHours = Math.floor(todayMs / (1000 * 60 * 60));
-  const tMinutes = Math.floor((todayMs % (1000 * 60 * 60)) / (1000 * 60));
-  const todayLabel = tHours > 0 ? `${tHours}h ${tMinutes}m` : `${tMinutes}m`;
+  const todayLabel = formatDuration(todayMs);
 
+  // Calculate per-subject statistics
   const perSubject = useMemo(() => {
     const map: Record<string, { attempts: number; avg: number; timeMs: number }> = {};
-    const sessions = progress?.sessions ?? [];
+    
+    // Initialize all subjects with zero values
+    subjects.forEach(subject => {
+      map[subject.name] = { attempts: 0, avg: 0, timeMs: 0 };
+    });
+
+    // Group sessions by subject
     const grouped: Record<string, { totalScore: number; total: number; attempts: number }> = {};
-    for (const s of sessions) {
-      if (!grouped[s.subject]) grouped[s.subject] = { totalScore: 0, total: 0, attempts: 0 };
-      grouped[s.subject].totalScore += s.score;
-      grouped[s.subject].total += s.total;
-      grouped[s.subject].attempts += 1;
-    }
-    for (const key of Object.keys(grouped)) {
-      const g = grouped[key];
-      map[key] = {
+    
+    sessions.forEach(session => {
+      if (!session.subject) return;
+      
+      if (!grouped[session.subject]) {
+        grouped[session.subject] = { totalScore: 0, total: 0, attempts: 0 };
+      }
+      
+      grouped[session.subject].totalScore += session.score || 0;
+      grouped[session.subject].total += session.total || 0;
+      grouped[session.subject].attempts += 1;
+    });
+
+    // Calculate averages and add time data
+    Object.keys(grouped).forEach(subjectName => {
+      const g = grouped[subjectName];
+      map[subjectName] = {
         attempts: g.attempts,
         avg: g.total > 0 ? Math.round((g.totalScore / g.total) * 100) : 0,
-        timeMs: progress?.perSubjectDuration?.[key] ?? 0,
+        timeMs: progress?.perSubjectDuration?.[subjectName] ?? 0,
       };
-    }
+    });
+
     return map;
-  }, [progress?.sessions, progress?.perSubjectDuration]);
+  }, [sessions, progress?.perSubjectDuration]);
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+          <Text style={styles.loadingText}>Loading...</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -134,7 +168,12 @@ export default function HomeScreen() {
       <ScrollView
         contentContainerStyle={styles.contentContainer}
         refreshControl={
-          <RefreshControl refreshing={isRefreshing} onRefresh={() => refreshProgress(true, true)} />
+          <RefreshControl 
+            refreshing={isRefreshing} 
+            onRefresh={() => refreshProgress(true, true)}
+            colors={['#3B82F6']}
+            tintColor="#3B82F6"
+          />
         }
       >
         <View style={styles.welcomeCard}>
@@ -144,7 +183,7 @@ export default function HomeScreen() {
           </Text>
         </View>
 
-          <View style={styles.statsCard}>
+        <View style={styles.statsCard}>
           <Text style={styles.statsTitle}>Your Progress</Text>
           <View style={styles.statsRow}>
             <View style={[styles.statItem, styles.statDividerRight]}>
@@ -160,20 +199,25 @@ export default function HomeScreen() {
               <Text style={styles.statLabel}>Time Studied</Text>
             </View>
           </View>
+          
+          {todayMs > 0 && (
+            <View style={styles.todayStats}>
+              <Text style={styles.todayLabel}>Today: {todayLabel}</Text>
+            </View>
+          )}
         </View>
 
         <Text style={styles.sectionTitle}>Subjects</Text>
         <View style={styles.subjectList}>
           {subjects.map((subject) => {
             const stats = perSubject[subject.name] ?? { attempts: 0, avg: 0, timeMs: 0 };
-            const tHrs = Math.floor((stats.timeMs ?? 0) / (1000 * 60 * 60));
-            const tMin = Math.floor(((stats.timeMs ?? 0) % (1000 * 60 * 60)) / (1000 * 60));
-            const timeStr = tHrs > 0 ? `${tHrs}h ${tMin}m` : `${tMin}m`;
+            const timeStr = formatDuration(stats.timeMs ?? 0);
+            
             const subTodayMs = progress?.perSubjectTodayDuration?.[subject.name] ?? 0;
-            const subTHrs = Math.floor(subTodayMs / (1000 * 60 * 60));
-            const subTMin = Math.floor((subTodayMs % (1000 * 60 * 60)) / (1000 * 60));
-            const subTodayStr = subTHrs > 0 ? `${subTHrs}h ${subTMin}m` : `${subTMin}m`;
+            const subTodayStr = formatDuration(subTodayMs);
+            
             const nCount = notesCounts[subject.name] ?? 0;
+            
             return (
               <View key={subject.name} style={styles.subjectItem}>
                 <SubjectCard
@@ -184,9 +228,20 @@ export default function HomeScreen() {
                   onPress={() => navigation.navigate("Subject", { subject: subject.name })}
                   rightSlot={
                     <View style={{ alignItems: 'flex-end' }}>
-                      <Text style={{ color: 'white', fontWeight: '700', fontSize: 16 }}>{stats.avg}%</Text>
-                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{stats.attempts} tries</Text>
-                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>{nCount} notes</Text>
+                      <Text style={{ color: 'white', fontWeight: '700', fontSize: 16 }}>
+                        {stats.avg}%
+                      </Text>
+                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>
+                        {stats.attempts} {stats.attempts === 1 ? 'try' : 'tries'}
+                      </Text>
+                      <Text style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12 }}>
+                        {nCount} {nCount === 1 ? 'note' : 'notes'}
+                      </Text>
+                      {stats.timeMs > 0 && (
+                        <Text style={{ color: 'rgba(255,255,255,0.7)', fontSize: 10 }}>
+                          {timeStr}
+                        </Text>
+                      )}
                     </View>
                   }
                 />
@@ -194,8 +249,6 @@ export default function HomeScreen() {
             );
           })}
         </View>
-
-      
       </ScrollView>
     </SafeAreaView>
   );
@@ -216,9 +269,13 @@ const shadow = Platform.select({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FAFC', // slate-50
+    backgroundColor: '#F8FAFC',
   },
-
+  loadingText: {
+    fontSize: 16,
+    color: '#64748B',
+    fontWeight: '500',
+  },
   header: {
     paddingTop: 8,
     paddingBottom: 16,
@@ -233,29 +290,18 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#0F172A', // slate-900
+    color: '#0F172A',
     letterSpacing: 0.2,
   },
   appSubtitle: {
     marginTop: 4,
     fontSize: 14,
-    color: '#64748B', // slate-500
+    color: '#64748B',
   },
-
   contentContainer: {
     paddingHorizontal: 20,
     paddingBottom: 28,
   },
-  statItemSmall: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  statNumberSmall: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#0F172A',
-  },
-
   welcomeCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
@@ -277,7 +323,6 @@ const styles = StyleSheet.create({
     color: '#64748B',
     lineHeight: 20,
   },
-
   sectionTitle: {
     fontSize: 16,
     fontWeight: '700',
@@ -285,14 +330,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     letterSpacing: 0.3,
   },
-
   subjectList: {
     gap: 12,
   },
   subjectItem: {
     marginBottom: 0,
   },
-
   statsCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
@@ -327,18 +370,30 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 22,
     fontWeight: '800',
-    color: '#2563EB', // blue-600
+    color: '#2563EB',
     marginBottom: 2,
   },
   statNumberPositive: {
-    color: '#10B981', // emerald-500
+    color: '#10B981',
   },
   statNumberAccent: {
-    color: '#8B5CF6', // violet-500
+    color: '#8B5CF6',
   },
   statLabel: {
     fontSize: 12,
     color: '#6B7280',
     letterSpacing: 0.3,
+  },
+  todayStats: {
+    marginTop: 16,
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#E5E7EB',
+    alignItems: 'center',
+  },
+  todayLabel: {
+    fontSize: 14,
+    color: '#64748B',
+    fontWeight: '600',
   },
 });

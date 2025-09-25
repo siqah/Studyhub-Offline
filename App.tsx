@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { TimeTrackingProvider } from './src/contexts/TimeTrackingContext';
 import HomeScreen from './src/screens/HomeScreen';
 import SubjectScreen from './src/screens/SubjectScreen';
 import QuizScreen from './src/screens/QuizScreen';
@@ -15,17 +16,18 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerShadowVisible: false,
-          headerTitleAlign: 'center',
-          headerStyle: { backgroundColor: '#fff' },
-          headerTintColor: '#111',
-          headerTitleStyle: { fontWeight: '600' },
-        }}
-      >
+    <TimeTrackingProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            headerShadowVisible: false,
+            headerTitleAlign: 'center',
+            headerStyle: { backgroundColor: '#fff' },
+            headerTintColor: '#111',
+            headerTitleStyle: { fontWeight: '600' },
+          }}
+        >
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -60,6 +62,7 @@ export default function App() {
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
+    </TimeTrackingProvider>
   );
 }
 
